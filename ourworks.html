@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Works — ER CMG</title>
+  <meta name="description" content="ER콘텐츠미디어그룹의 작업 목록 — 공연, 방송, 브랜드 협업까지 우리가 만들어온 순간들.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --nav-h: 64px;
+      --foot-h: 52px;
+      --pad-x: 5%;
+      --line: rgba(255,255,255,0.07);
+    }
+
+    body {
+      background: #040404;
+      color: #fff;
+      font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      height: 100dvh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      height: var(--nav-h); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(4,4,4,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      position: relative; z-index: 100;
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
+    .nav-links a {
+      font-size: clamp(10px,0.9vw,12px); font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); text-decoration: none;
+      transition: color 0.15s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,0.8); }
+    .nav-links a.active { color: #fff; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 21;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: rgba(255,255,255,0.6);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: rgba(4,4,4,0.97);
+      padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px;
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .mobile-menu.open { opacity: 1; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a {
+      font-size: clamp(28px,8vw,40px); font-weight: 500;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); text-decoration: none;
+      transition: color 0.15s; display: block; padding: 6px 0;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
+
+    /* ── MAIN ── */
+    .works-main {
+      flex: 1; overflow: hidden;
+      display: flex; align-items: center;
+      padding: 0 var(--pad-x);
+    }
+
+    .split {
+      width: min(1320px, 100%); margin: 0 auto;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      align-items: start; gap: 0;
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      border-right: 1px solid var(--line);
+      padding-right: clamp(24px,3vw,52px);
+      padding-top: 4px;
+    }
+    .eyebrow {
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.18); margin-bottom: 18px;
+    }
+    .big-title {
+      font-size: clamp(38px,4.8vw,64px); font-weight: 800;
+      line-height: 0.84; letter-spacing: -0.05em;
+      margin-bottom: clamp(18px,2.2vw,28px);
+    }
+    .big-title .fill  { display: block; color: rgba(255,255,255,0.9); }
+    .big-title .outline { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.16); }
+    .left-rule { width: 22px; height: 1px; background: rgba(255,255,255,0.14); margin-bottom: clamp(14px,1.6vw,20px); }
+    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.3); word-break: keep-all; }
+    .desc-line { opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .desc-line.in { opacity: 1; transform: translateY(0); }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel { padding-left: clamp(24px,3vw,48px); }
+
+    /* year tabs */
+    .year-tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 0;
+    }
+    .ytab {
+      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.2); cursor: pointer;
+      padding: 0 24px 12px 0; margin-right: 2px;
+      border-bottom: 1px solid transparent;
+      border-left: none; border-right: none; border-top: none;
+      background: none; outline: none;
+      font-family: inherit;
+      position: relative; top: 1px;
+      transition: color 0.18s, border-color 0.18s;
+      display: flex; align-items: baseline; gap: 6px;
+    }
+    .ytab:hover { color: rgba(255,255,255,0.52); }
+    .ytab.on { color: rgba(255,255,255,0.88); border-bottom-color: rgba(255,255,255,0.55); }
+    .ytab .ct { font-size: 9px; color: rgba(255,255,255,0.14); transition: color 0.18s; }
+    .ytab.on .ct { color: rgba(255,255,255,0.28); }
+
+    /* year panes */
+    .year-pane { display: none; }
+    .year-pane.on { display: block; animation: pane-in 0.3s cubic-bezier(.4,0,.2,1) forwards; }
+    @keyframes pane-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── ROW ITEMS ── */
+    .item {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .item:last-of-type { border-bottom: none; }
+    .row {
+      display: flex; align-items: baseline; gap: 8px;
+      padding: clamp(10px,1vw,13px) 0;
+      cursor: pointer; user-select: none;
+    }
+    .row-num {
+      font-size: 10px; color: rgba(255,255,255,0.12);
+      letter-spacing: 0.1em; min-width: 22px; flex-shrink: 0;
+    }
+    .row-city {
+      font-size: clamp(17px,1.82vw,21px); font-weight: 700;
+      letter-spacing: -0.01em; flex: 1;
+      transition: color 0.18s;
+    }
+    /* outline = 완료 */
+    .item.done .row-city {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.26);
+    }
+    /* fill = 예정 */
+    .item.upcoming .row-city {
+      color: rgba(255,255,255,0.8);
+    }
+    /* hover / open */
+    .item:hover .row-city,
+    .item.open  .row-city {
+      color: rgba(255,255,255,0.94) !important;
+      -webkit-text-stroke-color: transparent !important;
+    }
+    .row-type {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.14); flex-shrink: 0;
+    }
+
+    /* dropdown */
+    .drop {
+      overflow: hidden; max-height: 0; opacity: 0;
+      transition: max-height 0.38s cubic-bezier(.4,0,.2,1), opacity 0.26s;
+    }
+    .drop.open { max-height: 70px; opacity: 1; }
+    .drop-inner {
+      padding: 0 0 14px 32px;
+      font-size: 13.5px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.26);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      flex-shrink: 0; height: var(--foot-h);
+      border-top: 1px solid var(--line);
+      padding: 0 var(--pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-text { font-size: 10px; color: rgba(255,255,255,0.16); letter-spacing: 0.08em; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      body { height: auto; overflow: auto; }
+      .works-main {
+        padding: 36px var(--pad-x);
+        align-items: flex-start;
+        overflow: visible;
+      }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .split { grid-template-columns: 1fr; gap: 0; }
+      .left-panel {
+        border-right: none; padding-right: 0;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 30px; margin-bottom: 30px;
+      }
+      .right-panel { padding-left: 0; }
+      .year-tabs { overflow-x: auto; gap: 2px; }
+      .year-tabs::-webkit-scrollbar { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .big-title { font-size: clamp(32px, min(9vw, 9vh), 52px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <ul class="nav-links">
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html" class="active">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html" class="active">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- MAIN -->
+  <main class="works-main">
+    <div class="split">
+
+      <!-- LEFT -->
+      <section class="left-panel" aria-labelledby="worksTitle">
+        <div class="eyebrow">ER Contents Media Group</div>
+        <h1 class="big-title" id="worksTitle">
+          <span class="fill">OUR</span>
+          <span class="fill">WORKS</span>
+        </h1>
+        <div class="left-rule"></div>
+        <p class="left-desc">
+          <span class="desc-line">무대 위, 스크린 안,</span><br>
+          <span class="desc-line">브랜드와 아티스트 사이에서</span><br>
+          <span class="desc-line">우리가 만들어온 순간들.</span>
+        </p>
+      </section>
+
+      <!-- RIGHT -->
+      <div class="right-panel" aria-label="작업 목록">
+
+        <!-- year tabs -->
+        <div class="year-tabs" role="tablist">
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2023" onclick="switchYear('2023',this)">
+            2023 <span class="ct">2</span>
+          </button>
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2024" onclick="switchYear('2024',this)">
+            2024 <span class="ct">3</span>
+          </button>
+          <button class="ytab on" role="tab" aria-selected="true" aria-controls="pane-2025" onclick="switchYear('2025',this)">
+            2025 <span class="ct">5</span>
+          </button>
+        </div>
+
+        <!-- 2023 -->
+        <div class="year-pane" id="pane-2023" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">Mnet 스트릿우먼파이터</span>
+              <span class="row-type">방송</span>
+            </div>
+            <div class="drop"><div class="drop-inner">Mnet 방송 프로그램 제작 참여 · 시즌 2</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">02</span>
+              <span class="row-city">글로벌 브랜드 캠페인</span>
+              <span class="row-type">브랜드</span>
+            </div>
+            <div class="drop"><div class="drop-inner">글로벌 브랜드 × K-POP 아티스트 협업 캠페인</div></div>
+          </div>
+        </div>
+
+        <!-- 2024 -->
+        <div class="year-pane" id="pane-2024" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">서울 단독 공연</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">KSPO DOME · 관객 15,000명</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">02</span>
+              <span class="row-city">아티스트 팬미팅</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">올림픽홀 · 관객 2,500명</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">03</span>
+              <span class="row-city">OTT 오리지널 콘텐츠</span>
+              <span class="row-type">디지털</span>
+            </div>
+            <div class="drop"><div class="drop-inner">스트리밍 오리지널 콘텐츠 기획·제작</div></div>
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="year-pane on" id="pane-2025" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">Bangkok</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">임팩트 아레나 · 관객 50,000명</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">02</span>
+              <span class="row-city">Hanoi</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">국립경기장 · 관객 40,000명</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">03</span>
+              <span class="row-city">Kuala Lumpur</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">악시아타 아레나 · 관객 40,000명</div></div>
+          </div>
+          <div class="item upcoming" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">04</span>
+              <span class="row-city">Macau</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">코타이 아레나 · 관객 35,000명 예정</div></div>
+          </div>
+          <div class="item upcoming" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">05</span>
+              <span class="row-city">Kaohsiung</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">국립경기장 · 관객 55,000명 예정</div></div>
+          </div>
+        </div>
+
+      </div><!-- /right-panel -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-text">© 2025 ER Contents Media Group</span>
+    <span class="footer-text">Seoul, Korea</span>
+  </footer>
+
+  <script>
+    /* ── YEAR TAB SWITCH ── */
+    function switchYear(year, tab) {
+      document.querySelectorAll('.ytab').forEach(t => {
+        t.classList.remove('on');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.year-pane').forEach(p => p.classList.remove('on'));
+      tab.classList.add('on');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById('pane-' + year).classList.add('on');
+    }
+
+    /* ── ACCORDION ── */
+    function acc(item) {
+      const drop = item.querySelector('.drop');
+      const isOpen = drop.classList.contains('open');
+      item.closest('.year-pane').querySelectorAll('.drop.open').forEach(d => {
+        d.classList.remove('open');
+        d.closest('.item').classList.remove('open');
+      });
+      if (!isOpen) {
+        drop.classList.add('open');
+        item.classList.add('open');
+      }
+    }
+
+    /* ── DESC ANIMATION ── */
+    window.addEventListener('load', () => {
+      const lines = document.querySelectorAll('.desc-line');
+      lines.forEach((l, i) => {
+        setTimeout(() => l.classList.add('in'), i * 130 + 180);
+      });
+    });
+
+    /* ── HAMBURGER ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      if (isOpen) {
+        mobileMenu.style.display = 'flex';
+        requestAnimationFrame(() => mobileMenu.classList.add('open'));
+      } else {
+        mobileMenu.classList.remove('open');
+        mobileMenu.addEventListener('transitionend', () => {
+          if (!mobileMenu.classList.contains('open')) mobileMenu.style.display = 'none';
+        }, { once: true });
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        mobileMenu.addEventListener('transitionend', () => {
+          mobileMenu.style.display = 'none';
+        }, { once: true });
+      });
+    });
+  </script>
+
+</body>
+</html>

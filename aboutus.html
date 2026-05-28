@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — ER CMG</title>
+  <meta name="description" content="ER콘텐츠미디어그룹 소개 — 공연, 방송, 콘텐츠를 통해 새로운 문화 경험을 만들어가는 기획·제작사.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --nav-h: 64px;
+      --pad-x: 5%;
+      --line: rgba(255,255,255,0.07);
+    }
+
+    body {
+      background: #040404;
+      color: #fff;
+      font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(4,4,4,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 40px);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: clamp(10px, 0.9vw, 12px);
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,0.8); }
+    .nav-links a.active { color: #fff; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      background: rgba(4,4,4,0.97);
+      padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a {
+      font-size: clamp(28px, 8vw, 40px);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.15s;
+      display: block;
+      padding: 6px 0;
+    }
+    .mobile-menu a:hover,
+    .mobile-menu a.active { color: #fff; }
+
+    /* ── CEO MESSAGE ── */
+    .ceo-body {}
+    .ceo-para {
+      font-size: clamp(14px, 1.35vw, 17px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 2;
+      margin-bottom: 1.6em;
+    }
+    .ceo-para:last-of-type { margin-bottom: 0; }
+    .ceo-sig {
+      display: block;
+      font-size: 12px;
+      color: rgba(255,255,255,0.22);
+      font-style: italic;
+      margin-top: 28px;
+      letter-spacing: 0.02em;
+    }
+    .ceo-body.typing-ready .ceo-char {
+      opacity: 0.18;
+      animation: ceoSoftType 0.045s linear forwards;
+    }
+    .ceo-body.typing-ready .ceo-sig {
+      opacity: 0;
+      animation: ceoSignIn 0.45s ease forwards;
+      animation-delay: var(--sig-delay, 3.8s);
+    }
+    @keyframes ceoSoftType {
+      to { opacity: 1; }
+    }
+    @keyframes ceoSignIn {
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ceo-body.typing-ready .ceo-char,
+      .ceo-body.typing-ready .ceo-sig {
+        opacity: 1;
+        animation: none;
+      }
+    }
+
+    /* ── ABOUT US FINAL LAYOUT ── */
+    .about-main {
+      min-height: 100dvh;
+      padding: calc(var(--nav-h) + clamp(52px, 7vw, 96px)) var(--pad-x) clamp(72px, 8vw, 110px);
+      display: flex;
+      align-items: center;
+    }
+    .about-layout {
+      width: min(1320px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+      gap: clamp(44px, 7vw, 96px);
+      align-items: start;
+    }
+    .about-left {
+      max-width: 760px;
+    }
+    .about-title {
+      font-size: clamp(28px, 3.6vw, 48px);
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      font-weight: 800;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: clamp(18px, 3vw, 32px);
+    }
+    .about-title em {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      color: rgba(255,255,255,0.64);
+    }
+    .about-right {
+      border-left: 1px solid rgba(255,255,255,0.14);
+      padding-left: clamp(24px, 3vw, 32px);
+    }
+    .info-block {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.11);
+    }
+    .info-label {
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 14px;
+    }
+    .info-copy {
+      font-size: clamp(13px, 1.1vw, 15px);
+      font-weight: 300;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.46);
+      word-break: keep-all;
+    }
+    .service-lines {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      margin-top: 16px;
+    }
+    .service-line {
+      display: block;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.58);
+    }
+
+    /* ── FOOTER ── */
+    .about-footer {
+      border-top: 1px solid var(--line);
+      padding: 22px var(--pad-x);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text {
+      font-size: 10px;
+      color: rgba(255,255,255,0.16);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+
+      .about-main {
+        align-items: flex-start;
+      }
+      .about-layout {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+      .about-title {
+        margin-bottom: 22px;
+      }
+      .about-right {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(255,255,255,0.14);
+        padding-top: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <ul class="nav-links">
+      <li><a href="aboutus.html" class="active">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="aboutus.html" class="active">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ABOUT US -->
+  <main class="about-main">
+    <div class="about-layout">
+      <section class="about-left" aria-labelledby="aboutTitle">
+        <h1 class="about-title" id="aboutTitle">CEO <em>인사말</em></h1>
+        <div class="ceo-body">
+          <p class="ceo-para">ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.</p>
+          <p class="ceo-para">우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.</p>
+          <p class="ceo-para">앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.</p>
+          <span class="ceo-sig">— CEO, ER콘텐츠미디어그룹</span>
+        </div>
+      </section>
+
+      <aside class="about-right" aria-label="회사 정보">
+        <div class="info-block">
+          <div class="info-label">Company</div>
+          <p class="info-copy">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
+        </div>
+
+        <div class="info-block">
+          <div class="info-label">Approach</div>
+          <p class="info-copy">창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.</p>
+        </div>
+
+        <div>
+          <div class="info-label">Services</div>
+          <p class="info-copy">공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.</p>
+          <div class="service-lines">
+            <span class="service-line">공연 기획 및 제작</span>
+            <span class="service-line">방송 콘텐츠 제작</span>
+            <span class="service-line">아티스트 및 크리에이터 에이전시</span>
+            <span class="service-line">콘텐츠 IP 개발</span>
+            <span class="service-line">브랜드 협업 및 마케팅</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="about-footer">
+    <span class="footer-text">© 2025 ER Contents Media Group</span>
+    <span class="footer-text">Seoul, Korea</span>
+  </footer>
+
+  <script>
+    const ceoBody = document.querySelector('.ceo-body');
+    if (ceoBody) {
+      const animatedTextNodes = ceoBody.querySelectorAll('.ceo-para');
+      let charIndex = 0;
+
+      animatedTextNodes.forEach((node, paragraphIndex) => {
+        const text = node.textContent;
+        node.textContent = '';
+
+        Array.from(text).forEach((char) => {
+          const span = document.createElement('span');
+          span.className = 'ceo-char';
+          span.textContent = char;
+          span.style.animationDelay = `${paragraphIndex * 0.35 + charIndex * 0.018}s`;
+          node.appendChild(span);
+          charIndex += 1;
+        });
+      });
+
+      ceoBody.style.setProperty('--sig-delay', `${charIndex * 0.018 + 0.45}s`);
+      ceoBody.classList.add('typing-ready');
+    }
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

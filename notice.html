@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice — ER CMG</title>
+  <meta name="description" content="ER콘텐츠미디어그룹 공지사항.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --nav-h: 64px;
+      --side-w: 260px;
+      --pad-x: 5%;
+      --line: rgba(255,255,255,0.07);
+    }
+
+    body {
+      background: #040404; color: #fff;
+      font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(4,4,4,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
+    .nav-links a {
+      font-size: clamp(10px,0.9vw,12px); font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); text-decoration: none;
+      transition: color 0.15s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,0.8); }
+    .nav-links a.active { color: #fff; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 21;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: rgba(255,255,255,0.6);
+      transition: transform 0.3s, opacity 0.3s; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: rgba(4,4,4,0.97);
+      padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .mobile-menu.open { opacity: 1; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a {
+      font-size: clamp(28px,8vw,40px); font-weight: 500;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); text-decoration: none;
+      transition: color 0.15s; display: block; padding: 6px 0;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      margin-top: var(--nav-h);
+      display: flex; min-height: calc(100dvh - var(--nav-h));
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--side-w); flex-shrink: 0;
+      position: sticky; top: var(--nav-h);
+      height: calc(100dvh - var(--nav-h));
+      overflow-y: auto;
+      border-right: 1px solid var(--line);
+      padding: clamp(28px,3vw,44px) clamp(20px,2.2vw,32px);
+      display: flex; flex-direction: column;
+    }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+    .pg-title {
+      font-size: clamp(18px,1.6vw,22px); font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap; margin-bottom: 12px;
+    }
+    .pg-eyebrow {
+      font-size: 7px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.16); margin-bottom: 6px;
+    }
+    .pg-desc {
+      font-size: 10px; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.22); word-break: keep-all;
+    }
+    .pg-count {
+      font-size: 7.5px; color: rgba(255,255,255,0.12);
+      letter-spacing: 0.08em; margin-top: auto; padding-top: 20px;
+    }
+
+    /* ── NOTICE PANEL ── */
+    .notice-panel {
+      flex: 1;
+      padding: clamp(28px,3vw,44px) clamp(20px,2.5vw,36px) 64px;
+    }
+
+    /* ── NOTICE ITEM ── */
+    .notice-item {
+      padding: clamp(14px,1.6vw,20px) 0;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+    }
+    .notice-item:first-child { border-top: 1px solid var(--line); }
+
+    .ni-head { display: flex; align-items: center; gap: 10px; }
+    .ni-pin {
+      font-size: 7px; font-weight: 800; letter-spacing: 0.14em;
+      color: rgba(255,255,255,0.35); border: 1px solid rgba(255,255,255,0.2);
+      padding: 2px 7px; text-transform: uppercase; flex-shrink: 0;
+    }
+    .ni-title {
+      font-size: clamp(12px,1.2vw,14px); font-weight: 500;
+      color: rgba(255,255,255,0.65); line-height: 1.5;
+      letter-spacing: -0.01em; word-break: keep-all; flex: 1;
+      transition: color 0.18s;
+    }
+    .notice-item:hover .ni-title { color: rgba(255,255,255,0.9); }
+    .ni-date {
+      font-size: 8.5px; color: rgba(255,255,255,0.18);
+      letter-spacing: 0.06em; flex-shrink: 0;
+    }
+
+    /* accordion body */
+    .ni-body {
+      overflow: hidden; max-height: 0; opacity: 0;
+      transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.28s;
+    }
+    .ni-body.open { max-height: 200px; opacity: 1; }
+    .ni-body-inner {
+      padding: 14px 0 4px;
+      font-size: 11.5px; font-weight: 300; line-height: 1.9;
+      color: rgba(255,255,255,0.3); word-break: keep-all;
+      border-top: 1px solid rgba(255,255,255,0.05); margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      height: 52px; border-top: 1px solid var(--line);
+      padding: 0 var(--pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ft { font-size: 10px; color: rgba(255,255,255,0.16); letter-spacing: 0.08em; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .page-wrap { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: auto; position: static;
+        border-right: none; border-bottom: 1px solid var(--line);
+        padding: 20px var(--pad-x);
+      }
+      .pg-count { margin-top: 8px; padding-top: 0; }
+      .notice-panel { padding: 16px var(--pad-x) 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <ul class="nav-links">
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html" class="active">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html" class="active">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h1 class="pg-title">NOTICE</h1>
+      <div class="pg-eyebrow">ER Contents Media Group</div>
+      <p class="pg-desc">공지사항 및 주요 안내를 확인하세요.</p>
+      <div class="pg-count" id="notice-count"></div>
+    </aside>
+
+    <!-- NOTICE LIST -->
+    <main class="notice-panel" aria-label="공지사항 목록">
+      <div id="notice-list"></div>
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="ft">© 2025 ER Contents Media Group</span>
+    <span class="ft">Seoul, Korea</span>
+  </footer>
+
+  <script>
+    const NOTICES = [
+      { title:'K-SPARK MACAU 2025 공연 안내', date:'2025-10-01', pinned:true, content:'K-SPARK MACAU 2025 공연 일정 및 티켓 관련 안내 사항입니다. 자세한 내용은 공식 채널을 통해 확인하시기 바랍니다.' },
+      { title:'K-SPARK TAIWAN 2026 공연 일정 확정 안내', date:'2025-12-01', pinned:true, content:'K-SPARK TAIWAN 2026 공연 일정이 확정되었습니다. 상세 정보는 추후 공식 공지를 통해 안내드리겠습니다.' },
+      { title:'K-SPARK MALAYSIA 2026 라인업 발표', date:'2026-01-10', pinned:false, content:'K-SPARK Malaysia 2026 라인업이 공식 발표되었습니다. 참여 아티스트 및 공연 정보를 확인하세요.' },
+      { title:'홈페이지 리뉴얼 안내', date:'2025-03-15', pinned:false, content:'ER콘텐츠미디어그룹 공식 홈페이지가 리뉴얼되었습니다. 이용에 불편함이 없도록 최선을 다하겠습니다.' },
+      { title:'2025 회사 휴무 안내', date:'2025-01-02', pinned:false, content:'2025년 설 연휴 기간(1월 28일~30일) 동안 업무가 중단됩니다. 해당 기간 문의 사항은 연휴 이후 순차적으로 처리됩니다.' },
+    ];
+
+    function fmtDate(s) { const [y,m,d] = s.split('-'); return `${y}.${m}.${d}`; }
+
+    const list = document.getElementById('notice-list');
+    const sorted = [...NOTICES].sort((a,b) => (b.pinned - a.pinned) || b.date.localeCompare(a.date));
+
+    sorted.forEach(n => {
+      const el = document.createElement('div');
+      el.className = 'notice-item';
+      el.innerHTML = `
+        <div class="ni-head">
+          ${n.pinned ? '<span class="ni-pin">공지</span>' : ''}
+          <span class="ni-title">${n.title}</span>
+          <span class="ni-date">${fmtDate(n.date)}</span>
+        </div>
+        <div class="ni-body"><div class="ni-body-inner">${n.content}</div></div>`;
+      el.addEventListener('click', () => {
+        const body = el.querySelector('.ni-body');
+        const isOpen = body.classList.contains('open');
+        document.querySelectorAll('.ni-body.open').forEach(b => b.classList.remove('open'));
+        if (!isOpen) body.classList.add('open');
+      });
+      list.appendChild(el);
+    });
+
+    document.getElementById('notice-count').textContent = NOTICES.length + ' notices';
+
+    /* ─── HAMBURGER ─── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      if (isOpen) { mobileMenu.style.display='flex'; requestAnimationFrame(()=>mobileMenu.classList.add('open')); }
+      else { mobileMenu.classList.remove('open'); mobileMenu.addEventListener('transitionend',()=>{ if(!mobileMenu.classList.contains('open')) mobileMenu.style.display='none'; },{once:true}); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click',()=>{
+      hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false');
+      mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true');
+      mobileMenu.addEventListener('transitionend',()=>{ mobileMenu.style.display='none'; },{once:true});
+    }));
+  </script>
+</body>
+</html>

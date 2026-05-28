@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News — ER CMG</title>
+  <meta name="description" content="ER콘텐츠미디어그룹 뉴스 — K-SPARK 및 주요 프로젝트 관련 보도자료.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --nav-h: 64px; --pad-x: 5%; --line: rgba(255,255,255,0.07); }
+
+    body {
+      background: #040404; color: #fff;
+      font-family: 'Open Sans','Noto Sans KR',sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(4,4,4,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
+    .nav-links a { font-size: clamp(10px,.9vw,12px); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.38); text-decoration: none; transition: color .15s; white-space: nowrap; }
+    .nav-links a:hover { color: rgba(255,255,255,.8); }
+    .nav-links a.active { color: #fff; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 1px; background: rgba(255,255,255,.6); transition: transform .3s, opacity .3s; transform-origin: center; }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu { display: none; position: fixed; inset: 0; z-index: 90; background: rgba(4,4,4,.97); padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px; opacity: 0; transition: opacity .3s; }
+    .mobile-menu.open { opacity: 1; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a { font-size: clamp(28px,8vw,40px); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .15s; display: block; padding: 6px 0; }
+    .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
+
+    /* ── MAIN ── */
+    .news-main { padding-top: var(--nav-h); }
+    .split {
+      display: grid; grid-template-columns: 300px 1fr;
+      min-height: calc(100vh - var(--nav-h) - 52px);
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      border-right: 1px solid var(--line);
+      padding: clamp(32px,4vw,56px) clamp(20px,2.5vw,36px) 32px var(--pad-x);
+      position: sticky; top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+      overflow: hidden; display: flex; flex-direction: column;
+    }
+    .eyebrow { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.18); margin-bottom: 16px; }
+    .big-title { font-size: clamp(38px,4.8vw,64px); font-weight: 800; line-height: .84; letter-spacing: -.05em; margin-bottom: clamp(18px,2vw,28px); }
+    .big-title .f { display: block; color: rgba(255,255,255,.9); }
+    .big-title .o { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.16); }
+    .left-rule { width: 22px; height: 1px; background: rgba(255,255,255,.14); margin-bottom: clamp(14px,1.6vw,20px); }
+    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,.28); word-break: keep-all; }
+    .left-count { margin-top: auto; font-size: 8.5px; color: rgba(255,255,255,.14); letter-spacing: .1em; }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel { padding: clamp(24px,3vw,44px) var(--pad-x) 64px clamp(20px,2.5vw,36px); }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+    }
+
+    /* ── NEWS CARD ── */
+    .news-card {
+      display: flex; flex-direction: column;
+      padding: clamp(18px,2vw,26px);
+      text-decoration: none;
+      border: none;
+      background: transparent;
+      transition: background .18s;
+      position: relative;
+    }
+    .news-card::after {
+      content: ''; position: absolute;
+      inset: 0; border: 1px solid transparent;
+      pointer-events: none; transition: border-color .18s;
+    }
+    .news-card:hover { background: rgba(255,255,255,0.03); }
+    .news-card:hover::after { border-color: rgba(255,255,255,0.1); }
+
+    /* separator lines between cards */
+    .card-grid { background: var(--line); }
+    .news-card { background: #040404; }
+    .news-card:hover { background: rgba(255,255,255,0.028); }
+
+    .nc-meta {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+    }
+    .nc-tag {
+      font-size: 7px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(255,255,255,.3); border: 1px solid rgba(255,255,255,.12);
+      padding: 2px 7px; flex-shrink: 0;
+    }
+    .nc-date { font-size: 8px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+
+    .nc-title {
+      font-size: clamp(12px,1.2vw,14px); font-weight: 600;
+      color: rgba(255,255,255,.76); line-height: 1.5;
+      letter-spacing: -.01em; margin-bottom: 10px;
+      word-break: keep-all;
+      transition: color .18s;
+      flex: 1;
+    }
+    .news-card:hover .nc-title { color: rgba(255,255,255,.95); }
+
+    .nc-excerpt {
+      font-size: 10.5px; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,.24); word-break: keep-all;
+      margin-bottom: 14px; flex: 1;
+    }
+
+    .nc-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .nc-source { font-size: 9px; color: rgba(255,255,255,.2); letter-spacing: .05em; }
+    .nc-arrow {
+      font-size: 11px; color: rgba(255,255,255,.15);
+      transition: color .18s, transform .18s;
+    }
+    .news-card:hover .nc-arrow { color: rgba(255,255,255,.5); transform: translate(2px,-2px); }
+
+    /* ── FOOTER ── */
+    footer { height: 52px; border-top: 1px solid var(--line); padding: 0 var(--pad-x); display: flex; align-items: center; justify-content: space-between; }
+    .ft { font-size: 10px; color: rgba(255,255,255,.16); letter-spacing: .08em; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .split { grid-template-columns: 1fr; }
+      .left-panel { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--line); padding: 24px var(--pad-x); }
+      .left-desc, .left-count { display: none; }
+      .right-panel { padding: 20px var(--pad-x) 48px; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <ul class="nav-links">
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <main class="news-main">
+    <div class="split">
+      <aside class="left-panel">
+        <div class="eyebrow">ER Contents Media Group</div>
+        <h1 class="big-title">
+          <span class="f">NEWS</span>
+        </h1>
+        <div class="left-rule"></div>
+        <p class="left-desc">K-SPARK 및 주요 프로젝트에 관한<br>국내외 보도를 모았습니다.</p>
+        <div class="left-count" id="art-count"></div>
+      </aside>
+
+      <div class="right-panel">
+        <div class="card-grid" id="news-grid" aria-label="뉴스 목록"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="ft">© 2025 ER Contents Media Group</span>
+    <span class="ft">Seoul, Korea</span>
+  </footer>
+
+  <script>
+    const ARTICLES = [
+      { title:'G-Dragon, Hwasa, ITZY 등 K-SPARK Malaysia 2026 라인업 공개', excerpt:'G-DRAGON을 필두로 HWASA, ITZY, DPR IAN, DOLLA, 3P가 2026년 1월 31일 쿠알라룸푸르 Stadium Merdeka에서 펼쳐지는 K-SPARK Malaysia 2026에 합류했다.', source:'allkpop', date:'2026-01-15', city:'MALAYSIA', url:'https://www.allkpop.com/article/2026/01/g-dragon-hwasa-itzy-and-more-joins-lineup-for-k-spark-in-malaysia-2026' },
+      { title:'ITZY, Hwasa, DPR Ian, DOLLA & 3P join G-DRAGON to ignite K-SPARK Malaysia 2026', excerpt:'G-DRAGON 헤드라이너에 ITZY, HWASA, DPR IAN과 현지 아티스트 DOLLA·3P가 합류해 글로벌 K-POP 스타와 말레이시아 아티스트가 한 무대에 서는 이벤트가 실현됐다.', source:'Bandwagon Asia', date:'2026-01-13', city:'MALAYSIA', url:'https://www.bandwagon.asia/articles/itzy-hwasa-dpr-ian-dolla-3p-join-g-dragon-to-ignite-k-spark-malaysia-2026' },
+      { title:'GD 베트남 공연 관객 난입…돌발사고에 침착한 대응', excerpt:'K-STAR SPARK 베트남 공연 도중 관객이 무대에 난입하는 돌발 상황이 발생했지만, GD와 댄서들의 침착한 대응으로 무사히 마무리됐다.', source:'뉴시스', date:'2025-06-23', city:'VIETNAM', url:'https://www.newsis.com/view/NISX20250623_0003224381' },
+      { title:'지드래곤, 13년만에 베트남 공연…\'케이스타 스파크\' 출연 확정', excerpt:'지드래곤이 2012년 BIGBANG 활동 이후 약 13년 만에 베트남 무대에 선다. 6월 21일 하노이 미딘 국립경기장(4만 석)에서 열리는 K-STAR SPARK VIETNAM 2025 헤드라이너로 출연한다.', source:'뉴스1', date:'2025-05-14', city:'VIETNAM', url:'https://www.news1.kr/entertain/music/5782574' },
+      { title:'지드래곤, 13년만 베트남 단독 공연 개최', excerpt:'지드래곤이 K-STAR SPARK을 통해 13년 만에 베트남 팬들을 만난다. 공연은 6월 21일 하노이 미딘 국립경기장에서 열린다.', source:'아시아경제', date:'2025-05-14', city:'VIETNAM', url:'https://www.asiae.co.kr/article/2025051414113307412' },
+      { title:'GD, 13년만 베트남 공연…\'K-STAR SPARK IN VIETNAM 2025\' 출연 확정', excerpt:'지드래곤이 K-STAR SPARK VIETNAM 2025 출연을 확정했다. 6월 21일 하노이 미딘 국립경기장에서 약 4만 명의 관객과 만난다.', source:'스타뉴스', date:'2025-05-14', city:'VIETNAM', url:'https://www.starnewskorea.com/music/2025/05/14/2025051414143244115' },
+      { title:'지드래곤, 13년만 베트남 팬들 만난다…\'케이스타 스파크\' 출연', excerpt:'지드래곤이 K-STAR SPARK을 통해 6월 21일 베트남 하노이에서 현지 팬들과 재회한다. BIGBANG 시절 이후 첫 베트남 단독 무대다.', source:'iMBC뉴스', date:'2025-05-14', city:'VIETNAM', url:'https://enews.imbc.com/News/RetrieveNewsInfo/460985' },
+      { title:'지드래곤, \'K스타 스파크 인 베트남 2025\' — 6월 21일 하노이 미딘경기장', excerpt:'지드래곤의 13년 만의 베트남 복귀 무대가 4만 석 규모 하노이 미딘 국립경기장에서 펼쳐진다.', source:'인사이드비나', date:'2025-05-14', city:'VIETNAM', url:'https://www.insidevina.com/news/articleView.html?idxno=30957' },
+      { title:'지드래곤, 파리 이어 방콕 달군다…\'케이 스타 스파크\' 출연', excerpt:'지드래곤이 2월 22일 방콕 라자망갈라 국립경기장(5만 석)에서 열리는 K-STAR SPARK 첫 공연에 출연한다. 최근 BIGBANG 신곡이 2달 연속 국내 차트 정상을 차지하며 글로벌 영향력을 이어가고 있다.', source:'머니투데이', date:'2025-02-03', city:'BANGKOK', url:'https://news.mt.co.kr/mtview.php?no=2025020310270012067' },
+      { title:'지드래곤, \'K-STAR SPARK in 방콕 2025\' 출연…폭발적인 글로벌 영향력', excerpt:'K-STAR SPARK 시리즈의 첫 공연이 방콕 라자망갈라 국립경기장에서 개최된다. 지드래곤이 헤드라이너로 글로벌 팬들과 만나는 새로운 형식의 K-POP 공연 브랜드가 시작됐다.', source:'마니아리포트', date:'2025-02-03', city:'BANGKOK', url:'https://www.maniareport.com/view.php?ud=202502030829123277d3244b4fed_19' },
+    ];
+
+    function fmtDate(s) {
+      const [y,m,d] = s.split('-');
+      return `${y}.${m}.${d}`;
+    }
+
+    const grid = document.getElementById('news-grid');
+    ARTICLES.forEach(a => {
+      const el = document.createElement('a');
+      el.className = 'news-card';
+      el.href = a.url;
+      el.target = '_blank';
+      el.rel = 'noopener';
+      el.innerHTML = `
+        <div class="nc-meta">
+          ${a.city ? `<span class="nc-tag">${a.city}</span>` : ''}
+          <span class="nc-date">${fmtDate(a.date)}</span>
+        </div>
+        <div class="nc-title">${a.title}</div>
+        <div class="nc-excerpt">${a.excerpt}</div>
+        <div class="nc-footer">
+          <span class="nc-source">${a.source}</span>
+          <span class="nc-arrow">↗</span>
+        </div>`;
+      grid.appendChild(el);
+    });
+
+    document.getElementById('art-count').textContent = ARTICLES.length + ' articles';
+
+    /* hamburger */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      if (isOpen) { mobileMenu.style.display = 'flex'; requestAnimationFrame(() => mobileMenu.classList.add('open')); }
+      else { mobileMenu.classList.remove('open'); mobileMenu.addEventListener('transitionend', () => { if (!mobileMenu.classList.contains('open')) mobileMenu.style.display = 'none'; }, { once: true }); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false');
+      mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true');
+      mobileMenu.addEventListener('transitionend', () => { mobileMenu.style.display = 'none'; }, { once: true });
+    }));
+  </script>
+</body>
+</html>

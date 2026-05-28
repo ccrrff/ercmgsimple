@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — ER CMG</title>
+  <meta name="description" content="ER콘텐츠미디어그룹 프로젝트 갤러리 — 무대 위에서 포착된 결정적인 순간들.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --nav-h: 64px;
+      --side-w: 260px;
+      --pad-x: 5%;
+      --line: rgba(255,255,255,0.07);
+    }
+
+    body {
+      background: #040404; color: #fff;
+      font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--pad-x);
+      background: rgba(4,4,4,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
+    .nav-links a {
+      font-size: clamp(10px,0.9vw,12px); font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38); text-decoration: none;
+      transition: color 0.15s; white-space: nowrap;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,0.8); }
+    .nav-links a.active { color: #fff; }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px; z-index: 21;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 1px;
+      background: rgba(255,255,255,0.6);
+      transition: transform 0.3s, opacity 0.3s; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: rgba(4,4,4,0.97);
+      padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px;
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .mobile-menu.open { opacity: 1; }
+    .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a {
+      font-size: clamp(28px,8vw,40px); font-weight: 500;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); text-decoration: none;
+      transition: color 0.15s; display: block; padding: 6px 0;
+    }
+    .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      margin-top: var(--nav-h);
+      display: flex; min-height: calc(100dvh - var(--nav-h));
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--side-w); flex-shrink: 0;
+      position: sticky; top: var(--nav-h);
+      height: calc(100dvh - var(--nav-h));
+      overflow-y: auto; overflow-x: hidden;
+      border-right: 1px solid var(--line);
+      padding: clamp(28px,3vw,44px) clamp(20px,2.2vw,32px);
+      display: flex; flex-direction: column;
+    }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+    .pg-title {
+      font-size: clamp(18px,1.6vw,22px); font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap; margin-bottom: 12px;
+    }
+    .pg-eyebrow {
+      font-size: 7px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.16); margin-bottom: 6px;
+    }
+    .pg-desc {
+      font-size: 10px; font-weight: 300; line-height: 1.75;
+      color: rgba(255,255,255,0.22); word-break: keep-all;
+    }
+
+    /* show list */
+    .show-list-label {
+      font-size: 7px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.14);
+      margin-top: clamp(20px,2vw,28px); margin-bottom: 8px;
+      padding-top: clamp(16px,1.8vw,22px);
+      border-top: 1px solid var(--line);
+    }
+    .show-list { display: flex; flex-direction: column; }
+    .show-item {
+      display: flex; flex-direction: column; gap: 3px;
+      padding: 9px 0 9px 10px;
+      border: none; border-left: 2px solid transparent;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: none; cursor: pointer; font-family: inherit;
+      text-align: left; transition: background 0.14s, border-color 0.14s;
+    }
+    .show-item:hover { background: rgba(255,255,255,0.025); }
+    .show-item.on {
+      border-left-color: rgba(255,255,255,0.42);
+      background: rgba(255,255,255,0.03);
+    }
+    .show-item .sn {
+      font-size: clamp(10px,1vw,11px); font-weight: 600;
+      color: rgba(255,255,255,0.22); letter-spacing: 0.01em;
+      transition: color 0.14s;
+    }
+    .show-item .sd {
+      font-size: 8px; color: rgba(255,255,255,0.1);
+      letter-spacing: 0.06em; transition: color 0.14s;
+    }
+    .show-item.on .sn { color: rgba(255,255,255,0.82); }
+    .show-item.on .sd { color: rgba(255,255,255,0.28); }
+
+    /* item count */
+    .show-count {
+      font-size: 7.5px; color: rgba(255,255,255,0.12);
+      letter-spacing: 0.08em; margin-top: auto; padding-top: 20px;
+    }
+
+    /* ── GALLERY PANEL ── */
+    .gallery-panel {
+      flex: 1; overflow-y: auto;
+      padding: clamp(20px,2.5vw,32px) clamp(20px,2.5vw,32px) 64px;
+    }
+    .gallery-panel::-webkit-scrollbar { width: 4px; }
+    .gallery-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
+
+    /* show panes */
+    .show-pane { display: none; }
+    .show-pane.on {
+      display: block;
+      animation: pane-in 0.3s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes pane-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* masonry */
+    .gallery-grid { columns: 3; gap: 4px; }
+    .g-item { break-inside: avoid; margin-bottom: 4px; overflow: hidden; cursor: pointer; position: relative; }
+    .g-item img {
+      width: 100%; display: block; filter: brightness(0.82);
+      transition: filter 0.28s, transform 0.38s cubic-bezier(.4,0,.2,1);
+    }
+    .g-item:hover img { filter: brightness(1); transform: scale(1.03); }
+
+    /* video item */
+    .g-item.video-item .play-btn {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .g-item.video-item:hover .play-btn { background: rgba(0,0,0,0.15); }
+    .play-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.12); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .g-item.video-item:hover .play-icon { background: rgba(255,255,255,0.22); transform: scale(1.1); }
+    .play-icon svg { width: 14px; height: 14px; fill: #fff; margin-left: 2px; }
+
+    /* ── LIGHTBOX ── */
+    .lb {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.94);
+      align-items: center; justify-content: center;
+    }
+    .lb.open { display: flex; }
+    .lb-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+    .lb-img { max-width: 90vw; max-height: 85vh; object-fit: contain; display: block; }
+    .lb-close {
+      position: fixed; top: 20px; right: 24px;
+      background: none; border: none; color: rgba(255,255,255,0.45);
+      font-size: 18px; cursor: pointer; transition: color 0.15s; font-family: inherit;
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-prev, .lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: none; border: 1px solid rgba(255,255,255,0.14); cursor: pointer;
+      color: rgba(255,255,255,0.4); font-size: 13px;
+      width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.15s, color 0.15s; font-family: inherit;
+    }
+    .lb-prev { left: 20px; }
+    .lb-next { right: 20px; }
+    .lb-prev:hover, .lb-next:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .lb-counter {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; color: rgba(255,255,255,0.28); letter-spacing: 0.1em;
+    }
+
+    /* ── VIDEO MODAL ── */
+    .vm {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.95);
+      align-items: center; justify-content: center;
+    }
+    .vm.open { display: flex; }
+    .vm-inner { position: relative; width: min(860px,90vw); aspect-ratio: 16/9; }
+    .vm iframe { width: 100%; height: 100%; border: none; }
+    .vm-close {
+      position: fixed; top: 20px; right: 24px;
+      background: none; border: none; color: rgba(255,255,255,0.45);
+      font-size: 18px; cursor: pointer; transition: color 0.15s; font-family: inherit;
+    }
+    .vm-close:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      height: 52px; border-top: 1px solid var(--line);
+      padding: 0 var(--pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .ft { font-size: 10px; color: rgba(255,255,255,0.16); letter-spacing: 0.08em; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      :root { --side-w: 200px; }
+    }
+    @media (max-width: 640px) {
+      .page-wrap { flex-direction: column; }
+      .sidebar {
+        width: 100%; height: auto; position: static;
+        border-right: none; border-bottom: 1px solid var(--line);
+        padding: 20px var(--pad-x);
+        flex-direction: row; flex-wrap: wrap; gap: 12px; align-items: flex-start;
+      }
+      .pg-title { margin-bottom: 0; }
+      .pg-desc { display: none; }
+      .show-list-label { margin-top: 0; padding-top: 0; border-top: none; }
+      .show-list { flex-direction: row; flex-wrap: nowrap; overflow-x: auto; gap: 0; scrollbar-width: none; }
+      .show-item { border-left: none; border-bottom: 2px solid transparent; padding: 8px 14px 8px 0; }
+      .show-item.on { border-bottom-color: rgba(255,255,255,0.42); background: none; }
+      .show-count { display: none; }
+      .gallery-panel { padding: 16px var(--pad-x) 48px; }
+      .gallery-grid { columns: 2; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { columns: 2; gap: 3px; }
+      .g-item { margin-bottom: 3px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <ul class="nav-links">
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="aboutus.html">About Us</a></li>
+      <li><a href="business.html">Business</a></li>
+      <li><a href="ourworks.html">Our Works</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="notice.html">Notice</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="page-wrap">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h1 class="pg-title">PROJECTS</h1>
+      <div class="pg-eyebrow">ER Contents Media Group</div>
+      <p class="pg-desc">무대 위에서 포착된<br>결정적인 순간들.</p>
+      <div class="show-list-label">Shows</div>
+      <div class="show-list" role="tablist">
+        <button class="show-item on" role="tab" aria-selected="true" onclick="switchShow('bangkok',this)">
+          <span class="sn">Bangkok</span><span class="sd">2025.02.22</span>
+        </button>
+        <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('vietnam',this)">
+          <span class="sn">Vietnam</span><span class="sd">2025.06.21</span>
+        </button>
+        <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('malaysia',this)">
+          <span class="sn">Malaysia</span><span class="sd">2026.01.31</span>
+        </button>
+        <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('gdfan',this)">
+          <span class="sn">GD Fan Meeting</span><span class="sd">2026.02.22</span>
+        </button>
+      </div>
+      <div class="show-count" id="show-count"></div>
+    </aside>
+
+    <!-- GALLERY -->
+    <main class="gallery-panel" aria-label="갤러리">
+
+      <div class="show-pane on" id="pane-bangkok">
+        <div class="gallery-grid" id="grid-bangkok"></div>
+      </div>
+      <div class="show-pane" id="pane-vietnam">
+        <div class="gallery-grid" id="grid-vietnam"></div>
+      </div>
+      <div class="show-pane" id="pane-malaysia">
+        <div class="gallery-grid" id="grid-malaysia"></div>
+      </div>
+      <div class="show-pane" id="pane-gdfan">
+        <div class="gallery-grid" id="grid-gdfan"></div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="ft">© 2025 ER Contents Media Group</span>
+    <span class="ft">Seoul, Korea</span>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb" onclick="lbBgClick(event)">
+    <div class="lb-inner"><img class="lb-img" id="lb-img" src="" alt=""></div>
+    <button class="lb-close" onclick="lbClose()">✕</button>
+    <button class="lb-prev" onclick="lbStep(-1)">‹</button>
+    <button class="lb-next" onclick="lbStep(1)">›</button>
+    <span class="lb-counter" id="lb-counter"></span>
+  </div>
+
+  <!-- VIDEO MODAL -->
+  <div class="vm" id="vm" onclick="vmBgClick(event)">
+    <div class="vm-inner" id="vm-inner"></div>
+    <button class="vm-close" onclick="vmClose()">✕</button>
+  </div>
+
+  <script>
+    /* ─── SHOW DATA ─── */
+    const SHOWS = {
+      bangkok: {
+        label: 'Bangkok', date: '2025.02.22', youtubeId: null,
+        images: [
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058557/ercmg/gallery/bangkok/bambam/kowgffhmvsofaevdfw8g.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058572/ercmg/gallery/bangkok/bambam/o0i9uahdxtcehnlqlcbz.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058611/ercmg/gallery/bangkok/daesung/zgm5sibqkvda3jffgbst.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058617/ercmg/gallery/bangkok/daesung/ptz1f0chkee8c2yd7bjt.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058646/ercmg/gallery/bangkok/dpr-ian/mo5lxd3aysah6inrvwcd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058655/ercmg/gallery/bangkok/dpr-ian/ekiijkzu3nhyhsh3jask.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058681/ercmg/gallery/bangkok/g-dragon/hhcr0e6zxvelbkejtggp.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058685/ercmg/gallery/bangkok/g-dragon/ppvahjw67taha56szw94.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058707/ercmg/gallery/bangkok/minnie/ckn4vzusbufqozkb8ean.jpg',
+        ]
+      },
+      vietnam: {
+        label: 'Vietnam', date: '2025.06.21', youtubeId: '6FBr7omQIAU',
+        images: [
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058738/ercmg/gallery/vietnam/cl/kkofqqqzpng97px4xynk.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058743/ercmg/gallery/vietnam/cl/pfdc3db5xgba8v8stoto.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058759/ercmg/gallery/vietnam/dpr-ian/ydipbwlqy1y7ybwqd3vv.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058796/ercmg/gallery/vietnam/g-dragon/o2bkmyqnrkr2ma0jq32j.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058806/ercmg/gallery/vietnam/g-dragon/tuz7iecqjt8e8sdpkiqn.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058895/ercmg/gallery/vietnam/tempest/b6abtpitmpeaar4anfpv.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058903/ercmg/gallery/vietnam/tempest/wxdxwbpkhasjj4i7l714.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058939/ercmg/gallery/vietnam/triple-s/perx61eal4wbusvfwb3n.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058944/ercmg/gallery/vietnam/triple-s/gsybfjgdstc2wx3vhltd.jpg',
+        ]
+      },
+      malaysia: {
+        label: 'Malaysia', date: '2026.01.31', youtubeId: '0skQWzqHgTc',
+        images: [
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058961/ercmg/gallery/malaysia/dpr-ian/rleajbc7k5br3nwzetiv.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778058965/ercmg/gallery/malaysia/dpr-ian/aarxykhapblsstvtirrp.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059053/ercmg/gallery/malaysia/hwasa/ycoj8wmec1dg5kshzber.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059059/ercmg/gallery/malaysia/hwasa/fzdetyw13zptcbyvykn6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059064/ercmg/gallery/malaysia/hwasa/j049cwcuvwexqte1bsus.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059069/ercmg/gallery/malaysia/itzy/pbeejn5ofnhdwvolqzxr.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059074/ercmg/gallery/malaysia/itzy/di57sl6zeeofhguzvbvz.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059077/ercmg/gallery/malaysia/itzy/nf5nqatfgpolnsj5fwim.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778059080/ercmg/gallery/malaysia/itzy/wahc0s3gs3kbuxj5hqzq.jpg',
+        ]
+      },
+      gdfan: {
+        label: 'GD Fan Meeting', date: '2026.02.22', youtubeId: null,
+        images: [
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060844/ercmg/gallery/gdfan/seoul/lfruqu6l756sasqtl5pd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060857/ercmg/gallery/gdfan/seoul/dxvvcl0ww7h2zehqxask.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060864/ercmg/gallery/gdfan/seoul/rjxr3hjdvfc6eq1wi7tr.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060868/ercmg/gallery/gdfan/seoul/ja0hftfxk462b8l6ndcx.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060879/ercmg/gallery/gdfan/bkk/vkkkatyk35qjiqkgma7n.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060884/ercmg/gallery/gdfan/bkk/ptadgt8x87cwystbmvta.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060889/ercmg/gallery/gdfan/bkk/ykbroqywrwe9urxpsfkz.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1778060896/ercmg/gallery/gdfan/bkk/f6cxeptsuyi9ihglv9gf.jpg',
+        ]
+      }
+    };
+
+    /* ─── BUILD GRIDS ─── */
+    function buildGrid(showId) {
+      const show = SHOWS[showId];
+      const grid = document.getElementById('grid-' + showId);
+      if (grid.children.length > 0) return;
+      const imgs = [...show.images];
+      if (show.youtubeId) {
+        const vw = document.createElement('div');
+        vw.className = 'g-item video-item';
+        vw.setAttribute('role', 'button');
+        vw.setAttribute('aria-label', show.label + ' 하이라이트 영상');
+        vw.onclick = () => vmOpen(show.youtubeId);
+        vw.innerHTML = `
+          <img src="https://img.youtube.com/vi/${show.youtubeId}/maxresdefault.jpg" alt="${show.label} highlight" loading="lazy">
+          <div class="play-btn"><div class="play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>`;
+        grid.appendChild(vw);
+      }
+      imgs.forEach((url, i) => {
+        const w = document.createElement('div');
+        w.className = 'g-item';
+        w.onclick = () => lbOpen(imgs, i);
+        const img = document.createElement('img');
+        img.src = url; img.alt = show.label + ' ' + (i + 1); img.loading = 'lazy';
+        w.appendChild(img); grid.appendChild(w);
+      });
+    }
+
+    /* ─── SHOW SWITCH ─── */
+    function switchShow(id, btn) {
+      document.querySelectorAll('.show-item').forEach(b => {
+        b.classList.remove('on'); b.setAttribute('aria-selected','false');
+      });
+      document.querySelectorAll('.show-pane').forEach(p => p.classList.remove('on'));
+      btn.classList.add('on'); btn.setAttribute('aria-selected','true');
+      document.getElementById('pane-' + id).classList.add('on');
+      buildGrid(id);
+      const show = SHOWS[id];
+      const ct = show.images.length + (show.youtubeId ? 1 : 0);
+      document.getElementById('show-count').textContent = ct + ' items';
+    }
+
+    /* ─── LIGHTBOX ─── */
+    let lbImgs = [], lbIdx = 0;
+    function lbOpen(imgs, i) { lbImgs = imgs; lbIdx = i; lbRender(); document.getElementById('lb').classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function lbRender() { document.getElementById('lb-img').src = lbImgs[lbIdx]; document.getElementById('lb-counter').textContent = (lbIdx+1) + ' / ' + lbImgs.length; }
+    function lbClose() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow = ''; }
+    function lbStep(d) { lbIdx = (lbIdx+d+lbImgs.length)%lbImgs.length; lbRender(); }
+    function lbBgClick(e) { if (e.target === document.getElementById('lb')) lbClose(); }
+
+    /* ─── VIDEO MODAL ─── */
+    function vmOpen(ytId) {
+      document.getElementById('vm-inner').innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+      document.getElementById('vm').classList.add('open'); document.body.style.overflow = 'hidden';
+    }
+    function vmClose() { document.getElementById('vm-inner').innerHTML = ''; document.getElementById('vm').classList.remove('open'); document.body.style.overflow = ''; }
+    function vmBgClick(e) { if (e.target === document.getElementById('vm')) vmClose(); }
+
+    /* ─── KEYBOARD ─── */
+    document.addEventListener('keydown', e => {
+      if (document.getElementById('lb').classList.contains('open')) {
+        if (e.key==='ArrowLeft') lbStep(-1);
+        else if (e.key==='ArrowRight') lbStep(1);
+        else if (e.key==='Escape') lbClose();
+      }
+      if (document.getElementById('vm').classList.contains('open') && e.key==='Escape') vmClose();
+    });
+
+    /* ─── HAMBURGER ─── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      if (isOpen) { mobileMenu.style.display='flex'; requestAnimationFrame(()=>mobileMenu.classList.add('open')); }
+      else { mobileMenu.classList.remove('open'); mobileMenu.addEventListener('transitionend',()=>{ if(!mobileMenu.classList.contains('open')) mobileMenu.style.display='none'; },{once:true}); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click',()=>{
+      hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false');
+      mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true');
+      mobileMenu.addEventListener('transitionend',()=>{ mobileMenu.style.display='none'; },{once:true});
+    }));
+
+    /* ─── INIT ─── */
+    buildGrid('bangkok');
+    document.getElementById('show-count').textContent = SHOWS.bangkok.images.length + ' items';
+  </script>
+
+</body>
+</html>

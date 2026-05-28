@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Zone identifiers (Windows WSL)
+*.Identifier
+
+# Dev screenshots & debug images
+*-check.png
+*-fixed.png
+*-sidebar.png
+*-1440.png
+cmp-*.png
+final-*.png
+ref-*.png
+contact-check.png
+contact-fixed.png
+contact-sidebar.png
+notice-check.png
+notice-fixed.png
+notice-sidebar.png
+projects-*.png
+index-tagline.png
+
+# Visual companion (dev tool, not deployment)
+.superpowers/
+
+# Markdown scratch files
+*.md
+docs/
+
+# Backup images
+logo_original_backup.png
