@@ -12,7 +12,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --nav-h: 64px;
+      --nav-h: 80px;
       --foot-h: 52px;
       --pad-x: 5%;
       --line: rgba(255,255,255,0.07);
@@ -33,7 +33,7 @@
     .nav {
       height: var(--nav-h); flex-shrink: 0;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 var(--pad-x);
+      padding:  0 var(--pad-x) 0 20px;
       background: rgba(4,4,4,0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -41,29 +41,39 @@
       position: relative; z-index: 100;
     }
     .nav-logo { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
-    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-logo img { height: 56px; width: auto; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
     .nav-links a {
       font-size: clamp(10px,0.9vw,12px); font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(255,255,255,0.38); text-decoration: none;
+      color: rgba(255,255,255,0.65); text-decoration: none;
       transition: color 0.15s; white-space: nowrap;
     }
     .nav-links a:hover { color: rgba(255,255,255,0.8); }
     .nav-links a.active { color: #fff; }
     .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 4px; z-index: 21;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 10px;
+      z-index: 21;
     }
     .nav-hamburger span {
-      display: block; width: 22px; height: 1px;
-      background: rgba(255,255,255,0.6);
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      transition: transform 0.28s ease, opacity 0.2s ease;
       transform-origin: center;
+      border-radius: 1px;
     }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
     /* ── MOBILE MENU ── */
     .mobile-menu {
@@ -77,7 +87,7 @@
     .mobile-menu a {
       font-size: clamp(28px,8vw,40px); font-weight: 500;
       letter-spacing: 0.02em; text-transform: uppercase;
-      color: rgba(255,255,255,0.3); text-decoration: none;
+      color: rgba(255,255,255,0.60); text-decoration: none;
       transition: color 0.15s; display: block; padding: 6px 0;
     }
     .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
@@ -104,17 +114,13 @@
     }
     .eyebrow {
       font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.18); margin-bottom: 18px;
+      color: rgba(255,255,255,0.50); margin-bottom: 18px;
     }
-    .big-title {
-      font-size: clamp(38px,4.8vw,64px); font-weight: 800;
-      line-height: 0.84; letter-spacing: -0.05em;
-      margin-bottom: clamp(18px,2.2vw,28px);
-    }
-    .big-title .fill  { display: block; color: rgba(255,255,255,0.9); }
-    .big-title .outline { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.16); }
-    .left-rule { width: 22px; height: 1px; background: rgba(255,255,255,0.14); margin-bottom: clamp(14px,1.6vw,20px); }
-    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.3); word-break: keep-all; }
+    .title-wrap { display: flex; align-items: baseline; gap: 2px; margin-bottom: clamp(18px,2.2vw,28px); }
+    .title-initial { font-size: clamp(38px,4.8vw,60px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
+    .title-rest { font-size: clamp(20px,2.4vw,30px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
+    .left-rule { width: 28px; height: 2px; background: rgba(255,255,255,0.14); margin-bottom: clamp(14px,1.6vw,20px); }
+    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.60); word-break: keep-all; }
     .desc-line { opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .desc-line.in { opacity: 1; transform: translateY(0); }
 
@@ -129,7 +135,7 @@
     }
     .ytab {
       font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.2); cursor: pointer;
+      color: rgba(255,255,255,0.52); cursor: pointer;
       padding: 0 24px 12px 0; margin-right: 2px;
       border-bottom: 1px solid transparent;
       border-left: none; border-right: none; border-top: none;
@@ -139,10 +145,10 @@
       transition: color 0.18s, border-color 0.18s;
       display: flex; align-items: baseline; gap: 6px;
     }
-    .ytab:hover { color: rgba(255,255,255,0.52); }
+    .ytab:hover { color: rgba(255,255,255,0.72); }
     .ytab.on { color: rgba(255,255,255,0.88); border-bottom-color: rgba(255,255,255,0.55); }
-    .ytab .ct { font-size: 9px; color: rgba(255,255,255,0.14); transition: color 0.18s; }
-    .ytab.on .ct { color: rgba(255,255,255,0.28); }
+    .ytab .ct { font-size: 9px; color: rgba(255,255,255,0.44); transition: color 0.18s; }
+    .ytab.on .ct { color: rgba(255,255,255,0.58); }
 
     /* year panes */
     .year-pane { display: none; }
@@ -163,7 +169,7 @@
       cursor: pointer; user-select: none;
     }
     .row-num {
-      font-size: 10px; color: rgba(255,255,255,0.12);
+      font-size: 10px; color: rgba(255,255,255,0.42);
       letter-spacing: 0.1em; min-width: 22px; flex-shrink: 0;
     }
     .row-city {
@@ -188,7 +194,7 @@
     }
     .row-type {
       font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.14); flex-shrink: 0;
+      color: rgba(255,255,255,0.44); flex-shrink: 0;
     }
 
     /* dropdown */
@@ -200,7 +206,7 @@
     .drop-inner {
       padding: 0 0 14px 32px;
       font-size: 13.5px; font-weight: 300; line-height: 1.7;
-      color: rgba(255,255,255,0.26);
+      color: rgba(255,255,255,0.56);
     }
 
     /* ── FOOTER ── */
@@ -210,7 +216,7 @@
       padding: 0 var(--pad-x);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-text { font-size: 10px; color: rgba(255,255,255,0.16); letter-spacing: 0.08em; }
+    .footer-text { font-size: 10px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
 
     /* ── MOBILE ── */
     @media (max-width: 860px) {
@@ -234,7 +240,8 @@
     }
 
     @media (max-width: 480px) {
-      .big-title { font-size: clamp(32px, min(9vw, 9vh), 52px); }
+      .title-initial { font-size: clamp(52px,min(9vw,9vh), 80px); }
+      .title-rest { font-size: clamp(14px,min(2.4vw,2.4vh),22px); }
     }
   </style>
 </head>
@@ -242,7 +249,7 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
     <ul class="nav-links">
       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="business.html">Business</a></li>
@@ -277,9 +284,8 @@
       <!-- LEFT -->
       <section class="left-panel" aria-labelledby="worksTitle">
         <div class="eyebrow">ER Contents Media Group</div>
-        <h1 class="big-title" id="worksTitle">
-          <span class="fill">OUR</span>
-          <span class="fill">WORKS</span>
+        <h1 class="title-wrap" id="worksTitle">
+          <span class="title-initial">W</span><span class="title-rest">ORKS</span>
         </h1>
         <div class="left-rule"></div>
         <p class="left-desc">
@@ -403,7 +409,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-text">© 2025 ER Contents Media Group</span>
+    <span class="footer-text">© 2026 ER Contents Media Group</span>
     <span class="footer-text">Seoul, Korea</span>
   </footer>
 

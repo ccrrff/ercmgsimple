@@ -31,3 +31,18 @@ docs/
 
 # Backup images
 logo_original_backup.png
+.vercel
+
+# Dev screenshots
+after-fix-*.png
+check-*.png
+check2-*.png
+check3-*.png
+all-*.png
+c-*.png
+unify-*.png
+verify-*.png
+compare-*.png
+
+# Playwright dev tool
+.playwright-mcp/

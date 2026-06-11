@@ -21,7 +21,7 @@
 
     /* ── CSS VARIABLES ── */
     :root {
-      --nav-h: 64px;
+      --nav-h: 80px;
       --pad-x: 5%;
     }
 
@@ -118,7 +118,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 var(--pad-x);
+      padding:  0 var(--pad-x) 0 20px;
       background: transparent;
       border-bottom: 1px solid transparent;
       transition: background 0.35s ease, border-color 0.35s ease;
@@ -139,7 +139,7 @@
       align-items: center;
     }
     .nav-logo img {
-      height: 48px;
+      height: 56px;
       width: auto;
       object-fit: contain;
     }
@@ -157,7 +157,7 @@
       font-weight: 400;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255,255,255,0.70);
       text-decoration: none;
       transition: color 0.15s;
       white-space: nowrap;
@@ -190,7 +190,7 @@
       font-size: clamp(7px, 0.9vw, 11px);
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.28);
+      color: rgba(255,255,255,0.58);
       white-space: nowrap;
     }
 
@@ -203,7 +203,7 @@
       font-size: clamp(7px, 0.85vw, 10px);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.18);
+      color: rgba(255,255,255,0.50);
       white-space: nowrap;
     }
 
@@ -224,7 +224,7 @@
       font-size: clamp(6px, 0.7vw, 8px);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.15);
+      color: rgba(255,255,255,0.47);
       writing-mode: vertical-lr;
     }
 
@@ -252,31 +252,32 @@
       display: none;
       flex-direction: column;
       justify-content: center;
-      gap: 5px;
-      width: 36px;
-      height: 36px;
+      gap: 7px;
       cursor: pointer;
       background: none;
       border: none;
-      padding: 4px;
+      padding: 12px;
       z-index: 21;
+      margin-right: -4px;
+      isolation: isolate;
+      transform: translateZ(0);
     }
     .nav-hamburger span {
       display: block;
-      width: 22px;
+      width: 16px;
       height: 1.5px;
       background: #fff;
       transition: transform 0.3s ease, opacity 0.3s ease;
       transform-origin: center;
     }
     .nav-hamburger.open span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
+      transform: translateY(8.5px) rotate(45deg);
     }
     .nav-hamburger.open span:nth-child(2) {
       opacity: 0;
     }
     .nav-hamburger.open span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
+      transform: translateY(-8.5px) rotate(-45deg);
     }
 
     /* ── MOBILE MENU OVERLAY ── */
@@ -307,7 +308,7 @@
       font-weight: 500;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(255,255,255,0.62);
       text-decoration: none;
       transition: color 0.15s;
       display: block;
@@ -342,13 +343,24 @@
       /* 우하단 코너 숨김 — 모바일 최소화 */
       .hero-corner-br { display: none; }
     }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      position: relative; z-index: 20;
+      height: 52px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 0 var(--pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+      background: #040404;
+    }
+    .ft { font-size: 10px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
 </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav class="nav" id="nav" aria-label="주 메뉴">
-    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
     <ul class="nav-links">
       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="business.html">Business</a></li>
@@ -383,7 +395,7 @@
 
     <!-- 1. VIDEO (z-index: 1) -->
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="hero.mp4" type="video/mp4">
+      <source src="herov.mp4" type="video/mp4">
     </video>
 
     <!-- 2. GRAIN (z-index: 2) -->
@@ -418,6 +430,11 @@
     </div>
 
   </section>
+
+  <footer class="site-footer">
+    <span class="ft">© 2026 ER Contents Media Group</span>
+    <span class="ft">Seoul, Korea</span>
+  </footer>
 
   <script>
     const nav = document.getElementById('nav');

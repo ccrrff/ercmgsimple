@@ -12,7 +12,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --nav-h: 64px;
+      --nav-h: 80px;
       --pad-x: 5%;
       --line: rgba(255,255,255,0.07);
     }
@@ -33,7 +33,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 var(--pad-x);
+      padding:  0 var(--pad-x) 0 20px;
       background: rgba(4,4,4,0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
@@ -47,7 +47,7 @@
       flex-shrink: 0;
     }
     .nav-logo img {
-      height: 48px;
+      height: 56px;
       width: auto;
       object-fit: contain;
     }
@@ -63,7 +63,7 @@
       font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
+      color: rgba(255,255,255,0.65);
       text-decoration: none;
       transition: color 0.15s;
       white-space: nowrap;
@@ -74,17 +74,17 @@
     .nav-hamburger {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      gap: 7px;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
+      padding: 12px;
     }
     .nav-hamburger span {
       display: block;
-      width: 22px;
+      width: 16px;
       height: 1px;
-      background: rgba(255,255,255,0.6);
+      background: #fff;
     }
 
     /* ── MOBILE MENU ── */
@@ -103,7 +103,7 @@
       font-weight: 500;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.60);
       text-decoration: none;
       transition: color 0.15s;
       display: block;
@@ -117,7 +117,7 @@
     .ceo-para {
       font-size: clamp(14px, 1.35vw, 17px);
       font-weight: 300;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.67);
       line-height: 2;
       margin-bottom: 1.6em;
     }
@@ -125,7 +125,7 @@
     .ceo-sig {
       display: block;
       font-size: 12px;
-      color: rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.52);
       font-style: italic;
       margin-top: 28px;
       letter-spacing: 0.02em;
@@ -153,40 +153,44 @@
       }
     }
 
-    /* ── ABOUT US FINAL LAYOUT ── */
+    /* ── ABOUT US LAYOUT ── */
     .about-main {
-      min-height: 100dvh;
-      padding: calc(var(--nav-h) + clamp(52px, 7vw, 96px)) var(--pad-x) clamp(72px, 8vw, 110px);
-      display: flex;
-      align-items: center;
-    }
-    .about-layout {
-      width: min(1320px, 100%);
-      margin: 0 auto;
+      min-height: calc(100dvh - var(--nav-h));
+      margin-top: var(--nav-h);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-      gap: clamp(44px, 7vw, 96px);
+      grid-template-columns: 360px 1fr;
       align-items: start;
     }
-    .about-left {
-      max-width: 760px;
+
+    /* ── LEFT SIDEBAR (standard header) ── */
+    .about-sidebar {
+      border-right: 1px solid var(--line);
+      padding: clamp(32px,4vw,56px) clamp(20px,2.5vw,36px) 48px var(--pad-x);
+      position: sticky; top: var(--nav-h);
+      min-height: calc(100dvh - var(--nav-h));
     }
-    .about-title {
-      font-size: clamp(28px, 3.6vw, 48px);
-      line-height: 0.95;
-      letter-spacing: -0.045em;
-      font-weight: 800;
-      color: rgba(255,255,255,0.92);
-      margin-bottom: clamp(18px, 3vw, 32px);
+    .eyebrow {
+      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.50); margin-bottom: 18px;
     }
-    .about-title em {
-      font-family: Georgia, serif;
-      font-weight: 400;
-      color: rgba(255,255,255,0.64);
+    .title-wrap { display: flex; align-items: baseline; gap: 2px; margin-bottom: clamp(18px,2.2vw,28px); }
+    .title-initial { font-size: clamp(38px,4.8vw,60px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
+    .title-rest { font-size: clamp(20px,2.4vw,30px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
+    .left-rule { width: 28px; height: 2px; background: rgba(255,255,255,0.14); margin-bottom: clamp(14px,1.6vw,20px); }
+    .left-desc {
+      font-size: 11.5px; font-weight: 300; line-height: 2.05;
+      color: rgba(255,255,255,0.60); word-break: keep-all;
     }
+
+    /* ── RIGHT CONTENT ── */
     .about-right {
-      border-left: 1px solid rgba(255,255,255,0.14);
-      padding-left: clamp(24px, 3vw, 32px);
+      padding: clamp(32px,4vw,56px) var(--pad-x) clamp(32px,4vw,56px) clamp(24px,3vw,48px);
+    }
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
+      gap: clamp(44px, 7vw, 96px);
+      align-items: start;
     }
     .info-block {
       padding-bottom: 30px;
@@ -197,14 +201,14 @@
       font-size: 9px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.52);
       margin-bottom: 14px;
     }
     .info-copy {
       font-size: clamp(13px, 1.1vw, 15px);
       font-weight: 300;
       line-height: 1.85;
-      color: rgba(255,255,255,0.46);
+      color: rgba(255,255,255,0.66);
       word-break: keep-all;
     }
     .service-lines {
@@ -217,7 +221,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
       font-size: 13px;
       line-height: 1.45;
-      color: rgba(255,255,255,0.58);
+      color: rgba(255,255,255,0.70);
     }
 
     /* ── FOOTER ── */
@@ -230,30 +234,35 @@
     }
     .footer-text {
       font-size: 10px;
-      color: rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.48);
       letter-spacing: 0.08em;
     }
 
     /* ── MOBILE ── */
-    @media (max-width: 768px) {
+    @media (max-width: 860px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-
+    }
+    @media (max-width: 640px) {
       .about-main {
-        align-items: flex-start;
+        grid-template-columns: 1fr;
+      }
+      .about-sidebar {
+        position: static; min-height: auto;
+        border-right: none; border-bottom: 1px solid var(--line);
+        padding: 24px var(--pad-x);
+      }
+      .eyebrow { display: none; }
+      .title-initial { font-size: clamp(52px,12vw,80px); }
+      .title-rest { font-size: clamp(14px,3.5vw,22px); }
+      .left-rule { display: none; }
+      .left-desc { display: none; }
+      .about-right {
+        padding: 24px var(--pad-x) 48px;
       }
       .about-layout {
         grid-template-columns: 1fr;
-        gap: 42px;
-      }
-      .about-title {
-        margin-bottom: 22px;
-      }
-      .about-right {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid rgba(255,255,255,0.14);
-        padding-top: 30px;
+        gap: 32px;
       }
     }
   </style>
@@ -262,7 +271,7 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
     <ul class="nav-links">
       <li><a href="aboutus.html" class="active">About Us</a></li>
       <li><a href="business.html">Business</a></li>
@@ -292,46 +301,58 @@
 
   <!-- ABOUT US -->
   <main class="about-main">
-    <div class="about-layout">
-      <section class="about-left" aria-labelledby="aboutTitle">
-        <h1 class="about-title" id="aboutTitle">CEO <em>인사말</em></h1>
-        <div class="ceo-body">
-          <p class="ceo-para">ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.</p>
-          <p class="ceo-para">우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.</p>
-          <p class="ceo-para">앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.</p>
-          <span class="ceo-sig">— CEO, ER콘텐츠미디어그룹</span>
-        </div>
-      </section>
 
-      <aside class="about-right" aria-label="회사 정보">
-        <div class="info-block">
-          <div class="info-label">Company</div>
-          <p class="info-copy">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
-        </div>
+    <!-- LEFT SIDEBAR -->
+    <aside class="about-sidebar">
+      <div class="eyebrow">ER Contents Media Group</div>
+      <h1 class="title-wrap" id="aboutTitle">
+        <span class="title-initial">A</span><span class="title-rest">BOUT US</span>
+      </h1>
+      <div class="left-rule"></div>
+      <p class="left-desc">대표이사 인사말과<br>회사 소개입니다.</p>
+    </aside>
 
-        <div class="info-block">
-          <div class="info-label">Approach</div>
-          <p class="info-copy">창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.</p>
-        </div>
-
-        <div>
-          <div class="info-label">Services</div>
-          <p class="info-copy">공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.</p>
-          <div class="service-lines">
-            <span class="service-line">공연 기획 및 제작</span>
-            <span class="service-line">방송 콘텐츠 제작</span>
-            <span class="service-line">아티스트 및 크리에이터 에이전시</span>
-            <span class="service-line">콘텐츠 IP 개발</span>
-            <span class="service-line">브랜드 협업 및 마케팅</span>
+    <!-- RIGHT CONTENT -->
+    <div class="about-right">
+      <div class="about-layout">
+        <section aria-labelledby="aboutTitle">
+          <div class="ceo-body">
+            <p class="ceo-para">ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.</p>
+            <p class="ceo-para">우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.</p>
+            <p class="ceo-para">앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.</p>
+            <span class="ceo-sig">— CEO, ER콘텐츠미디어그룹</span>
           </div>
-        </div>
-      </aside>
+        </section>
+
+        <aside aria-label="회사 정보">
+          <div class="info-block">
+            <div class="info-label">Company</div>
+            <p class="info-copy">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
+          </div>
+          <div class="info-block">
+            <div class="info-label">Approach</div>
+            <p class="info-copy">창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.</p>
+          </div>
+          <div>
+            <div class="info-label">Services</div>
+            <p class="info-copy">공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.</p>
+            <div class="service-lines">
+              <span class="service-line">공연 기획 및 제작</span>
+              <span class="service-line">방송 콘텐츠 제작</span>
+              <span class="service-line">아티스트 및 크리에이터 에이전시</span>
+              <span class="service-line">콘텐츠 IP 개발</span>
+              <span class="service-line">브랜드 협업 및 마케팅</span>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
+
   </main>
 
   <!-- FOOTER -->
   <footer class="about-footer">
-    <span class="footer-text">© 2025 ER Contents Media Group</span>
+    <span class="footer-text">© 2026 ER Contents Media Group</span>
     <span class="footer-text">Seoul, Korea</span>
   </footer>
 

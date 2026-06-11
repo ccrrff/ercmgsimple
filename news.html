@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --nav-h: 64px; --pad-x: 5%; --line: rgba(255,255,255,0.07); }
+    :root { --nav-h: 80px; --pad-x: 5%; --line: rgba(255,255,255,0.07); }
 
     body {
       background: #040404; color: #fff;
@@ -23,33 +23,51 @@
       position: fixed; inset: 0 0 auto 0; z-index: 100;
       height: var(--nav-h);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 var(--pad-x);
+      padding:  0 var(--pad-x) 0 20px;
       background: rgba(4,4,4,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
     .nav-logo { text-decoration: none; display: flex; align-items: center; }
-    .nav-logo img { height: 48px; width: auto; object-fit: contain; }
+    .nav-logo img { height: 56px; width: auto; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
-    .nav-links a { font-size: clamp(10px,.9vw,12px); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.38); text-decoration: none; transition: color .15s; white-space: nowrap; }
+    .nav-links a { font-size: clamp(10px,.9vw,12px); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,0.65); text-decoration: none; transition: color .15s; white-space: nowrap; }
     .nav-links a:hover { color: rgba(255,255,255,.8); }
     .nav-links a.active { color: #fff; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-hamburger span { display: block; width: 22px; height: 1px; background: rgba(255,255,255,.6); transition: transform .3s, opacity .3s; transform-origin: center; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 10px;
+      z-index: 21;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #fff;
+      transition: transform 0.28s ease, opacity 0.2s ease;
+      transform-origin: center;
+      border-radius: 1px;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
     /* ── MOBILE MENU ── */
     .mobile-menu { display: none; position: fixed; inset: 0; z-index: 90; background: rgba(4,4,4,.97); padding: calc(var(--nav-h) + 48px) var(--pad-x) 48px; opacity: 0; transition: opacity .3s; }
     .mobile-menu.open { opacity: 1; }
     .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-    .mobile-menu a { font-size: clamp(28px,8vw,40px); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .15s; display: block; padding: 6px 0; }
+    .mobile-menu a { font-size: clamp(28px,8vw,40px); font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: rgba(255,255,255,0.60); text-decoration: none; transition: color .15s; display: block; padding: 6px 0; }
     .mobile-menu a:hover, .mobile-menu a.active { color: #fff; }
 
     /* ── MAIN ── */
     .news-main { padding-top: var(--nav-h); }
     .split {
-      display: grid; grid-template-columns: 300px 1fr;
+      display: grid; grid-template-columns: 360px 1fr;
       min-height: calc(100vh - var(--nav-h) - 52px);
     }
 
@@ -61,13 +79,13 @@
       height: calc(100vh - var(--nav-h));
       overflow: hidden; display: flex; flex-direction: column;
     }
-    .eyebrow { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.18); margin-bottom: 16px; }
-    .big-title { font-size: clamp(38px,4.8vw,64px); font-weight: 800; line-height: .84; letter-spacing: -.05em; margin-bottom: clamp(18px,2vw,28px); }
-    .big-title .f { display: block; color: rgba(255,255,255,.9); }
-    .big-title .o { display: block; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.16); }
-    .left-rule { width: 22px; height: 1px; background: rgba(255,255,255,.14); margin-bottom: clamp(14px,1.6vw,20px); }
-    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,.28); word-break: keep-all; }
-    .left-count { margin-top: auto; font-size: 8.5px; color: rgba(255,255,255,.14); letter-spacing: .1em; }
+    .eyebrow { font-size: 8px; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,0.50); margin-bottom: 18px; }
+    .title-wrap { display: flex; align-items: baseline; gap: 2px; margin-bottom: clamp(18px,2.2vw,28px); }
+    .title-initial { font-size: clamp(38px,4.8vw,60px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
+    .title-rest { font-size: clamp(20px,2.4vw,30px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
+    .left-rule { width: 28px; height: 2px; background: rgba(255,255,255,.14); margin-bottom: clamp(14px,1.6vw,20px); }
+    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.60); word-break: keep-all; }
+    .left-count { margin-top: auto; font-size: 8.5px; color: rgba(255,255,255,0.44); letter-spacing: .1em; }
 
     /* ── RIGHT PANEL ── */
     .right-panel { padding: clamp(24px,3vw,44px) var(--pad-x) 64px clamp(20px,2.5vw,36px); }
@@ -108,10 +126,10 @@
     }
     .nc-tag {
       font-size: 7px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(255,255,255,.3); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,0.60); border: 1px solid rgba(255,255,255,.12);
       padding: 2px 7px; flex-shrink: 0;
     }
-    .nc-date { font-size: 8px; color: rgba(255,255,255,.18); letter-spacing: .06em; }
+    .nc-date { font-size: 8px; color: rgba(255,255,255,0.50); letter-spacing: .06em; }
 
     .nc-title {
       font-size: clamp(12px,1.2vw,14px); font-weight: 600;
@@ -125,7 +143,7 @@
 
     .nc-excerpt {
       font-size: 10.5px; font-weight: 300; line-height: 1.7;
-      color: rgba(255,255,255,.24); word-break: keep-all;
+      color: rgba(255,255,255,0.54); word-break: keep-all;
       margin-bottom: 14px; flex: 1;
     }
 
@@ -135,16 +153,16 @@
       padding-top: 12px;
       border-top: 1px solid rgba(255,255,255,.06);
     }
-    .nc-source { font-size: 9px; color: rgba(255,255,255,.2); letter-spacing: .05em; }
+    .nc-source { font-size: 9px; color: rgba(255,255,255,0.52); letter-spacing: .05em; }
     .nc-arrow {
-      font-size: 11px; color: rgba(255,255,255,.15);
+      font-size: 11px; color: rgba(255,255,255,0.47);
       transition: color .18s, transform .18s;
     }
-    .news-card:hover .nc-arrow { color: rgba(255,255,255,.5); transform: translate(2px,-2px); }
+    .news-card:hover .nc-arrow { color: rgba(255,255,255,0.70); transform: translate(2px,-2px); }
 
     /* ── FOOTER ── */
     footer { height: 52px; border-top: 1px solid var(--line); padding: 0 var(--pad-x); display: flex; align-items: center; justify-content: space-between; }
-    .ft { font-size: 10px; color: rgba(255,255,255,.16); letter-spacing: .08em; }
+    .ft { font-size: 10px; color: rgba(255,255,255,0.48); letter-spacing: .08em; }
 
     /* ── MOBILE ── */
     @media (max-width: 860px) {
@@ -164,7 +182,7 @@
 <body>
 
   <nav class="nav" id="nav">
-    <a class="nav-logo" href="index.html"><img src="logo.png" alt="ER CMG"></a>
+    <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
     <ul class="nav-links">
       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="business.html">Business</a></li>
@@ -195,8 +213,8 @@
     <div class="split">
       <aside class="left-panel">
         <div class="eyebrow">ER Contents Media Group</div>
-        <h1 class="big-title">
-          <span class="f">NEWS</span>
+        <h1 class="title-wrap">
+          <span class="title-initial">N</span><span class="title-rest">EWS</span>
         </h1>
         <div class="left-rule"></div>
         <p class="left-desc">K-SPARK 및 주요 프로젝트에 관한<br>국내외 보도를 모았습니다.</p>
@@ -210,7 +228,7 @@
   </main>
 
   <footer>
-    <span class="ft">© 2025 ER Contents Media Group</span>
+    <span class="ft">© 2026 ER Contents Media Group</span>
     <span class="ft">Seoul, Korea</span>
   </footer>
 
