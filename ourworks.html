@@ -238,8 +238,9 @@
         padding-bottom: 30px; margin-bottom: 30px;
       }
       .right-panel { padding-left: 0; min-width: 0; }
-      .year-tabs { overflow-x: auto; gap: 2px; }
-      .year-tabs::-webkit-scrollbar { display: none; }
+      .year-tabs { overflow-x: visible; flex-wrap: wrap; gap: 0; border-bottom: none; }
+      .ytab { padding: 6px 16px 6px 0; top: 0; }
+      .year-pane.on { border-top: 1px solid var(--line); padding-top: 2px; }
     }
 
     @media (max-width: 480px) {
