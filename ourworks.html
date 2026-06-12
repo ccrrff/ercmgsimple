@@ -135,7 +135,7 @@
     }
     .ytab {
       font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.52); cursor: pointer;
+      color: rgba(255,255,255,0.62); cursor: pointer;
       padding: 0 24px 12px 0; margin-right: 2px;
       border-bottom: 1px solid transparent;
       border-left: none; border-right: none; border-top: none;
@@ -169,32 +169,30 @@
       cursor: pointer; user-select: none;
     }
     .row-num {
-      font-size: 10px; color: rgba(255,255,255,0.42);
+      font-size: 10px; color: rgba(255,255,255,0.55);
       letter-spacing: 0.1em; min-width: 22px; flex-shrink: 0;
     }
     .row-city {
-      font-size: clamp(17px,1.82vw,21px); font-weight: 700;
+      font-size: clamp(17px,1.82vw,21px); font-weight: 600;
       letter-spacing: -0.01em; flex: 1;
       transition: color 0.18s;
     }
-    /* outline = 완료 */
+    /* 완료 */
     .item.done .row-city {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.26);
+      color: rgba(255,255,255,0.72);
     }
-    /* fill = 예정 */
+    /* 예정 */
     .item.upcoming .row-city {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.90);
     }
     /* hover / open */
     .item:hover .row-city,
     .item.open  .row-city {
-      color: rgba(255,255,255,0.94) !important;
-      -webkit-text-stroke-color: transparent !important;
+      color: #fff !important;
     }
     .row-type {
       font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.44); flex-shrink: 0;
+      color: rgba(255,255,255,0.58); flex-shrink: 0;
     }
 
     /* dropdown */
@@ -206,7 +204,7 @@
     .drop-inner {
       padding: 0 0 14px 32px;
       font-size: 13.5px; font-weight: 300; line-height: 1.7;
-      color: rgba(255,255,255,0.56);
+      color: rgba(255,255,255,0.70);
     }
 
     /* ── FOOTER ── */
@@ -303,15 +301,63 @@
 
         <!-- year tabs -->
         <div class="year-tabs" role="tablist">
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2018" onclick="switchYear('2018',this)">
+            2018 <span class="ct">1</span>
+          </button>
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2021" onclick="switchYear('2021',this)">
+            2021 <span class="ct">1</span>
+          </button>
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2022" onclick="switchYear('2022',this)">
+            2022 <span class="ct">1</span>
+          </button>
           <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2023" onclick="switchYear('2023',this)">
-            2023 <span class="ct">2</span>
+            2023 <span class="ct">1</span>
           </button>
           <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2024" onclick="switchYear('2024',this)">
-            2024 <span class="ct">3</span>
+            2024 <span class="ct">1</span>
           </button>
-          <button class="ytab on" role="tab" aria-selected="true" aria-controls="pane-2025" onclick="switchYear('2025',this)">
+          <button class="ytab" role="tab" aria-selected="false" aria-controls="pane-2025" onclick="switchYear('2025',this)">
             2025 <span class="ct">5</span>
           </button>
+          <button class="ytab on" role="tab" aria-selected="true" aria-controls="pane-2026" onclick="switchYear('2026',this)">
+            2026 <span class="ct">4</span>
+          </button>
+        </div>
+
+        <!-- 2018 -->
+        <div class="year-pane" id="pane-2018" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">ER콘텐츠미디어그룹 설립</span>
+              <span class="row-type">창립</span>
+            </div>
+            <div class="drop"><div class="drop-inner">ER콘텐츠미디어그룹 설립</div></div>
+          </div>
+        </div>
+
+        <!-- 2021 -->
+        <div class="year-pane" id="pane-2021" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">Mnet 스트릿우먼파이트</span>
+              <span class="row-type">방송</span>
+            </div>
+            <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌1 제작 참여</div></div>
+          </div>
+        </div>
+
+        <!-- 2022 -->
+        <div class="year-pane" id="pane-2022" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">Mnet 스트릿맨파이트</span>
+              <span class="row-type">방송</span>
+            </div>
+            <div class="drop"><div class="drop-inner">Mnet 스트릿맨파이트 제작 참여</div></div>
+          </div>
         </div>
 
         <!-- 2023 -->
@@ -319,18 +365,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿우먼파이터</span>
+              <span class="row-city">Mnet 스트릿우먼파이트</span>
               <span class="row-type">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 방송 프로그램 제작 참여 · 시즌 2</div></div>
-          </div>
-          <div class="item done" onclick="acc(this)">
-            <div class="row">
-              <span class="row-num">02</span>
-              <span class="row-city">글로벌 브랜드 캠페인</span>
-              <span class="row-type">브랜드</span>
-            </div>
-            <div class="drop"><div class="drop-inner">글로벌 브랜드 × K-POP 아티스트 협업 캠페인</div></div>
+            <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌2 제작 참여</div></div>
           </div>
         </div>
 
@@ -339,70 +377,90 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">서울 단독 공연</span>
-              <span class="row-type">라이브</span>
+              <span class="row-city">TV조선 대학가요제</span>
+              <span class="row-type">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">KSPO DOME · 관객 15,000명</div></div>
-          </div>
-          <div class="item done" onclick="acc(this)">
-            <div class="row">
-              <span class="row-num">02</span>
-              <span class="row-city">아티스트 팬미팅</span>
-              <span class="row-type">라이브</span>
-            </div>
-            <div class="drop"><div class="drop-inner">올림픽홀 · 관객 2,500명</div></div>
-          </div>
-          <div class="item done" onclick="acc(this)">
-            <div class="row">
-              <span class="row-num">03</span>
-              <span class="row-city">OTT 오리지널 콘텐츠</span>
-              <span class="row-type">디지털</span>
-            </div>
-            <div class="drop"><div class="drop-inner">스트리밍 오리지널 콘텐츠 기획·제작</div></div>
+            <div class="drop"><div class="drop-inner">TV조선 대학가요제 제작 참여</div></div>
           </div>
         </div>
 
         <!-- 2025 -->
-        <div class="year-pane on" id="pane-2025" role="tabpanel">
+        <div class="year-pane" id="pane-2025" role="tabpanel">
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Bangkok</span>
+              <span class="row-city">K-SPARK in Bangkok</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">임팩트 아레나 · 관객 50,000명</div></div>
+            <div class="drop"><div class="drop-inner">K-SPARK in BANGKOK</div></div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">02</span>
-              <span class="row-city">Hanoi</span>
+              <span class="row-city">K-SPARK in Vietnam</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">국립경기장 · 관객 40,000명</div></div>
+            <div class="drop"><div class="drop-inner">K-SPARK in VIETNAM</div></div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">03</span>
-              <span class="row-city">Kuala Lumpur</span>
+              <span class="row-city">유튜브 [팔도가인]</span>
+              <span class="row-type">유튜브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">유튜브 [팔도가인] 제작 · 가수 송가인</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">04</span>
+              <span class="row-city">유튜브 [유딱날]</span>
+              <span class="row-type">유튜브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">유튜브 [유딱날] 제작 · 배우 박성웅</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">05</span>
+              <span class="row-city">Mnet 월드스트릿우먼파이트</span>
+              <span class="row-type">방송</span>
+            </div>
+            <div class="drop"><div class="drop-inner">Mnet 월드스트릿우먼파이트 제작 참여</div></div>
+          </div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="year-pane on" id="pane-2026" role="tabpanel">
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">01</span>
+              <span class="row-city">G-DRAGON 'FAM' MEETING</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">악시아타 아레나 · 관객 40,000명</div></div>
+            <div class="drop"><div class="drop-inner">G-DRAGON 'FAM' MEETING 제작 · SEOUL, YOKOHAMA, BANGKOK</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">02</span>
+              <span class="row-city">K-SPARK in Malaysia</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">K-SPARK in MALAYSIA</div></div>
+          </div>
+          <div class="item done" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">03</span>
+              <span class="row-city">K-SPARK in Macau</span>
+              <span class="row-type">라이브</span>
+            </div>
+            <div class="drop"><div class="drop-inner">K-SPARK in MACAU · 코타이 아레나 · 2026.05.02</div></div>
           </div>
           <div class="item upcoming" onclick="acc(this)">
             <div class="row">
               <span class="row-num">04</span>
-              <span class="row-city">Macau</span>
+              <span class="row-city">K-SPARK in Kaohsiung</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">코타이 아레나 · 관객 35,000명 예정</div></div>
-          </div>
-          <div class="item upcoming" onclick="acc(this)">
-            <div class="row">
-              <span class="row-num">05</span>
-              <span class="row-city">Kaohsiung</span>
-              <span class="row-type">라이브</span>
-            </div>
-            <div class="drop"><div class="drop-inner">국립경기장 · 관객 55,000명 예정</div></div>
+            <div class="drop"><div class="drop-inner">K-SPARK in KAOHSIUNG · 예정</div></div>
           </div>
         </div>
 
