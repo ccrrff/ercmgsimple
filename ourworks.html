@@ -44,9 +44,9 @@
     .nav-logo img { height: 56px; width: auto; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
     .nav-links a {
-      font-size: clamp(10px,0.9vw,12px); font-weight: 400;
+      font-size: clamp(12px,1.15vw,15px); font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(255,255,255,0.65); text-decoration: none;
+      color: #fff; text-decoration: none;
       transition: color 0.15s; white-space: nowrap;
     }
     .nav-links a:hover { color: rgba(255,255,255,0.8); }
@@ -85,7 +85,7 @@
     .mobile-menu.open { opacity: 1; }
     .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
     .mobile-menu a {
-      font-size: clamp(28px,8vw,40px); font-weight: 500;
+      font-size: clamp(32.2px,9.2vw,46px); font-weight: 500;
       letter-spacing: 0.02em; text-transform: uppercase;
       color: rgba(255,255,255,0.60); text-decoration: none;
       transition: color 0.15s; display: block; padding: 6px 0;
@@ -113,14 +113,14 @@
       padding-top: 4px;
     }
     .eyebrow {
-      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
       color: rgba(255,255,255,0.50); margin-bottom: 18px;
     }
     .title-wrap { display: flex; align-items: baseline; gap: 2px; margin-bottom: clamp(18px,2.2vw,28px); }
-    .title-initial { font-size: clamp(38px,4.8vw,60px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
-    .title-rest { font-size: clamp(20px,2.4vw,30px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
+    .title-initial { font-size: clamp(43.7px,5.5vw,69px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
+    .title-rest { font-size: clamp(23px,2.8vw,34.5px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
     .left-rule { width: 28px; height: 2px; background: rgba(255,255,255,0.14); margin-bottom: clamp(14px,1.6vw,20px); }
-    .left-desc { font-size: 11.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.60); word-break: keep-all; }
+    .left-desc { font-size: 15.5px; font-weight: 300; line-height: 2.05; color: rgba(255,255,255,0.60); word-break: keep-all; }
     .desc-line { opacity: 0; transform: translateY(8px); transition: opacity 0.5s ease, transform 0.5s ease; }
     .desc-line.in { opacity: 1; transform: translateY(0); }
 
@@ -134,7 +134,7 @@
       margin-bottom: 0;
     }
     .ytab {
-      font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-size: 13.8px; letter-spacing: 0.16em; text-transform: uppercase;
       color: rgba(255,255,255,0.62); cursor: pointer;
       padding: 0 24px 12px 0; margin-right: 2px;
       border-bottom: 1px solid transparent;
@@ -147,7 +147,7 @@
     }
     .ytab:hover { color: rgba(255,255,255,0.72); }
     .ytab.on { color: rgba(255,255,255,0.88); border-bottom-color: rgba(255,255,255,0.55); }
-    .ytab .ct { font-size: 9px; color: rgba(255,255,255,0.44); transition: color 0.18s; }
+    .ytab .ct { font-size: 10.4px; color: rgba(255,255,255,0.44); transition: color 0.18s; }
     .ytab.on .ct { color: rgba(255,255,255,0.58); }
 
     /* year panes */
@@ -169,11 +169,11 @@
       cursor: pointer; user-select: none;
     }
     .row-num {
-      font-size: 10px; color: rgba(255,255,255,0.55);
+      font-size: 11.5px; color: rgba(255,255,255,0.55);
       letter-spacing: 0.1em; min-width: 22px; flex-shrink: 0;
     }
     .row-city {
-      font-size: clamp(17px,1.82vw,21px); font-weight: 600;
+      font-size: clamp(19.6px,2.1vw,24.2px); font-weight: 600;
       letter-spacing: -0.01em; flex: 1; min-width: 0;
       overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
       transition: color 0.18s;
@@ -192,7 +192,7 @@
       color: #fff !important;
     }
     .row-type {
-      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
       color: rgba(255,255,255,0.58); flex-shrink: 0;
     }
 
@@ -204,7 +204,7 @@
     .drop.open { max-height: 70px; opacity: 1; }
     .drop-inner {
       padding: 0 0 14px 32px;
-      font-size: 13.5px; font-weight: 300; line-height: 1.7;
+      font-size: 15.5px; font-weight: 300; line-height: 1.7;
       color: rgba(255,255,255,0.70);
       overflow-wrap: break-word; word-break: keep-all;
     }
@@ -216,7 +216,7 @@
       padding: 0 var(--pad-x);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .footer-text { font-size: 10px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
+    .footer-text { font-size: 11.5px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
 
     /* ── MOBILE ── */
     @media (max-width: 1024px) {
@@ -244,8 +244,8 @@
     }
 
     @media (max-width: 480px) {
-      .title-initial { font-size: clamp(52px,min(9vw,9vh), 80px); }
-      .title-rest { font-size: clamp(14px,min(2.4vw,2.4vh),22px); }
+      .title-initial { font-size: clamp(59.8px,min(10.4vw,10.4vh), 92px); }
+      .title-rest { font-size: clamp(16.1px,min(2.8vw,2.8vh),25.3px); }
     }
   </style>
 </head>
@@ -344,7 +344,7 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿우먼파이트</span>
+              <span class="row-city">Mnet 스트릿우먼파이트 시즌1</span>
               <span class="row-type">방송</span>
             </div>
             <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌1 제작 참여</div></div>
@@ -368,7 +368,7 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿우먼파이트</span>
+              <span class="row-city">Mnet 스트릿우먼파이트 시즌2</span>
               <span class="row-type">방송</span>
             </div>
             <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌2 제작 참여</div></div>
@@ -424,10 +424,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">05</span>
-              <span class="row-city">Mnet 월드스트릿우먼파이트</span>
+              <span class="row-city">Mnet 월드스트릿우먼파이트 시즌3</span>
               <span class="row-type">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 월드스트릿우먼파이트 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner">Mnet 월드스트릿우먼파이트 시즌3 제작 참여</div></div>
           </div>
         </div>
 

@@ -38,9 +38,9 @@
     .nav-logo img { height: 56px; width: auto; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: clamp(16px,2.5vw,40px); list-style: none; }
     .nav-links a {
-      font-size: clamp(10px,0.9vw,12px); font-weight: 400;
+      font-size: clamp(12px,1.15vw,15px); font-weight: 400;
       letter-spacing: 0.06em; text-transform: uppercase;
-      color: rgba(255,255,255,0.65); text-decoration: none;
+      color: #fff; text-decoration: none;
       transition: color 0.15s; white-space: nowrap;
     }
     .nav-links a:hover { color: rgba(255,255,255,0.8); }
@@ -79,7 +79,7 @@
     .mobile-menu.open { opacity: 1; }
     .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
     .mobile-menu a {
-      font-size: clamp(28px,8vw,40px); font-weight: 500;
+      font-size: clamp(32.2px,9.2vw,46px); font-weight: 500;
       letter-spacing: 0.02em; text-transform: uppercase;
       color: rgba(255,255,255,0.60); text-decoration: none;
       transition: color 0.15s; display: block; padding: 6px 0;
@@ -106,63 +106,79 @@
     .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
 
     .pg-eyebrow {
-      font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase;
+      font-size: 9.2px; letter-spacing: 0.22em; text-transform: uppercase;
       color: rgba(255,255,255,0.50); margin-bottom: 14px;
     }
     .title-wrap { display: flex; align-items: baseline; gap: 2px; margin-bottom: clamp(18px,2.2vw,28px); }
-    .title-initial { font-size: clamp(38px,4.8vw,60px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
-    .title-rest { font-size: clamp(20px,2.4vw,30px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
+    .title-initial { font-size: clamp(43.7px,5.5vw,69px); font-weight: 800; letter-spacing: -0.06em; color: rgba(255,255,255,0.9); line-height: 0.85; }
+    .title-rest { font-size: clamp(23px,2.8vw,34.5px); font-weight: 800; letter-spacing: -0.03em; color: rgba(255,255,255,0.55); padding-bottom: clamp(8px,1vw,14px); }
     .pg-rule { width: 28px; height: 2px; background: rgba(255,255,255,0.14); margin-bottom: clamp(12px,1.4vw,16px); }
     .pg-desc {
-      font-size: 11.5px; font-weight: 300; line-height: 2.05;
+      font-size: 13.2px; font-weight: 300; line-height: 2.05;
       color: rgba(255,255,255,0.60); word-break: keep-all; margin-bottom: 14px;
     }
     .inq-cats { display: flex; gap: 5px; flex-wrap: wrap; }
     .inq-cat {
-      font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 8.6px; letter-spacing: 0.1em; text-transform: uppercase;
       color: rgba(255,255,255,0.52); border: 1px solid rgba(255,255,255,0.1);
       padding: 3px 9px;
     }
 
-    /* ── CONTACT PANEL ── */
-    .contact-panel {
-      flex: 1;
-      padding: clamp(28px,3vw,44px) clamp(20px,2.5vw,36px);
-      display: flex; align-items: center;
-    }
-    .contact-inner { width: 100%; }
-
-    /* ── CONTACT BLOCKS ── */
-    .c-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    .c-block {
-      padding: clamp(18px,2vw,26px) clamp(16px,1.8vw,24px) clamp(18px,2vw,26px) 0;
+    /* ── LOGO PANEL ── */
+    .logo-panel {
+      width: clamp(240px, 28vw, 380px); flex-shrink: 0;
       border-right: 1px solid var(--line);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: clamp(16px,2vw,24px);
+      padding: clamp(24px,3vw,44px) clamp(20px,2.5vw,36px);
     }
-    .c-block:last-of-type { border-right: none; padding-right: 0; }
-    .c-block.addr {
-      grid-column: 1 / -1;
-      border-right: none; padding-right: 0;
-      border-top: 1px solid var(--line);
-      padding-top: clamp(18px,2vw,24px);
-      margin-top: clamp(14px,1.6vw,20px);
+    .logo-panel img {
+      width: 76%; max-width: 240px;
+      mix-blend-mode: screen;
+      opacity: 0.92;
     }
-    .c-label {
-      font-size: 7.5px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.50); margin-bottom: 10px;
+    .logo-divider {
+      width: 24px; height: 1px; background: rgba(255,255,255,0.12);
     }
-    .c-val {
-      font-size: clamp(12px,1.2vw,15px); font-weight: 500;
-      color: rgba(255,255,255,0.72); letter-spacing: -0.01em;
-      text-decoration: none; display: block; transition: color 0.18s;
+    .logo-tagline {
+      font-size: clamp(9px,0.85vw,11px); letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.28); text-align: center; line-height: 2;
     }
-    a.c-val:hover { color: #fff; }
-    .c-sub {
-      font-size: 10px; font-weight: 300;
-      color: rgba(255,255,255,0.52); margin-top: 4px;
+    .logo-tagline strong {
+      display: block; font-weight: 400; color: rgba(255,255,255,0.48);
+    }
+
+    /* ── INFO PANEL ── */
+    .info-panel {
+      flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(28px,3vw,44px) clamp(24px,3vw,52px);
+    }
+    .info-section-label {
+      font-size: 8px; letter-spacing: 0.24em; text-transform: uppercase;
+      color: rgba(255,255,255,0.32); margin-bottom: clamp(20px,2.2vw,28px);
+    }
+    .info-list { display: flex; flex-direction: column; }
+    .info-row {
+      display: flex; align-items: baseline; gap: clamp(16px,2vw,28px);
+      padding: clamp(14px,1.4vw,18px) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .info-row:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .info-key {
+      font-size: 8.6px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.36); min-width: 72px; flex-shrink: 0; padding-top: 2px;
+    }
+    .info-val {
+      font-size: clamp(14px,1.45vw,18px); font-weight: 500;
+      color: rgba(255,255,255,0.82); letter-spacing: -0.01em;
+      text-decoration: none; transition: color 0.18s;
+    }
+    a.info-val:hover { color: #fff; }
+    .info-sub {
+      font-size: 11px; font-weight: 300;
+      color: rgba(255,255,255,0.38); margin-top: 3px;
     }
 
     /* ── FOOTER ── */
@@ -171,7 +187,7 @@
       padding: 0 var(--pad-x);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .ft { font-size: 10px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
+    .ft { font-size: 11.5px; color: rgba(255,255,255,0.48); letter-spacing: 0.08em; }
 
     /* ── MOBILE ── */
     @media (max-width: 1024px) {
@@ -180,8 +196,7 @@
     @media (max-width: 860px) {
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
-      .c-grid { grid-template-columns: repeat(2,1fr); }
-      .c-block:nth-child(2n) { border-right: none; }
+      .logo-panel { width: clamp(180px,22vw,260px); }
     }
     @media (max-width: 640px) {
       .page-wrap { flex-direction: column; }
@@ -190,11 +205,8 @@
         border-right: none; border-bottom: 1px solid var(--line);
         padding: 20px var(--pad-x);
       }
-      .contact-panel { padding: 24px var(--pad-x) 48px; align-items: flex-start; }
-    }
-    @media (max-width: 480px) {
-      .c-grid { grid-template-columns: 1fr; }
-      .c-block { border-right: none; padding-right: 0; }
+      .logo-panel { display: none; }
+      .info-panel { padding: 28px var(--pad-x) 48px; }
     }
   </style>
 </head>
@@ -248,37 +260,50 @@
       </div>
     </aside>
 
+    <!-- LOGO PANEL -->
+    <div class="logo-panel">
+      <img src="ERlogo.png?v=2" alt="ER CMG">
+      <div class="logo-divider"></div>
+      <div class="logo-tagline">
+        <strong>Experience &amp; Resonance</strong>
+        Seoul, Korea
+      </div>
+    </div>
+
     <!-- CONTACT INFO -->
-    <main class="contact-panel">
-      <div class="contact-inner">
-        <div class="c-grid">
-
-          <div class="c-block">
-            <div class="c-label">Email</div>
-            <a class="c-val" href="mailto:ercmg@ercmg.com">ercmg@ercmg.com</a>
+    <main class="info-panel" aria-label="연락처">
+      <div class="info-section-label">Contact Information</div>
+      <div class="info-list">
+        <div class="info-row">
+          <span class="info-key">Email</span>
+          <div>
+            <a class="info-val" href="mailto:ercmg@ercmg.com">ercmg@ercmg.com</a>
           </div>
-
-          <div class="c-block">
-            <div class="c-label">Instagram</div>
-            <a class="c-val" href="https://www.instagram.com/official_kspark_?igsh=bHplNGpmMm5kY3Zi" target="_blank" rel="noopener">@official_kspark_</a>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Instagram</span>
+          <div>
+            <a class="info-val" href="https://www.instagram.com/official_kspark_?igsh=bHplNGpmMm5kY3Zi" target="_blank" rel="noopener">@official_kspark_</a>
           </div>
-
-          <div class="c-block">
-            <div class="c-label">Tel</div>
-            <a class="c-val" href="tel:0253299205">02-532-9205</a>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Tel</span>
+          <div>
+            <a class="info-val" href="tel:0253299205">02-532-9205</a>
           </div>
-
-          <div class="c-block">
-            <div class="c-label">Fax</div>
-            <span class="c-val" style="cursor:default">02-532-9206</span>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Fax</span>
+          <div>
+            <span class="info-val">02-532-9206</span>
           </div>
-
-          <div class="c-block addr">
-            <div class="c-label">Address</div>
-            <span class="c-val" style="cursor:default">서울특별시 서초구 사평대로 98, B1</span>
-            <div class="c-sub">반포동</div>
+        </div>
+        <div class="info-row">
+          <span class="info-key">Address</span>
+          <div>
+            <span class="info-val" style="font-size:clamp(13px,1.3vw,16px); line-height:1.6">서울특별시 서초구 사평대로 98, 4층</span>
+            <div class="info-sub">ER CONTENTS MEDIA GROUP · 반포동</div>
           </div>
-
         </div>
       </div>
     </main>
