@@ -205,7 +205,15 @@
         border-right: none; border-bottom: 1px solid var(--line);
         padding: 20px var(--pad-x);
       }
-      .logo-panel { display: none; }
+      .logo-panel {
+        width: 100%; border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 32px var(--pad-x);
+        flex-direction: row; gap: 20px; justify-content: flex-start;
+      }
+      .logo-panel img { width: auto; max-width: 120px; }
+      .logo-divider { width: 1px; height: 48px; }
+      .logo-tagline { text-align: left; }
       .info-panel { padding: 28px var(--pad-x) 48px; }
     }
   </style>
