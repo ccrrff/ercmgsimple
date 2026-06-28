@@ -209,6 +209,28 @@
       overflow-wrap: break-word; word-break: keep-all;
     }
 
+    /* ── DROP PHOTO (3분할 슬라이스) ── */
+    .drop-photo.open { max-height: 160px; }
+    .drop-photos { display: flex; height: 150px; }
+    .dp-slice { flex: 1; position: relative; overflow: hidden; }
+    .dp-slice + .dp-slice { border-left: 2px solid #040404; }
+    .dp-slice img {
+      width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
+      opacity: .68; transition: opacity .35s;
+    }
+    .item.open .dp-slice img { opacity: .82; }
+    .dp-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 32px 10px 9px;
+      background: linear-gradient(to top, rgba(0,0,0,.82) 0%, transparent 100%);
+      font-size: 8px; letter-spacing: .13em; text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+    }
+    @media (max-width: 640px) {
+      .drop-photo.open { max-height: 120px; }
+      .drop-photos { height: 110px; }
+    }
+
     /* ── FOOTER ── */
     footer {
       flex-shrink: 0; height: var(--foot-h);
@@ -248,6 +270,7 @@
       .title-rest { font-size: clamp(16.1px,min(2.8vw,2.8vh),25.3px); }
     }
   </style>
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
 <body>
 
@@ -395,7 +418,22 @@
               <span class="row-city">K-SPARK in Bangkok</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">K-SPARK in BANGKOK</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058681/ercmg/gallery/bangkok/g-dragon/hhcr0e6zxvelbkejtggp.jpg" alt="">
+                  <div class="dp-label">G-Dragon</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058557/ercmg/gallery/bangkok/bambam/kowgffhmvsofaevdfw8g.jpg" alt="">
+                  <div class="dp-label">BamBam</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058646/ercmg/gallery/bangkok/dpr-ian/mo5lxd3aysah6inrvwcd.jpg" alt="">
+                  <div class="dp-label">DPR IAN</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -403,7 +441,22 @@
               <span class="row-city">K-SPARK in Vietnam</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">K-SPARK in VIETNAM</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058796/ercmg/gallery/vietnam/g-dragon/o2bkmyqnrkr2ma0jq32j.jpg" alt="">
+                  <div class="dp-label">G-Dragon</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058738/ercmg/gallery/vietnam/cl/kkofqqqzpng97px4xynk.jpg" alt="">
+                  <div class="dp-label">CL</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058939/ercmg/gallery/vietnam/triple-s/perx61eal4wbusvfwb3n.jpg" alt="">
+                  <div class="dp-label">tripleS</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -439,7 +492,22 @@
               <span class="row-city">G-DRAGON 'FAM' MEETING</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">G-DRAGON 'FAM' MEETING 제작 · SEOUL, YOKOHAMA, BANGKOK</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg" alt="">
+                  <div class="dp-label">Seoul</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060864/ercmg/gallery/gdfan/seoul/rjxr3hjdvfc6eq1wi7tr.jpg" alt="">
+                  <div class="dp-label">Yokohama</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060879/ercmg/gallery/gdfan/bkk/vkkkatyk35qjiqkgma7n.jpg" alt="">
+                  <div class="dp-label">Bangkok</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -447,7 +515,22 @@
               <span class="row-city">K-SPARK in Malaysia</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">K-SPARK in MALAYSIA</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778059053/ercmg/gallery/malaysia/hwasa/ycoj8wmec1dg5kshzber.jpg" alt="">
+                  <div class="dp-label">Hwasa</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778059069/ercmg/gallery/malaysia/itzy/pbeejn5ofnhdwvolqzxr.jpg" alt="">
+                  <div class="dp-label">ITZY</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058961/ercmg/gallery/malaysia/dpr-ian/rleajbc7k5br3nwzetiv.jpg" alt="">
+                  <div class="dp-label">DPR IAN</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -455,7 +538,22 @@
               <span class="row-city">K-SPARK in Macau</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">K-SPARK in MACAU · 코타이 아레나 · 2026.05.02</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228556/AC_06569_i9yhiz.jpg" alt="">
+                  <div class="dp-label">Macau</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228559/AC_06240_zoxfgz.jpg" alt="">
+                  <div class="dp-label">Macau</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228560/AC_06059_jva3va.jpg" alt="">
+                  <div class="dp-label">Macau</div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item upcoming" onclick="acc(this)">
             <div class="row">
@@ -463,7 +561,22 @@
               <span class="row-city">K-SPARK in Kaohsiung</span>
               <span class="row-type">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner">K-SPARK in KAOHSIUNG · 예정</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228560/AC_06236_ttftb1.jpg" alt="">
+                  <div class="dp-label">Kaohsiung</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228563/AC_06052_dlisch.jpg" alt="">
+                  <div class="dp-label">Kaohsiung</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228565/AC_05947_qp6p8i.jpg" alt="">
+                  <div class="dp-label">Kaohsiung</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -504,12 +617,19 @@
       }
     }
 
-    /* ── DESC ANIMATION ── */
+    /* ── DESC ANIMATION + 첫 항목 자동 오픈 ── */
     window.addEventListener('load', () => {
       const lines = document.querySelectorAll('.desc-line');
       lines.forEach((l, i) => {
         setTimeout(() => l.classList.add('in'), i * 130 + 180);
       });
+
+      // 현재 활성 탭의 첫 번째 항목 자동 오픈
+      const activePane = document.querySelector('.year-pane.on');
+      if (activePane) {
+        const firstItem = activePane.querySelector('.item');
+        if (firstItem) setTimeout(() => acc(firstItem), 400);
+      }
     });
 
     /* ── HAMBURGER ── */

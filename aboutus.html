@@ -239,6 +239,50 @@
       letter-spacing: 0.08em;
     }
 
+    /* ── VIDEO REEL ── */
+    .about-right-col { min-height: calc(100dvh - var(--nav-h)); }
+
+    .vr-outer {
+      height: 55vh;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .vr {
+      position: relative;
+      height: 55vh;
+      transform: translateY(-100%);
+    }
+    .vr-ui {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 50%);
+      z-index: 2;
+      pointer-events: none;
+    }
+    #vrVideo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .vr-prog {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255,255,255,.08);
+      z-index: 6;
+    }
+    .vr-fill {
+      height: 100%;
+      background: rgba(255,255,255,.55);
+      width: 0%;
+    }
+
     /* ── MOBILE ── */
     @media (max-width: 1024px) {
       :root { --pad-x: 4%; }
@@ -268,8 +312,11 @@
         grid-template-columns: 1fr;
         gap: 32px;
       }
+      .vr-outer { height: 40vh; }
+      .vr { height: 40vh; }
     }
   </style>
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
 <body>
 
@@ -317,8 +364,23 @@
 
     </aside>
 
-    <!-- RIGHT CONTENT -->
-    <div class="about-right">
+    <!-- RIGHT COLUMN -->
+    <div class="about-right-col">
+
+      <!-- VIDEO REEL -->
+      <div class="vr-outer" id="vrOuter">
+        <div class="vr" id="vr">
+          <video id="vrVideo" autoplay muted playsinline loop preload="auto">
+            <source src="https://res.cloudinary.com/dx629ses8/video/upload/v1782637307/ercmg/videos/kspark-30sec.mp4" type="video/mp4">
+          </video>
+          <div class="vr-ui">
+            <div class="vr-prog"><div class="vr-fill" id="vFill"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT CONTENT -->
+      <div class="about-right">
       <div class="about-layout">
         <section aria-labelledby="aboutTitle">
           <div class="ceo-body">
@@ -355,7 +417,9 @@
           </div>
         </aside>
       </div>
-    </div>
+      </div><!-- /about-right -->
+
+    </div><!-- /about-right-col -->
 
   </main>
 
@@ -394,6 +458,39 @@
     hamburger.addEventListener('click', () => {
       mobileMenu.classList.toggle('open');
     });
+
+    // ── VIDEO REEL (Cloudinary: 낙하 → 5초 후 상단 정착) ──
+    (function() {
+      var outer       = document.getElementById('vrOuter');
+      var inner       = document.getElementById('vr');
+      var fill        = document.getElementById('vFill');
+      var video       = document.getElementById('vrVideo');
+      var settled     = false;
+      var settleArmed = false;
+
+      function settle() {
+        if (settled) return;
+        settled = true;
+        outer.style.transition = 'height .85s cubic-bezier(.76,0,.24,1)';
+        outer.style.height = '28vh';
+        setTimeout(function() { inner.style.height = '28vh'; }, 900);
+      }
+
+      video.addEventListener('play', function() {
+        if (!settleArmed) { settleArmed = true; setTimeout(settle, 5000); }
+      });
+
+      setInterval(function() {
+        if (video.duration > 0) {
+          fill.style.width = (video.currentTime / video.duration * 100) + '%';
+        }
+      }, 250);
+
+      setTimeout(function() {
+        inner.style.transition = 'transform .72s cubic-bezier(.34,1.26,.64,1)';
+        inner.style.transform  = 'translateY(0)';
+      }, 600);
+    }());
   </script>
 </body>
 </html>

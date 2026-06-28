@@ -127,6 +127,39 @@
       flex: 1;
       padding: clamp(28px,3vw,44px) clamp(20px,2.5vw,36px) 64px;
     }
+    .notice-visual {
+      position: relative;
+      height: clamp(128px,18vw,188px);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.10);
+      margin-bottom: clamp(22px,2.4vw,32px);
+      background: #0b0b0b;
+    }
+    .notice-visual img {
+      width: 100%; height: 100%; display: block;
+      object-fit: cover; object-position: center 48%;
+      filter: saturate(0.86) contrast(1.08);
+    }
+    .notice-visual::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(4,4,4,0.72) 0%, rgba(4,4,4,0.14) 52%, rgba(4,4,4,0.34) 100%);
+      pointer-events: none;
+    }
+    .notice-visual-copy {
+      position: absolute; left: clamp(18px,2.2vw,28px); bottom: clamp(16px,1.9vw,24px);
+      z-index: 1;
+    }
+    .notice-visual-kicker {
+      font-size: 8.6px; font-weight: 500; letter-spacing: 0.22em;
+      text-transform: uppercase; color: rgba(255,255,255,0.58);
+      margin-bottom: 8px;
+    }
+    .notice-visual-title {
+      font-size: clamp(18px,2vw,25px); font-weight: 700;
+      letter-spacing: -0.03em; color: rgba(255,255,255,0.88);
+      line-height: 1.15;
+    }
 
     /* ── NOTICE ITEM ── */
     .notice-item {
@@ -192,8 +225,12 @@
       }
       .pg-count { margin-top: 8px; padding-top: 0; }
       .notice-panel { padding: 16px var(--pad-x) 48px; }
+      .notice-visual { height: 118px; margin-bottom: 18px; }
+      .notice-visual-copy { left: 16px; bottom: 14px; }
+      .notice-visual-title { font-size: 17px; }
     }
   </style>
+<script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
 <body>
 
@@ -242,6 +279,13 @@
 
     <!-- NOTICE LIST -->
     <main class="notice-panel" aria-label="공지사항 목록">
+      <figure class="notice-visual" aria-label="ER CMG 공연장 현장 이미지">
+        <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_1600,h_520,c_fill,g_auto,q_auto,f_auto/v1778058617/ercmg/gallery/bangkok/daesung/ptz1f0chkee8c2yd7bjt.jpg" alt="대형 공연장의 무대와 관객석을 담은 ER CMG 공연 현장">
+        <figcaption class="notice-visual-copy">
+          <div class="notice-visual-kicker">Live venue archive</div>
+          <div class="notice-visual-title">Stage, screen and audience</div>
+        </figcaption>
+      </figure>
       <div id="notice-list"></div>
     </main>
 
@@ -306,3 +350,4 @@
   </script>
 </body>
 </html>
+
