@@ -46,3 +46,18 @@ compare-*.png
 
 # Playwright dev tool
 .playwright-mcp/
+
+# Local dev tool
+serve.py
+
+# Working dirs (dev tool output & source media, not for git)
+visualcompanion/
+assets/
+videos/
+
+# More dev screenshots
+pos-*.png
+contact-final.png
+contact-mobile.png
+fix-*.png
+*-check2.png
