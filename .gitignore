@@ -53,6 +53,7 @@ serve.py
 # Working dirs (dev tool output & source media, not for git)
 visualcompanion/
 assets/
+videos
 videos/
 
 # More dev screenshots
