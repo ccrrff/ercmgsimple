@@ -83,32 +83,6 @@
       pointer-events: none;
     }
 
-    /* ── KINETIC TYPOGRAPHY ── */
-    .hero-kinetic {
-      position: absolute;
-      bottom: 18%;
-      left: var(--pad-x);
-      z-index: 15;
-      display: flex;
-      flex-direction: column;
-      line-height: 0.875;
-      font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
-      font-weight: 800;
-      font-size: clamp(28px, 9.5vw, 112px);
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-      user-select: none;
-    }
-
-    .hero-kinetic .k-solid {
-      color: #fff;
-    }
-
-    .hero-kinetic .k-outline {
-      color: transparent;
-      -webkit-text-stroke: clamp(1px, 0.15vw, 2px) rgba(255, 255, 255, 0.3);
-    }
-
     /* ── NAV ── */
     .nav {
       position: fixed;
@@ -167,33 +141,6 @@
     .nav.solid .nav-links a { color: #555; }
     .nav.solid .nav-links a:hover { color: #000; }
 
-    /* ── CORNER — BOTTOM LEFT ── */
-    .hero-corner-bl {
-      position: absolute;
-      bottom: 6%;
-      left: var(--pad-x);
-      z-index: 15;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .corner-line {
-      display: block;
-      width: clamp(16px, 2vw, 28px);
-      height: 1px;
-      background: rgba(255, 255, 255, 0.2);
-      flex-shrink: 0;
-    }
-
-    .corner-text {
-      font-size: clamp(7px, 0.9vw, 11px);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.58);
-      white-space: nowrap;
-    }
-
     /* ── CORNER — BOTTOM RIGHT ── */
     .hero-corner-br {
       position: absolute;
@@ -205,39 +152,6 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.50);
       white-space: nowrap;
-    }
-
-    /* ── SCROLL HINT ── */
-    .hero-scroll-hint {
-      position: absolute;
-      right: var(--pad-x);
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 15;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .scroll-label {
-      font-size: clamp(6px, 0.7vw, 8px);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.47);
-      writing-mode: vertical-lr;
-    }
-
-    .scroll-line {
-      display: block;
-      width: 1px;
-      height: clamp(30px, 4vw, 50px);
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
     }
 
     /* ── RESPONSIVE ── */
@@ -315,18 +229,6 @@
       /* 햄버거 버튼 표시 */
       .nav-hamburger { display: flex; }
 
-      /* 스크롤 힌트 숨김 — 모바일 공간 확보 */
-      .hero-scroll-hint { display: none; }
-
-      /* 코너 텍스트 모바일 축소 */
-      .corner-text { letter-spacing: 0.10em; }
-
-      /* 타이포: vw/vh 중 작은 값 사용 — 가로 모드 대응 */
-      .hero-kinetic {
-        font-size: clamp(24px, min(8.5vw, 9.5vh), 60px);
-        bottom: 20%;
-      }
-
       /* 모바일 메뉴 활성화 */
       .mobile-menu { display: flex; }
     }
@@ -388,7 +290,7 @@
 
     <!-- 1. VIDEO (z-index: 1) -->
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="herov.mp4" type="video/mp4">
+      <source src="ercmgmainmovie.mp4" type="video/mp4">
     </video>
 
     <!-- 2. GRAIN (z-index: 2) -->
@@ -400,27 +302,8 @@
     <!-- 4. VIGNETTE (z-index: 4) -->
     <div class="hero-vignette" aria-hidden="true"></div>
 
-    <!-- 5. KINETIC TYPOGRAPHY (z-index: 15) -->
-    <div class="hero-kinetic" role="img" aria-label="Stage. Screen. Story.">
-      <span class="k-solid" aria-hidden="true">STAGE.</span>
-      <span class="k-outline" aria-hidden="true">SCREEN.</span>
-      <span class="k-solid" aria-hidden="true">STORY.</span>
-    </div>
-
-    <!-- 6. CORNER — BOTTOM LEFT (z-index: 15) -->
-    <div class="hero-corner-bl" aria-hidden="true">
-      <span class="corner-line"></span>
-      <span class="corner-text">Sound · Stage · Story</span>
-    </div>
-
     <!-- 7. CORNER — BOTTOM RIGHT (z-index: 15) -->
     <div class="hero-corner-br" aria-hidden="true">Seoul · Est. 2018</div>
-
-    <!-- 8. SCROLL HINT — RIGHT CENTER (z-index: 15) -->
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <span class="scroll-label">scroll</span>
-      <span class="scroll-line"></span>
-    </div>
 
   </section>
 
