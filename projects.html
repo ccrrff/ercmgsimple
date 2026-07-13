@@ -292,6 +292,83 @@
       .gallery-grid { columns: 2; gap: 3px; }
       .g-item { margin-bottom: 3px; }
     }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .lang-toggle { position: relative; }
+    .lang-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .lang-toggle-btn:hover { color: #fff; }
+    .nav.solid .lang-toggle-btn { color: rgba(0,0,0,0.45); }
+    .nav.solid .lang-toggle-btn:hover { color: #000; }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      min-width: 72px;
+      list-style: none;
+      margin: 0;
+      background: rgba(4,4,4,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 25;
+    }
+    .lang-dropdown.open { display: flex; }
+    .nav.solid .lang-dropdown { background: rgba(255,255,255,0.98); border-color: #e3e3e3; }
+    .lang-option {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1vw, 13px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-option:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.solid .lang-option { color: #555; }
+    .nav.solid .lang-option:hover { color: #000; background: rgba(0,0,0,0.05); }
+
+    .mobile-lang-toggle {
+      position: absolute;
+      bottom: 6%;
+      left: var(--pad-x);
+    }
+    .mobile-lang-toggle .lang-toggle-btn {
+      color: rgba(255,255,255,0.5);
+      font-size: clamp(11px, 1.4vw, 13px);
+    }
+    .mobile-lang-toggle .lang-dropdown {
+      top: auto;
+      bottom: calc(100% + 14px);
+      left: 0;
+      right: auto;
+    }
+    @media (max-width: 768px) {
+      .lang-toggle { display: none; }
+    }
   </style>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
@@ -300,31 +377,55 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
-    <ul class="nav-links">
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+        <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+        <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+        <li><a href="projects.html" class="active" data-i18n="navProjects">Projects</a></li>
+        <li><a href="news.html" data-i18n="navNews">News</a></li>
+        <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+        <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-toggle-label">KO</span> ▾
+        </button>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html" class="active">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+      <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+      <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+      <li><a href="projects.html" class="active" data-i18n="navProjects">Projects</a></li>
+      <li><a href="news.html" data-i18n="navNews">News</a></li>
+      <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+      <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-toggle">
+      <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-toggle-label">KO</span> ▾
+      </button>
+      <ul class="lang-dropdown" role="menu">
+        <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+      </ul>
+    </div>
   </div>
 
   <div class="page-wrap">
@@ -333,25 +434,25 @@
     <aside class="sidebar">
       <div class="pg-eyebrow">ER Contents Media Group</div>
       <h1 class="title-wrap">
-        <span class="title-initial">P</span><span class="title-rest">ROJECTS</span>
+        <span class="title-initial" data-i18n="projectsTitleInitial">P</span><span class="title-rest" data-i18n="projectsTitleRest">ROJECTS</span>
       </h1>
       <div class="pg-rule"></div>
-      <p class="pg-desc">무대 위에서 포착된<br>결정적인 순간들.</p>
+      <p class="pg-desc" data-i18n="projectsDesc">무대 위에서 포착된<br>결정적인 순간들.</p>
       <div class="show-list" role="tablist">
         <button class="show-item on" role="tab" aria-selected="true" onclick="switchShow('bangkok',this)">
-          <span class="sn">Bangkok</span><span class="sd">2025.02.22</span>
+          <span class="sn" data-i18n="placeBangkok">Bangkok</span><span class="sd">2025.02.22</span>
         </button>
         <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('vietnam',this)">
-          <span class="sn">Vietnam</span><span class="sd">2025.06.21</span>
+          <span class="sn" data-i18n="placeVietnam">Vietnam</span><span class="sd">2025.06.21</span>
         </button>
         <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('malaysia',this)">
-          <span class="sn">Malaysia</span><span class="sd">2026.01.31</span>
+          <span class="sn" data-i18n="placeMalaysia">Malaysia</span><span class="sd">2026.01.31</span>
         </button>
         <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('gdfan',this)">
-          <span class="sn">GD Fan Meeting</span><span class="sd">2026.02.22</span>
+          <span class="sn" data-i18n="gdFanMeetingName">GD Fan Meeting</span><span class="sd">2026.02.22</span>
         </button>
         <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('macau',this)">
-          <span class="sn">Macau</span><span class="sd">2026.05.02</span>
+          <span class="sn" data-i18n="placeMacau">Macau</span><span class="sd">2026.05.02</span>
         </button>
       </div>
       <div class="show-count" id="show-count"></div>
@@ -383,7 +484,7 @@
   <!-- FOOTER -->
   <footer>
     <span class="ft">© 2026 ER Contents Media Group</span>
-    <span class="ft">Seoul, Korea</span>
+    <span class="ft" data-i18n="footerLocation">Seoul, Korea</span>
   </footer>
 
   <!-- LIGHTBOX -->
@@ -576,6 +677,103 @@
     buildGrid('bangkok');
     document.getElementById('show-count').textContent = SHOWS.bangkok.images.length + ' items';
   </script>
+
+<script>
+  const I18N = {
+    ko: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
+      projectsDesc: '무대 위에서 포착된<br>결정적인 순간들.',
+      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
+      gdFanMeetingName: 'GD Fan Meeting', placeMacau: 'Macau',
+    },
+    en: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
+      projectsDesc: 'Decisive moments,<br>captured on stage.',
+      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
+      gdFanMeetingName: 'GD Fan Meeting', placeMacau: 'Macau',
+    },
+    ja: {
+      navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
+      navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+      footerLocation: '韓国・ソウル',
+      projectsTitleInitial: 'プ', projectsTitleRest: 'ロジェクト',
+      projectsDesc: '舞台の上で捉えた<br>決定的な瞬間。',
+      placeBangkok: 'バンコク', placeVietnam: 'ベトナム', placeMalaysia: 'マレーシア',
+      gdFanMeetingName: 'GDファンミーティング', placeMacau: 'マカオ',
+    },
+    zh: {
+      navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
+      navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+      footerLocation: '韩国首尔',
+      projectsTitleInitial: '项', projectsTitleRest: '目',
+      projectsDesc: '舞台之上定格的<br>决定性瞬间。',
+      placeBangkok: '曼谷', placeVietnam: '越南', placeMalaysia: '马来西亚',
+      gdFanMeetingName: 'GD粉丝见面会', placeMacau: '澳门',
+    },
+  };
+</script>
+<script>
+  (function () {
+    var LANG_LABELS = { ko: 'KO', en: 'EN', ja: 'JP', zh: 'CN' };
+
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.innerHTML = I18N[lang][key];
+        }
+      });
+    }
+
+    function setLanguage(lang) {
+      if (!LANG_LABELS[lang]) { lang = 'ko'; }
+      document.documentElement.lang = lang;
+      applyTranslations(lang);
+      document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
+        el.textContent = LANG_LABELS[lang];
+      });
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.closest('li').style.display = (btn.dataset.lang === lang) ? 'none' : '';
+      });
+      document.querySelectorAll('.lang-dropdown').forEach(function (dd) {
+        dd.classList.remove('open');
+      });
+      document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var dropdown = btn.nextElementSibling;
+        var isOpen = dropdown.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () { setLanguage(btn.dataset.lang); });
+    });
+
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) { dd.classList.remove('open'); });
+      document.querySelectorAll('.lang-toggle-btn[aria-expanded="true"]').forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    var savedLang = localStorage.getItem('lang');
+    if (savedLang && savedLang !== 'ko') setLanguage(savedLang);
+  }());
+</script>
 
 </body>
 </html>
