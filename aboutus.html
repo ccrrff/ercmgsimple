@@ -315,6 +315,90 @@
       .vr-outer { height: 40vh; }
       .vr { height: 40vh; }
     }
+    /* ── LANGUAGE TOGGLE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .lang-toggle { position: relative; }
+    .lang-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .lang-toggle-btn:hover { color: #fff; }
+    .nav.solid .lang-toggle-btn { color: rgba(0,0,0,0.45); }
+    .nav.solid .lang-toggle-btn:hover { color: #000; }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 72px;
+      list-style: none;
+      margin: 0;
+      background: rgba(4,4,4,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 25;
+    }
+    .lang-dropdown.open { display: flex; }
+    .nav.solid .lang-dropdown { background: rgba(255,255,255,0.98); border-color: #e3e3e3; }
+    .lang-option {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1vw, 13px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-option:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.solid .lang-option { color: #555; }
+    .nav.solid .lang-option:hover { color: #000; background: rgba(0,0,0,0.05); }
+
+    .mobile-lang-toggle {
+      position: absolute;
+      bottom: 6%;
+      left: var(--pad-x);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mobile-lang-toggle .lang-toggle-btn {
+      color: rgba(255,255,255,0.5);
+      font-size: clamp(11px, 1.4vw, 13px);
+    }
+    .mobile-lang-toggle .lang-dropdown {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      min-width: 0;
+    }
+    .mobile-lang-toggle .lang-option {
+      width: auto;
+      padding: 6px 10px;
+    }
+    @media (max-width: 768px) {
+      .lang-toggle { display: none; }
+    }
   </style>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
@@ -323,31 +407,55 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
-    <ul class="nav-links">
-      <li><a href="aboutus.html" class="active">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="aboutus.html" class="active" data-i18n="navAboutUs">About Us</a></li>
+        <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+        <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+        <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+        <li><a href="news.html" data-i18n="navNews">News</a></li>
+        <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+        <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-toggle-label">KO</span> ▾
+        </button>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="aboutus.html" class="active">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="aboutus.html" class="active" data-i18n="navAboutUs">About Us</a></li>
+      <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+      <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+      <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+      <li><a href="news.html" data-i18n="navNews">News</a></li>
+      <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+      <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-toggle">
+      <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-toggle-label">KO</span> ▾
+      </button>
+      <ul class="lang-dropdown" role="menu">
+        <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+      </ul>
+    </div>
   </div>
 
   <!-- ABOUT US -->
@@ -357,7 +465,7 @@
     <aside class="about-sidebar">
       <div class="eyebrow">ER Contents Media Group</div>
       <h1 class="title-wrap" id="aboutTitle">
-        <span class="title-initial">A</span><span class="title-rest">BOUT US</span>
+        <span class="title-initial" data-i18n="aboutTitleInitial">A</span><span class="title-rest" data-i18n="aboutTitleRest">BOUT US</span>
       </h1>
       <div class="left-rule"></div>
       <p class="left-desc">Experience &amp; Resonance</p>
@@ -384,35 +492,35 @@
       <div class="about-layout">
         <section aria-labelledby="aboutTitle">
           <div class="ceo-body">
-            <p class="ceo-para">ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.</p>
-            <p class="ceo-para">우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.</p>
-            <p class="ceo-para">앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.</p>
-            <p class="ceo-para">ER(Experience &amp; Resonance)은 사람과 콘텐츠를 연결하는 가장 강력한 힘은 '경험'과 '공감'에 있다고 믿습니다.</p>
-            <p class="ceo-para">우리는 특별한 경험을 설계하고, 그 경험이 관객과 고객의 마음에 깊은 울림으로 남을 수 있도록 만듭니다.</p>
-            <p class="ceo-para ceo-para--compact">순간의 감동을 넘어 오래도록 기억되는 가치.</p>
-            <p class="ceo-para">그것이 ER이 추구하는 Experience &amp; Resonance입니다.</p>
-            <span class="ceo-sig">— CEO, ER콘텐츠미디어그룹</span>
+            <p class="ceo-para" data-i18n="ceoParaIntro">ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.</p>
+            <p class="ceo-para" data-i18n="ceoParaMission">우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.</p>
+            <p class="ceo-para" data-i18n="ceoParaFuture">앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.</p>
+            <p class="ceo-para" data-i18n="ceoParaBelief">ER(Experience &amp; Resonance)은 사람과 콘텐츠를 연결하는 가장 강력한 힘은 '경험'과 '공감'에 있다고 믿습니다.</p>
+            <p class="ceo-para" data-i18n="ceoParaDesign">우리는 특별한 경험을 설계하고, 그 경험이 관객과 고객의 마음에 깊은 울림으로 남을 수 있도록 만듭니다.</p>
+            <p class="ceo-para ceo-para--compact" data-i18n="ceoParaValue">순간의 감동을 넘어 오래도록 기억되는 가치.</p>
+            <p class="ceo-para" data-i18n="ceoParaClosing">그것이 ER이 추구하는 Experience &amp; Resonance입니다.</p>
+            <span class="ceo-sig" data-i18n="ceoSignature">— CEO, ER콘텐츠미디어그룹</span>
           </div>
         </section>
 
         <aside aria-label="회사 정보">
           <div class="info-block">
             <div class="info-label">Company</div>
-            <p class="info-copy">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
+            <p class="info-copy" data-i18n="infoCopyCompany">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
           </div>
           <div class="info-block">
             <div class="info-label">Approach</div>
-            <p class="info-copy">창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.</p>
+            <p class="info-copy" data-i18n="infoCopyApproach">창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.</p>
           </div>
           <div>
             <div class="info-label">Services</div>
-            <p class="info-copy">공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.</p>
+            <p class="info-copy" data-i18n="infoCopyServices">공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.</p>
             <div class="service-lines">
-              <span class="service-line">공연 기획 및 제작</span>
-              <span class="service-line">방송 콘텐츠 제작</span>
-              <span class="service-line">아티스트 및 크리에이터 에이전시</span>
-              <span class="service-line">콘텐츠 IP 개발</span>
-              <span class="service-line">브랜드 협업 및 마케팅</span>
+              <span class="service-line" data-i18n="serviceLinePlanning">공연 기획 및 제작</span>
+              <span class="service-line" data-i18n="serviceLineBroadcast">방송 콘텐츠 제작</span>
+              <span class="service-line" data-i18n="serviceLineAgency">아티스트 및 크리에이터 에이전시</span>
+              <span class="service-line" data-i18n="serviceLineIp">콘텐츠 IP 개발</span>
+              <span class="service-line" data-i18n="serviceLineBrand">브랜드 협업 및 마케팅</span>
             </div>
           </div>
         </aside>
@@ -426,7 +534,7 @@
   <!-- FOOTER -->
   <footer class="about-footer">
     <span class="footer-text">© 2026 ER Contents Media Group</span>
-    <span class="footer-text">Seoul, Korea</span>
+    <span class="footer-text" data-i18n="footerLocation">Seoul, Korea</span>
   </footer>
 
   <script>
@@ -492,5 +600,137 @@
       }, 600);
     }());
   </script>
+<script>
+  const I18N = {
+    ko: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      aboutTitleInitial: 'A', aboutTitleRest: 'BOUT US',
+      ceoParaIntro: 'ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.',
+      ceoParaMission: '우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.',
+      ceoParaFuture: '앞으로도 공연, 방송, 디지털 콘텐츠 등 다양한 영역에서 새로운 가능성을 만들어가며 글로벌 콘텐츠 시장에서 경쟁력 있는 프로젝트를 선보이겠습니다. 감사합니다.',
+      ceoParaBelief: "ER(Experience & Resonance)은 사람과 콘텐츠를 연결하는 가장 강력한 힘은 '경험'과 '공감'에 있다고 믿습니다.",
+      ceoParaDesign: '우리는 특별한 경험을 설계하고, 그 경험이 관객과 고객의 마음에 깊은 울림으로 남을 수 있도록 만듭니다.',
+      ceoParaValue: '순간의 감동을 넘어 오래도록 기억되는 가치.',
+      ceoParaClosing: '그것이 ER이 추구하는 Experience & Resonance입니다.',
+      ceoSignature: '— CEO, ER콘텐츠미디어그룹',
+      infoCopyCompany: '공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.',
+      infoCopyApproach: '창의적인 기획력과 실행력을 바탕으로 차별화된 프로젝트를 만들어가고 있습니다.',
+      infoCopyServices: '공연과 방송, 콘텐츠 IP, 브랜드 협업까지 프로젝트의 성격에 맞는 제작 흐름을 설계합니다.',
+      serviceLinePlanning: '공연 기획 및 제작',
+      serviceLineBroadcast: '방송 콘텐츠 제작',
+      serviceLineAgency: '아티스트 및 크리에이터 에이전시',
+      serviceLineIp: '콘텐츠 IP 개발',
+      serviceLineBrand: '브랜드 협업 및 마케팅',
+    },
+    en: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      aboutTitleInitial: 'A', aboutTitleRest: 'BOUT US',
+      ceoParaIntro: 'ER Contents Media Group is a content planning and production company creating new cultural experiences through performances, broadcasting, and a wide range of content.',
+      ceoParaMission: 'We plan and produce content that connects artists, brands, and audiences, going beyond simple events and performances.',
+      ceoParaFuture: 'Going forward, we will continue to create new possibilities across performances, broadcasting, digital content, and other diverse fields, presenting competitive projects in the global content market. Thank you.',
+      ceoParaBelief: 'ER (Experience & Resonance) believes that the most powerful force connecting people and content lies in "experience" and "resonance."',
+      ceoParaDesign: 'We design special experiences and ensure they leave a deep resonance in the hearts of audiences and clients.',
+      ceoParaValue: 'A value that is remembered long after the moment of emotion has passed.',
+      ceoParaClosing: 'That is the Experience & Resonance that ER pursues.',
+      ceoSignature: '— CEO, ER Contents Media Group',
+      infoCopyCompany: 'We are a company that plans and produces a wide range of cultural content projects based on performance, broadcasting, and content production.',
+      infoCopyApproach: 'Based on creative planning and execution capabilities, we create differentiated projects.',
+      infoCopyServices: 'From performances and broadcasting to content IP and brand collaborations, we design production workflows tailored to the nature of each project.',
+      serviceLinePlanning: 'Performance Planning & Production',
+      serviceLineBroadcast: 'Broadcast Content Production',
+      serviceLineAgency: 'Artist & Creator Agency',
+      serviceLineIp: 'Content IP Development',
+      serviceLineBrand: 'Brand Collaboration & Marketing',
+    },
+    ja: {
+      navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
+      navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+      footerLocation: '韓国・ソウル',
+      aboutTitleInitial: '会', aboutTitleRest: '社概要',
+      ceoParaIntro: 'ERコンテンツメディアグループは、公演、放送、そして多様なコンテンツを通じて新しい文化体験を創り出す、コンテンツ企画・制作会社です。',
+      ceoParaMission: '私たちは、単なるイベントや公演を超えて、アーティストとブランド、そして観客をつなぐコンテンツを企画・制作しています。',
+      ceoParaFuture: '今後も公演、放送、デジタルコンテンツなど多様な分野で新たな可能性を切り拓きながら、グローバルコンテンツ市場で競争力のあるプロジェクトをお届けしてまいります。ありがとうございます。',
+      ceoParaBelief: 'ER（Experience & Resonance）は、人とコンテンツをつなぐ最も強い力は「経験」と「共感」にあると信じています。',
+      ceoParaDesign: '私たちは特別な体験を設計し、その体験が観客やお客様の心に深い余韻として残るようにしています。',
+      ceoParaValue: '一瞬の感動を超えて、長く記憶に残る価値。',
+      ceoParaClosing: 'それが、ERが追求するExperience & Resonanceです。',
+      ceoSignature: '— CEO、ERコンテンツメディアグループ',
+      infoCopyCompany: '公演・放送・コンテンツ制作を基盤に、多様な文化コンテンツプロジェクトを企画・制作する会社です。',
+      infoCopyApproach: '創造的な企画力と実行力を基盤に、差別化されたプロジェクトを作り上げています。',
+      infoCopyServices: '公演や放送、コンテンツIP、ブランドコラボレーションまで、プロジェクトの性質に合わせた制作フローを設計します。',
+      serviceLinePlanning: '公演企画・制作',
+      serviceLineBroadcast: '放送コンテンツ制作',
+      serviceLineAgency: 'アーティスト＆クリエイターエージェンシー',
+      serviceLineIp: 'コンテンツIP開発',
+      serviceLineBrand: 'ブランドコラボレーション＆マーケティング',
+    },
+    zh: {
+      navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
+      navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+      footerLocation: '韩国首尔',
+      aboutTitleInitial: '关', aboutTitleRest: '于我们',
+      ceoParaIntro: 'ER内容传媒集团是一家通过演出、广播及各种多样的内容，创造全新文化体验的内容策划与制作公司。',
+      ceoParaMission: '我们策划并制作超越单纯活动与演出的内容，连接艺人、品牌与观众。',
+      ceoParaFuture: '今后我们也将在演出、广播、数字内容等多个领域不断开拓新的可能性，为全球内容市场呈现具有竞争力的项目。谢谢。',
+      ceoParaBelief: 'ER（Experience & Resonance）坚信，连接人与内容最强大的力量在于"体验"与"共鸣"。',
+      ceoParaDesign: '我们精心设计独特的体验，让这份体验能在观众与客户心中留下深深的共鸣。',
+      ceoParaValue: '超越瞬间感动、历久弥新的价值。',
+      ceoParaClosing: '这便是ER所追求的Experience & Resonance。',
+      ceoSignature: '— CEO，ER内容传媒集团',
+      infoCopyCompany: '我们是一家以演出、广播和内容制作为基础，策划并制作各类文化内容项目的公司。',
+      infoCopyApproach: '凭借富有创意的策划与执行能力，打造与众不同的项目。',
+      infoCopyServices: '从演出、广播到内容IP、品牌合作，依据项目特性设计相应的制作流程。',
+      serviceLinePlanning: '演出策划与制作',
+      serviceLineBroadcast: '广播内容制作',
+      serviceLineAgency: '艺人及创作者经纪',
+      serviceLineIp: '内容IP开发',
+      serviceLineBrand: '品牌合作与营销',
+    },
+  };
+</script>
+<script>
+  (function () {
+    var LANG_LABELS = { ko: 'KO', en: 'EN', ja: 'JP', zh: 'CN' };
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key] !== undefined) { el.innerHTML = I18N[lang][key]; }
+      });
+    }
+    function setLanguage(lang) {
+      if (!LANG_LABELS[lang]) { lang = 'ko'; }
+      document.documentElement.lang = lang;
+      applyTranslations(lang);
+      document.querySelectorAll('.lang-toggle-label').forEach(function (el) { el.textContent = LANG_LABELS[lang]; });
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.closest('li').style.display = (btn.dataset.lang === lang) ? 'none' : '';
+      });
+      document.querySelectorAll('.lang-dropdown').forEach(function (dd) { dd.classList.remove('open'); });
+      document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) { btn.setAttribute('aria-expanded', 'false'); });
+      localStorage.setItem('lang', lang);
+    }
+    document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var dropdown = btn.nextElementSibling;
+        var isOpen = dropdown.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () { setLanguage(btn.dataset.lang); });
+    });
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) { dd.classList.remove('open'); });
+      document.querySelectorAll('.lang-toggle-btn[aria-expanded="true"]').forEach(function (btn) { btn.setAttribute('aria-expanded', 'false'); });
+    });
+    var savedLang = localStorage.getItem('lang');
+    if (savedLang && savedLang !== 'ko') setLanguage(savedLang);
+  }());
+</script>
 </body>
 </html>

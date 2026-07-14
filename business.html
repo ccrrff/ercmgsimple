@@ -237,6 +237,91 @@
       }
       .cat-col:last-child { border-bottom: none; }
     }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .lang-toggle { position: relative; }
+    .lang-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .lang-toggle-btn:hover { color: #fff; }
+    .nav.solid .lang-toggle-btn { color: rgba(0,0,0,0.45); }
+    .nav.solid .lang-toggle-btn:hover { color: #000; }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 72px;
+      list-style: none;
+      margin: 0;
+      background: rgba(4,4,4,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 25;
+    }
+    .lang-dropdown.open { display: flex; }
+    .nav.solid .lang-dropdown { background: rgba(255,255,255,0.98); border-color: #e3e3e3; }
+    .lang-option {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1vw, 13px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-option:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.solid .lang-option { color: #555; }
+    .nav.solid .lang-option:hover { color: #000; background: rgba(0,0,0,0.05); }
+
+    .mobile-lang-toggle {
+      position: absolute;
+      bottom: 6%;
+      left: var(--pad-x);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mobile-lang-toggle .lang-toggle-btn {
+      color: rgba(255,255,255,0.5);
+      font-size: clamp(11px, 1.4vw, 13px);
+    }
+    .mobile-lang-toggle .lang-dropdown {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      min-width: 0;
+    }
+    .mobile-lang-toggle .lang-option {
+      width: auto;
+      padding: 6px 10px;
+    }
+    @media (max-width: 768px) {
+      .lang-toggle { display: none; }
+    }
   </style>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
@@ -245,31 +330,55 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
-    <ul class="nav-links">
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html" class="active">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+        <li><a href="business.html" class="active" data-i18n="navBusiness">Business</a></li>
+        <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+        <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+        <li><a href="news.html" data-i18n="navNews">News</a></li>
+        <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+        <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-toggle-label">KO</span> ▾
+        </button>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html" class="active">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+      <li><a href="business.html" class="active" data-i18n="navBusiness">Business</a></li>
+      <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+      <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+      <li><a href="news.html" data-i18n="navNews">News</a></li>
+      <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+      <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-toggle">
+      <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-toggle-label">KO</span> ▾
+      </button>
+      <ul class="lang-dropdown" role="menu">
+        <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+      </ul>
+    </div>
   </div>
 
   <!-- MAIN -->
@@ -280,69 +389,69 @@
       <div class="left-panel">
         <div class="eyebrow">ER Contents Media Group</div>
         <h1 class="title-wrap">
-          <span class="title-initial">B</span><span class="title-rest">USINESS</span>
+          <span class="title-initial" data-i18n="bizTitleInitial">B</span><span class="title-rest" data-i18n="bizTitleRest">USINESS</span>
         </h1>
         <div class="left-divider"></div>
-        <p class="left-desc">공연, 방송, 브랜드 협업까지—<br>콘텐츠 전 영역에 걸쳐<br>새로운 경험을 기획·제작합니다.</p>
+        <p class="left-desc" data-i18n="bizDesc">공연, 방송, 브랜드 협업까지—<br>콘텐츠 전 영역에 걸쳐<br>새로운 경험을 기획·제작합니다.</p>
       </div>
 
       <!-- 오른쪽: Fields -->
       <div class="right-panel">
-        <div class="fields-label anim" data-delay="0">Fields</div>
+        <div class="fields-label anim" data-delay="0" data-i18n="bizFieldsLabel">Fields</div>
         <div class="cat-grid">
 
           <!-- 01 Live Entertainment -->
           <div class="cat-col">
-            <div class="cat-col-head anim" data-delay="60">Live Entertainment</div>
+            <div class="cat-col-head anim" data-delay="60" data-i18n="bizCatLiveEntertainment">Live Entertainment</div>
             <div class="sub-row anim" data-delay="150">
-              <div class="sub-row-name">Concert</div>
-              <div class="sub-row-desc">대규모 라이브 공연 기획·제작</div>
+              <div class="sub-row-name" data-i18n="bizLiveConcertName">Concert</div>
+              <div class="sub-row-desc" data-i18n="bizLiveConcertDesc">대규모 라이브 공연 기획·제작</div>
             </div>
             <div class="sub-row anim" data-delay="220">
-              <div class="sub-row-name">Fan Meeting</div>
-              <div class="sub-row-desc">아티스트 팬미팅 전문 제작</div>
+              <div class="sub-row-name" data-i18n="bizLiveFanMeetingName">Fan Meeting</div>
+              <div class="sub-row-desc" data-i18n="bizLiveFanMeetingDesc">아티스트 팬미팅 전문 제작</div>
             </div>
             <div class="sub-row anim" data-delay="290">
-              <div class="sub-row-name">Festival</div>
-              <div class="sub-row-desc">K-POP 페스티벌 브랜드 운영</div>
+              <div class="sub-row-name" data-i18n="bizLiveFestivalName">Festival</div>
+              <div class="sub-row-desc" data-i18n="bizLiveFestivalDesc">K-POP 페스티벌 브랜드 운영</div>
             </div>
             <div class="sub-row anim" data-delay="360">
-              <div class="sub-row-name">Global Tour</div>
-              <div class="sub-row-desc">아시아 멀티시티 투어 총괄</div>
+              <div class="sub-row-name" data-i18n="bizLiveGlobalTourName">Global Tour</div>
+              <div class="sub-row-desc" data-i18n="bizLiveGlobalTourDesc">아시아 멀티시티 투어 총괄</div>
             </div>
           </div>
 
           <!-- 02 Media & Contents -->
           <div class="cat-col">
-            <div class="cat-col-head anim" data-delay="60">Media &amp; Contents</div>
+            <div class="cat-col-head anim" data-delay="60" data-i18n="bizCatMediaContents">Media &amp; Contents</div>
             <div class="sub-row anim" data-delay="150">
-              <div class="sub-row-name">Broadcast</div>
-              <div class="sub-row-desc">Mnet 스트릿우먼파이터 등 방송 프로그램 제작 참여</div>
+              <div class="sub-row-name" data-i18n="bizMediaBroadcastName">Broadcast</div>
+              <div class="sub-row-desc" data-i18n="bizMediaBroadcastDesc">Mnet 스트릿우먼파이터 등 방송 프로그램 제작 참여</div>
             </div>
             <div class="sub-row anim" data-delay="220">
-              <div class="sub-row-name">Digital Content</div>
-              <div class="sub-row-desc">OTT·스트리밍 오리지널 콘텐츠 기획·제작</div>
+              <div class="sub-row-name" data-i18n="bizMediaDigitalContentName">Digital Content</div>
+              <div class="sub-row-desc" data-i18n="bizMediaDigitalContentDesc">OTT·스트리밍 오리지널 콘텐츠 기획·제작</div>
             </div>
             <div class="sub-row anim" data-delay="290">
-              <div class="sub-row-name">YouTube Content</div>
-              <div class="sub-row-desc">아티스트·크리에이터 유튜브 채널 브랜딩 및 제작</div>
+              <div class="sub-row-name" data-i18n="bizMediaYoutubeContentName">YouTube Content</div>
+              <div class="sub-row-desc" data-i18n="bizMediaYoutubeContentDesc">아티스트·크리에이터 유튜브 채널 브랜딩 및 제작</div>
             </div>
           </div>
 
           <!-- 03 Brand & Partnerships -->
           <div class="cat-col">
-            <div class="cat-col-head anim" data-delay="60">Brand &amp; Partnerships</div>
+            <div class="cat-col-head anim" data-delay="60" data-i18n="bizCatBrandPartnerships">Brand &amp; Partnerships</div>
             <div class="sub-row anim" data-delay="150">
-              <div class="sub-row-name">Brand Marketing</div>
-              <div class="sub-row-desc">K-POP 아티스트 × 글로벌 브랜드 협업 캠페인</div>
+              <div class="sub-row-name" data-i18n="bizBrandMarketingName">Brand Marketing</div>
+              <div class="sub-row-desc" data-i18n="bizBrandMarketingDesc">K-POP 아티스트 × 글로벌 브랜드 협업 캠페인</div>
             </div>
             <div class="sub-row anim" data-delay="220">
-              <div class="sub-row-name">Sponsorship</div>
-              <div class="sub-row-desc">대형 공연·페스티벌 스폰서십 솔루션</div>
+              <div class="sub-row-name" data-i18n="bizBrandSponsorshipName">Sponsorship</div>
+              <div class="sub-row-desc" data-i18n="bizBrandSponsorshipDesc">대형 공연·페스티벌 스폰서십 솔루션</div>
             </div>
             <div class="sub-row anim" data-delay="290">
-              <div class="sub-row-name">Branded Project</div>
-              <div class="sub-row-desc">브랜드 정체성 반영 오리지널 콘텐츠 기획·제작</div>
+              <div class="sub-row-name" data-i18n="bizBrandProjectName">Branded Project</div>
+              <div class="sub-row-desc" data-i18n="bizBrandProjectDesc">브랜드 정체성 반영 오리지널 콘텐츠 기획·제작</div>
             </div>
           </div>
 
@@ -392,7 +501,7 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-text">© 2026 ER Contents Media Group</span>
-    <span class="footer-text">Seoul, Korea</span>
+    <span class="footer-text" data-i18n="footerLocation">Seoul, Korea</span>
   </footer>
 
   <script>
@@ -418,6 +527,150 @@
         });
       }, 200);
     });
+  </script>
+
+  <script>
+    const I18N = {
+      ko: {
+        navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+        navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+        footerLocation: 'Seoul, Korea',
+        bizTitleInitial: 'B', bizTitleRest: 'USINESS',
+        bizDesc: '공연, 방송, 브랜드 협업까지—<br>콘텐츠 전 영역에 걸쳐<br>새로운 경험을 기획·제작합니다.',
+        bizFieldsLabel: 'Fields',
+        bizCatLiveEntertainment: 'Live Entertainment',
+        bizLiveConcertName: 'Concert', bizLiveConcertDesc: '대규모 라이브 공연 기획·제작',
+        bizLiveFanMeetingName: 'Fan Meeting', bizLiveFanMeetingDesc: '아티스트 팬미팅 전문 제작',
+        bizLiveFestivalName: 'Festival', bizLiveFestivalDesc: 'K-POP 페스티벌 브랜드 운영',
+        bizLiveGlobalTourName: 'Global Tour', bizLiveGlobalTourDesc: '아시아 멀티시티 투어 총괄',
+        bizCatMediaContents: 'Media & Contents',
+        bizMediaBroadcastName: 'Broadcast', bizMediaBroadcastDesc: 'Mnet 스트릿우먼파이터 등 방송 프로그램 제작 참여',
+        bizMediaDigitalContentName: 'Digital Content', bizMediaDigitalContentDesc: 'OTT·스트리밍 오리지널 콘텐츠 기획·제작',
+        bizMediaYoutubeContentName: 'YouTube Content', bizMediaYoutubeContentDesc: '아티스트·크리에이터 유튜브 채널 브랜딩 및 제작',
+        bizCatBrandPartnerships: 'Brand & Partnerships',
+        bizBrandMarketingName: 'Brand Marketing', bizBrandMarketingDesc: 'K-POP 아티스트 × 글로벌 브랜드 협업 캠페인',
+        bizBrandSponsorshipName: 'Sponsorship', bizBrandSponsorshipDesc: '대형 공연·페스티벌 스폰서십 솔루션',
+        bizBrandProjectName: 'Branded Project', bizBrandProjectDesc: '브랜드 정체성 반영 오리지널 콘텐츠 기획·제작',
+      },
+      en: {
+        navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+        navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+        footerLocation: 'Seoul, Korea',
+        bizTitleInitial: 'B', bizTitleRest: 'USINESS',
+        bizDesc: 'From concerts and broadcasts to brand collaborations—<br>we plan and produce new experiences<br>across the full spectrum of content.',
+        bizFieldsLabel: 'Fields',
+        bizCatLiveEntertainment: 'Live Entertainment',
+        bizLiveConcertName: 'Concert', bizLiveConcertDesc: 'Planning and production of large-scale live concerts',
+        bizLiveFanMeetingName: 'Fan Meeting', bizLiveFanMeetingDesc: 'Specialized production of artist fan meetings',
+        bizLiveFestivalName: 'Festival', bizLiveFestivalDesc: 'Operation of K-POP festival brands',
+        bizLiveGlobalTourName: 'Global Tour', bizLiveGlobalTourDesc: 'Overall management of Asia multi-city tours',
+        bizCatMediaContents: 'Media & Contents',
+        bizMediaBroadcastName: 'Broadcast', bizMediaBroadcastDesc: "Participated in the production of broadcast programs such as Mnet's Street Woman Fighter",
+        bizMediaDigitalContentName: 'Digital Content', bizMediaDigitalContentDesc: 'Planning and production of original OTT and streaming content',
+        bizMediaYoutubeContentName: 'YouTube Content', bizMediaYoutubeContentDesc: 'Branding and production of YouTube channels for artists and creators',
+        bizCatBrandPartnerships: 'Brand & Partnerships',
+        bizBrandMarketingName: 'Brand Marketing', bizBrandMarketingDesc: 'K-POP artist × global brand collaboration campaigns',
+        bizBrandSponsorshipName: 'Sponsorship', bizBrandSponsorshipDesc: 'Sponsorship solutions for large-scale concerts and festivals',
+        bizBrandProjectName: 'Branded Project', bizBrandProjectDesc: 'Planning and production of original content reflecting brand identity',
+      },
+      ja: {
+        navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
+        navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+        footerLocation: '韓国・ソウル',
+        bizTitleInitial: 'ビ', bizTitleRest: 'ジネス',
+        bizDesc: 'コンサート、放送、ブランドコラボレーションまで—<br>コンテンツのあらゆる領域で<br>新しい体験を企画・制作します。',
+        bizFieldsLabel: '事業分野',
+        bizCatLiveEntertainment: 'ライブ・エンターテインメント',
+        bizLiveConcertName: 'コンサート', bizLiveConcertDesc: '大規模ライブ公演の企画・制作',
+        bizLiveFanMeetingName: 'ファンミーティング', bizLiveFanMeetingDesc: 'アーティストファンミーティングの専門制作',
+        bizLiveFestivalName: 'フェスティバル', bizLiveFestivalDesc: 'K-POPフェスティバルブランド運営',
+        bizLiveGlobalTourName: 'グローバルツアー', bizLiveGlobalTourDesc: 'アジアマルチシティツアー統括',
+        bizCatMediaContents: 'メディア&コンテンツ',
+        bizMediaBroadcastName: '放送', bizMediaBroadcastDesc: 'Mnet「ストリートウーマンファイター」など放送番組の制作に参加',
+        bizMediaDigitalContentName: 'デジタルコンテンツ', bizMediaDigitalContentDesc: 'OTT・ストリーミングオリジナルコンテンツの企画・制作',
+        bizMediaYoutubeContentName: 'YouTubeコンテンツ', bizMediaYoutubeContentDesc: 'アーティスト・クリエイターのYouTubeチャンネルブランディング及び制作',
+        bizCatBrandPartnerships: 'ブランド&パートナーシップ',
+        bizBrandMarketingName: 'ブランドマーケティング', bizBrandMarketingDesc: 'K-POPアーティスト×グローバルブランドコラボレーションキャンペーン',
+        bizBrandSponsorshipName: 'スポンサーシップ', bizBrandSponsorshipDesc: '大型公演・フェスティバルスポンサーシップソリューション',
+        bizBrandProjectName: 'ブランデッドプロジェクト', bizBrandProjectDesc: 'ブランドアイデンティティを反映したオリジナルコンテンツの企画・制作',
+      },
+      zh: {
+        navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
+        navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+        footerLocation: '韩国首尔',
+        bizTitleInitial: '业', bizTitleRest: '务',
+        bizDesc: '从演唱会、广播到品牌合作——<br>我们在内容的各个领域<br>策划并制作全新体验。',
+        bizFieldsLabel: '业务领域',
+        bizCatLiveEntertainment: '现场娱乐',
+        bizLiveConcertName: '演唱会', bizLiveConcertDesc: '大型现场演出策划与制作',
+        bizLiveFanMeetingName: '粉丝见面会', bizLiveFanMeetingDesc: '艺人粉丝见面会专业制作',
+        bizLiveFestivalName: '音乐节', bizLiveFestivalDesc: 'K-POP音乐节品牌运营',
+        bizLiveGlobalTourName: '全球巡演', bizLiveGlobalTourDesc: '亚洲多城市巡演统筹',
+        bizCatMediaContents: '媒体与内容',
+        bizMediaBroadcastName: '电视节目', bizMediaBroadcastDesc: '参与Mnet《街头女战士》等电视节目制作',
+        bizMediaDigitalContentName: '数字内容', bizMediaDigitalContentDesc: 'OTT·流媒体原创内容策划与制作',
+        bizMediaYoutubeContentName: 'YouTube内容', bizMediaYoutubeContentDesc: '艺人·创作者YouTube频道品牌塑造及制作',
+        bizCatBrandPartnerships: '品牌与合作',
+        bizBrandMarketingName: '品牌营销', bizBrandMarketingDesc: 'K-POP艺人 × 全球品牌合作营销活动',
+        bizBrandSponsorshipName: '赞助', bizBrandSponsorshipDesc: '大型演出·音乐节赞助解决方案',
+        bizBrandProjectName: '品牌定制项目', bizBrandProjectDesc: '反映品牌形象的原创内容策划与制作',
+      },
+    };
+
+    (function () {
+      var LANG_LABELS = { ko: 'KO', en: 'EN', ja: 'JP', zh: 'CN' };
+
+      function applyTranslations(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.innerHTML = I18N[lang][key];
+          }
+        });
+      }
+
+      function setLanguage(lang) {
+        if (!LANG_LABELS[lang]) { lang = 'ko'; }
+        document.documentElement.lang = lang;
+        applyTranslations(lang);
+        document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
+          el.textContent = LANG_LABELS[lang];
+        });
+        document.querySelectorAll('.lang-option').forEach(function (btn) {
+          btn.closest('li').style.display = (btn.dataset.lang === lang) ? 'none' : '';
+        });
+        document.querySelectorAll('.lang-dropdown').forEach(function (dd) {
+          dd.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        });
+        localStorage.setItem('lang', lang);
+      }
+
+      document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var dropdown = btn.nextElementSibling;
+          var isOpen = dropdown.classList.toggle('open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.addEventListener('click', function () { setLanguage(btn.dataset.lang); });
+      });
+
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) { dd.classList.remove('open'); });
+        document.querySelectorAll('.lang-toggle-btn[aria-expanded="true"]').forEach(function (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      var savedLang = localStorage.getItem('lang');
+      if (savedLang && savedLang !== 'ko') setLanguage(savedLang);
+    }());
   </script>
 </body>
 </html>

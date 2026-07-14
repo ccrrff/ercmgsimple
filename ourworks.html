@@ -269,6 +269,91 @@
       .title-initial { font-size: clamp(59.8px,min(10.4vw,10.4vh), 92px); }
       .title-rest { font-size: clamp(16.1px,min(2.8vw,2.8vh),25.3px); }
     }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .lang-toggle { position: relative; }
+    .lang-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .lang-toggle-btn:hover { color: #fff; }
+    .nav.solid .lang-toggle-btn { color: rgba(0,0,0,0.45); }
+    .nav.solid .lang-toggle-btn:hover { color: #000; }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 72px;
+      list-style: none;
+      margin: 0;
+      background: rgba(4,4,4,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 25;
+    }
+    .lang-dropdown.open { display: flex; }
+    .nav.solid .lang-dropdown { background: rgba(255,255,255,0.98); border-color: #e3e3e3; }
+    .lang-option {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1vw, 13px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-option:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.solid .lang-option { color: #555; }
+    .nav.solid .lang-option:hover { color: #000; background: rgba(0,0,0,0.05); }
+
+    .mobile-lang-toggle {
+      position: absolute;
+      bottom: 6%;
+      left: var(--pad-x);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .mobile-lang-toggle .lang-toggle-btn {
+      color: rgba(255,255,255,0.5);
+      font-size: clamp(11px, 1.4vw, 13px);
+    }
+    .mobile-lang-toggle .lang-dropdown {
+      position: static;
+      transform: none;
+      flex-direction: row;
+      min-width: 0;
+    }
+    .mobile-lang-toggle .lang-option {
+      width: auto;
+      padding: 6px 10px;
+    }
+    @media (max-width: 768px) {
+      .lang-toggle { display: none; }
+    }
   </style>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
@@ -277,31 +362,55 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
-    <ul class="nav-links">
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html" class="active">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+        <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+        <li><a href="ourworks.html" class="active" data-i18n="navOurWorks">Our Works</a></li>
+        <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+        <li><a href="news.html" data-i18n="navNews">News</a></li>
+        <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+        <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-toggle-label">KO</span> ▾
+        </button>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html" class="active">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+      <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+      <li><a href="ourworks.html" class="active" data-i18n="navOurWorks">Our Works</a></li>
+      <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+      <li><a href="news.html" data-i18n="navNews">News</a></li>
+      <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+      <li><a href="contact.html" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-toggle">
+      <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-toggle-label">KO</span> ▾
+      </button>
+      <ul class="lang-dropdown" role="menu">
+        <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+      </ul>
+    </div>
   </div>
 
   <!-- MAIN -->
@@ -312,13 +421,13 @@
       <section class="left-panel" aria-labelledby="worksTitle">
         <div class="eyebrow">ER Contents Media Group</div>
         <h1 class="title-wrap" id="worksTitle">
-          <span class="title-initial">W</span><span class="title-rest">ORKS</span>
+          <span class="title-initial" data-i18n="heroTitleInitial">W</span><span class="title-rest" data-i18n="heroTitleRest">ORKS</span>
         </h1>
         <div class="left-rule"></div>
         <p class="left-desc">
-          <span class="desc-line">무대 위, 스크린 안,</span><br>
-          <span class="desc-line">브랜드와 아티스트 사이에서</span><br>
-          <span class="desc-line">우리가 만들어온 순간들.</span>
+          <span class="desc-line" data-i18n="heroDescLine1">무대 위, 스크린 안,</span><br>
+          <span class="desc-line" data-i18n="heroDescLine2">브랜드와 아티스트 사이에서</span><br>
+          <span class="desc-line" data-i18n="heroDescLine3">우리가 만들어온 순간들.</span>
         </p>
       </section>
 
@@ -355,10 +464,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">ER콘텐츠미디어그룹 설립</span>
-              <span class="row-type">창립</span>
+              <span class="row-city" data-i18n="work2018Title">ER콘텐츠미디어그룹 설립</span>
+              <span class="row-type" data-i18n="typeFounding">창립</span>
             </div>
-            <div class="drop"><div class="drop-inner">ER콘텐츠미디어그룹 설립</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2018Desc">ER콘텐츠미디어그룹 설립</div></div>
           </div>
         </div>
 
@@ -367,10 +476,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿우먼파이트 시즌1</span>
-              <span class="row-type">방송</span>
+              <span class="row-city" data-i18n="work2021Title">Mnet 스트릿우먼파이트 시즌1</span>
+              <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌1 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2021Desc">Mnet 스트릿우먼파이트 시즌1 제작 참여</div></div>
           </div>
         </div>
 
@@ -379,10 +488,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿맨파이트</span>
-              <span class="row-type">방송</span>
+              <span class="row-city" data-i18n="work2022Title">Mnet 스트릿맨파이트</span>
+              <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 스트릿맨파이트 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2022Desc">Mnet 스트릿맨파이트 제작 참여</div></div>
           </div>
         </div>
 
@@ -391,10 +500,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">Mnet 스트릿우먼파이트 시즌2</span>
-              <span class="row-type">방송</span>
+              <span class="row-city" data-i18n="work2023Title">Mnet 스트릿우먼파이트 시즌2</span>
+              <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 스트릿우먼파이트 시즌2 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2023Desc">Mnet 스트릿우먼파이트 시즌2 제작 참여</div></div>
           </div>
         </div>
 
@@ -403,10 +512,10 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">01</span>
-              <span class="row-city">TV조선 대학가요제</span>
-              <span class="row-type">방송</span>
+              <span class="row-city" data-i18n="work2024Title">TV조선 대학가요제</span>
+              <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">TV조선 대학가요제 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2024Desc">TV조선 대학가요제 제작 참여</div></div>
           </div>
         </div>
 
@@ -416,7 +525,7 @@
             <div class="row">
               <span class="row-num">01</span>
               <span class="row-city">K-SPARK in Bangkok</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
@@ -439,7 +548,7 @@
             <div class="row">
               <span class="row-num">02</span>
               <span class="row-city">K-SPARK in Vietnam</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
@@ -461,26 +570,26 @@
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">03</span>
-              <span class="row-city">유튜브 [팔도가인]</span>
-              <span class="row-type">유튜브</span>
+              <span class="row-city" data-i18n="work2025Item3Title">유튜브 [팔도가인]</span>
+              <span class="row-type" data-i18n="typeYoutube">유튜브</span>
             </div>
-            <div class="drop"><div class="drop-inner">유튜브 [팔도가인] 제작 · 가수 송가인</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2025Item3Desc">유튜브 [팔도가인] 제작 · 가수 송가인</div></div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">04</span>
-              <span class="row-city">유튜브 [유딱날]</span>
-              <span class="row-type">유튜브</span>
+              <span class="row-city" data-i18n="work2025Item4Title">유튜브 [유딱날]</span>
+              <span class="row-type" data-i18n="typeYoutube">유튜브</span>
             </div>
-            <div class="drop"><div class="drop-inner">유튜브 [유딱날] 제작 · 배우 박성웅</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2025Item4Desc">유튜브 [유딱날] 제작 · 배우 박성웅</div></div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
               <span class="row-num">05</span>
-              <span class="row-city">Mnet 월드스트릿우먼파이트 시즌3</span>
-              <span class="row-type">방송</span>
+              <span class="row-city" data-i18n="work2025Item5Title">Mnet 월드스트릿우먼파이트 시즌3</span>
+              <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner">Mnet 월드스트릿우먼파이트 시즌3 제작 참여</div></div>
+            <div class="drop"><div class="drop-inner" data-i18n="work2025Item5Desc">Mnet 월드스트릿우먼파이트 시즌3 제작 참여</div></div>
           </div>
         </div>
 
@@ -490,21 +599,21 @@
             <div class="row">
               <span class="row-num">01</span>
               <span class="row-city">G-DRAGON 'FAM' MEETING</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg" alt="">
-                  <div class="dp-label">Seoul</div>
+                  <div class="dp-label" data-i18n="placeSeoul">Seoul</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060864/ercmg/gallery/gdfan/seoul/rjxr3hjdvfc6eq1wi7tr.jpg" alt="">
-                  <div class="dp-label">Yokohama</div>
+                  <div class="dp-label" data-i18n="placeYokohama">Yokohama</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060879/ercmg/gallery/gdfan/bkk/vkkkatyk35qjiqkgma7n.jpg" alt="">
-                  <div class="dp-label">Bangkok</div>
+                  <div class="dp-label" data-i18n="placeBangkok">Bangkok</div>
                 </div>
               </div>
             </div>
@@ -513,7 +622,7 @@
             <div class="row">
               <span class="row-num">02</span>
               <span class="row-city">K-SPARK in Malaysia</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
@@ -536,21 +645,21 @@
             <div class="row">
               <span class="row-num">03</span>
               <span class="row-city">K-SPARK in Macau</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228556/AC_06569_i9yhiz.jpg" alt="">
-                  <div class="dp-label">Macau</div>
+                  <div class="dp-label" data-i18n="placeMacau">Macau</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228559/AC_06240_zoxfgz.jpg" alt="">
-                  <div class="dp-label">Macau</div>
+                  <div class="dp-label" data-i18n="placeMacau">Macau</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228560/AC_06059_jva3va.jpg" alt="">
-                  <div class="dp-label">Macau</div>
+                  <div class="dp-label" data-i18n="placeMacau">Macau</div>
                 </div>
               </div>
             </div>
@@ -559,21 +668,21 @@
             <div class="row">
               <span class="row-num">04</span>
               <span class="row-city">K-SPARK in Kaohsiung</span>
-              <span class="row-type">라이브</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
               <div class="drop-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228560/AC_06236_ttftb1.jpg" alt="">
-                  <div class="dp-label">Kaohsiung</div>
+                  <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228563/AC_06052_dlisch.jpg" alt="">
-                  <div class="dp-label">Kaohsiung</div>
+                  <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228565/AC_05947_qp6p8i.jpg" alt="">
-                  <div class="dp-label">Kaohsiung</div>
+                  <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
               </div>
             </div>
@@ -587,7 +696,7 @@
   <!-- FOOTER -->
   <footer>
     <span class="footer-text">© 2026 ER Contents Media Group</span>
-    <span class="footer-text">Seoul, Korea</span>
+    <span class="footer-text" data-i18n="footerLocation">Seoul, Korea</span>
   </footer>
 
   <script>
@@ -663,6 +772,135 @@
       });
     });
   </script>
+
+<script>
+  const I18N = {
+    ko: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      heroTitleInitial: 'W', heroTitleRest: 'ORKS',
+      heroDescLine1: '무대 위, 스크린 안,', heroDescLine2: '브랜드와 아티스트 사이에서', heroDescLine3: '우리가 만들어온 순간들.',
+      typeFounding: '창립', typeBroadcast: '방송', typeLive: '라이브', typeYoutube: '유튜브',
+      work2018Title: 'ER콘텐츠미디어그룹 설립', work2018Desc: 'ER콘텐츠미디어그룹 설립',
+      work2021Title: 'Mnet 스트릿우먼파이트 시즌1', work2021Desc: 'Mnet 스트릿우먼파이트 시즌1 제작 참여',
+      work2022Title: 'Mnet 스트릿맨파이트', work2022Desc: 'Mnet 스트릿맨파이트 제작 참여',
+      work2023Title: 'Mnet 스트릿우먼파이트 시즌2', work2023Desc: 'Mnet 스트릿우먼파이트 시즌2 제작 참여',
+      work2024Title: 'TV조선 대학가요제', work2024Desc: 'TV조선 대학가요제 제작 참여',
+      work2025Item3Title: '유튜브 [팔도가인]', work2025Item3Desc: '유튜브 [팔도가인] 제작 · 가수 송가인',
+      work2025Item4Title: '유튜브 [유딱날]', work2025Item4Desc: '유튜브 [유딱날] 제작 · 배우 박성웅',
+      work2025Item5Title: 'Mnet 월드스트릿우먼파이트 시즌3', work2025Item5Desc: 'Mnet 월드스트릿우먼파이트 시즌3 제작 참여',
+      placeSeoul: 'Seoul', placeYokohama: 'Yokohama', placeBangkok: 'Bangkok', placeMacau: 'Macau', placeKaohsiung: 'Kaohsiung',
+    },
+    en: {
+      navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+      navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      footerLocation: 'Seoul, Korea',
+      heroTitleInitial: 'W', heroTitleRest: 'ORKS',
+      heroDescLine1: 'On stage, on screen,', heroDescLine2: 'between brands and artists,', heroDescLine3: "the moments we've created.",
+      typeFounding: 'Founding', typeBroadcast: 'Broadcast', typeLive: 'Live', typeYoutube: 'YouTube',
+      work2018Title: 'Establishment of ER Contents Media Group', work2018Desc: 'Establishment of ER Contents Media Group',
+      work2021Title: 'Mnet Street Woman Fighter Season 1', work2021Desc: "Participated in the production of Mnet's Street Woman Fighter Season 1",
+      work2022Title: 'Mnet Street Man Fighter', work2022Desc: "Participated in the production of Mnet's Street Man Fighter",
+      work2023Title: 'Mnet Street Woman Fighter Season 2', work2023Desc: "Participated in the production of Mnet's Street Woman Fighter Season 2",
+      work2024Title: 'TV Chosun University Song Festival', work2024Desc: 'Participated in the production of TV Chosun University Song Festival',
+      work2025Item3Title: 'YouTube [Paldo Gain]', work2025Item3Desc: 'Production of YouTube [Paldo Gain] · Singer Song Ga-in',
+      work2025Item4Title: 'YouTube [Yu Ttaknal]', work2025Item4Desc: 'Production of YouTube [Yu Ttaknal] · Actor Park Sung-woong',
+      work2025Item5Title: 'Mnet World Street Woman Fighter Season 3', work2025Item5Desc: "Participated in the production of Mnet's World Street Woman Fighter Season 3",
+      placeSeoul: 'Seoul', placeYokohama: 'Yokohama', placeBangkok: 'Bangkok', placeMacau: 'Macau', placeKaohsiung: 'Kaohsiung',
+    },
+    ja: {
+      navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
+      navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+      footerLocation: '韓国・ソウル',
+      heroTitleInitial: '実', heroTitleRest: '績',
+      heroDescLine1: '舞台の上、スクリーンの中、', heroDescLine2: 'ブランドとアーティストの間で', heroDescLine3: '私たちが作り上げてきた瞬間たち。',
+      typeFounding: '設立', typeBroadcast: '放送', typeLive: 'ライブ', typeYoutube: 'YouTube',
+      work2018Title: 'ERコンテンツメディアグループ設立', work2018Desc: 'ERコンテンツメディアグループ設立',
+      work2021Title: 'Mnet ストリートウーマンファイター シーズン1', work2021Desc: 'Mnet『ストリートウーマンファイター シーズン1』制作参加',
+      work2022Title: 'Mnet ストリートマンファイター', work2022Desc: 'Mnet『ストリートマンファイター』制作参加',
+      work2023Title: 'Mnet ストリートウーマンファイター シーズン2', work2023Desc: 'Mnet『ストリートウーマンファイター シーズン2』制作参加',
+      work2024Title: 'TV朝鮮 大学歌謡祭', work2024Desc: 'TV朝鮮『大学歌謡祭』制作参加',
+      work2025Item3Title: 'YouTube「パルドゲイン」', work2025Item3Desc: 'YouTube「パルドゲイン」制作・歌手 ソン・ガイン',
+      work2025Item4Title: 'YouTube「ユッタンナル」', work2025Item4Desc: 'YouTube「ユッタンナル」制作・俳優 パク・ソンウン',
+      work2025Item5Title: 'Mnet ワールドストリートウーマンファイター シーズン3', work2025Item5Desc: 'Mnet『ワールドストリートウーマンファイター シーズン3』制作参加',
+      placeSeoul: 'ソウル', placeYokohama: '横浜', placeBangkok: 'バンコク', placeMacau: 'マカオ', placeKaohsiung: '高雄',
+    },
+    zh: {
+      navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
+      navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+      footerLocation: '韩国首尔',
+      heroTitleInitial: '作', heroTitleRest: '品',
+      heroDescLine1: '舞台之上,银幕之中,', heroDescLine2: '在品牌与艺人之间,', heroDescLine3: '我们共同创造的瞬间。',
+      typeFounding: '创立', typeBroadcast: '电视节目', typeLive: '现场演出', typeYoutube: 'YouTube',
+      work2018Title: 'ER内容传媒集团成立', work2018Desc: 'ER内容传媒集团成立',
+      work2021Title: 'Mnet 街头女战士 第1季', work2021Desc: '参与制作Mnet《街头女战士》第1季',
+      work2022Title: 'Mnet 街头男战士', work2022Desc: '参与制作Mnet《街头男战士》',
+      work2023Title: 'Mnet 街头女战士 第2季', work2023Desc: '参与制作Mnet《街头女战士》第2季',
+      work2024Title: 'TV朝鲜 大学歌谣祭', work2024Desc: '参与制作TV朝鲜《大学歌谣祭》',
+      work2025Item3Title: 'YouTube《Paldo Gain》', work2025Item3Desc: 'YouTube《Paldo Gain》制作·歌手宋佳人(Song Ga-in)',
+      work2025Item4Title: 'YouTube《Yu Ttaknal》', work2025Item4Desc: 'YouTube《Yu Ttaknal》制作·演员朴成雄(Park Sung-woong)',
+      work2025Item5Title: 'Mnet 世界街头女战士 第3季', work2025Item5Desc: '参与制作Mnet《世界街头女战士》第3季',
+      placeSeoul: '首尔', placeYokohama: '横滨', placeBangkok: '曼谷', placeMacau: '澳门', placeKaohsiung: '高雄',
+    },
+  };
+</script>
+<script>
+  (function () {
+    var LANG_LABELS = { ko: 'KO', en: 'EN', ja: 'JP', zh: 'CN' };
+
+    function applyTranslations(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.innerHTML = I18N[lang][key];
+        }
+      });
+    }
+
+    function setLanguage(lang) {
+      if (!LANG_LABELS[lang]) { lang = 'ko'; }
+      document.documentElement.lang = lang;
+      applyTranslations(lang);
+      document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
+        el.textContent = LANG_LABELS[lang];
+      });
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.closest('li').style.display = (btn.dataset.lang === lang) ? 'none' : '';
+      });
+      document.querySelectorAll('.lang-dropdown').forEach(function (dd) {
+        dd.classList.remove('open');
+      });
+      document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var dropdown = btn.nextElementSibling;
+        var isOpen = dropdown.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+      });
+    });
+
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.addEventListener('click', function () { setLanguage(btn.dataset.lang); });
+    });
+
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) { dd.classList.remove('open'); });
+      document.querySelectorAll('.lang-toggle-btn[aria-expanded="true"]').forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    var savedLang = localStorage.getItem('lang');
+    if (savedLang && savedLang !== 'ko') setLanguage(savedLang);
+  }());
+</script>
 
 </body>
 </html>
