@@ -491,6 +491,7 @@
     }
 
     function setLanguage(lang) {
+      if (!LANG_LABELS[lang]) { lang = 'ko'; }
       document.documentElement.lang = lang;
       applyTranslations(lang);
       document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
