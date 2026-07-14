@@ -330,7 +330,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -372,7 +372,7 @@
       </aside>
 
       <div class="right-panel">
-        <div class="card-grid" id="news-grid" aria-label="뉴스 목록"></div>
+        <div class="card-grid" id="news-grid" aria-label="뉴스 목록" data-i18n-aria-label="newsGridAriaLabel"></div>
       </div>
     </div>
   </main>
@@ -411,6 +411,7 @@
       el.href = a.url;
       el.target = '_blank';
       el.rel = 'noopener';
+      el.setAttribute('data-article-index', i);
       el.innerHTML = `
         <div class="nc-thumb" id="thumb-${i}">
           <img id="thumb-img-${i}" alt="">
@@ -432,7 +433,69 @@
       grid.appendChild(el);
     });
 
-    document.getElementById('art-count').textContent = ARTICLES.length + ' articles';
+    /* ─── ARTICLES translations (title/excerpt only — source/date/city/url are proper nouns or numeric, left as-is) ─── */
+    const ARTICLE_I18N = {
+      en: [
+        { title: 'G-Dragon, Hwasa, ITZY and More Join K-SPARK Malaysia 2026 Lineup', excerpt: 'Led by G-DRAGON, HWASA, ITZY, DPR IAN, DOLLA, and 3P have joined the lineup for K-SPARK Malaysia 2026, taking place on January 31, 2026 at Stadium Merdeka in Kuala Lumpur.' },
+        { title: 'ITZY, Hwasa, DPR Ian, DOLLA & 3P join G-DRAGON to ignite K-SPARK Malaysia 2026', excerpt: 'With ITZY, HWASA, and DPR IAN joining headliner G-DRAGON alongside local artists DOLLA and 3P, the event brings together global K-POP stars and Malaysian artists on a single stage.' },
+        { title: "Fans Rush the Stage at GD's Vietnam Concert — Calm Response to Sudden Incident", excerpt: 'An unexpected incident occurred when fans rushed the stage during the K-STAR SPARK Vietnam concert, but the situation was resolved safely thanks to the calm response of GD and the dancers.' },
+        { title: "G-Dragon Confirmed for 'K-STAR SPARK' — First Vietnam Concert in 13 Years", excerpt: "G-Dragon will take the stage in Vietnam for the first time in about 13 years since BIGBANG's 2012 activities. He will headline K-STAR SPARK VIETNAM 2025 on June 21 at My Dinh National Stadium (40,000 seats) in Hanoi." },
+        { title: 'G-Dragon to Hold Solo Concert in Vietnam After 13 Years', excerpt: 'G-Dragon will meet Vietnamese fans through K-STAR SPARK for the first time in 13 years. The concert will be held on June 21 at My Dinh National Stadium in Hanoi.' },
+        { title: "GD Confirmed for 'K-STAR SPARK IN VIETNAM 2025' — First Vietnam Concert in 13 Years", excerpt: 'G-Dragon has confirmed his appearance at K-STAR SPARK VIETNAM 2025. He will meet approximately 40,000 fans on June 21 at My Dinh National Stadium in Hanoi.' },
+        { title: "G-Dragon to Reunite with Vietnamese Fans After 13 Years — Appears at 'K-STAR SPARK'", excerpt: 'G-Dragon will reunite with local fans in Hanoi, Vietnam on June 21 through K-STAR SPARK — his first solo Vietnam stage since the BIGBANG era.' },
+        { title: "G-Dragon, 'K-STAR SPARK IN VIETNAM 2025' — June 21 at Hanoi's My Dinh Stadium", excerpt: "G-Dragon's return to the Vietnam stage after 13 years will unfold at the 40,000-seat My Dinh National Stadium in Hanoi." },
+        { title: "G-Dragon Heats Up Bangkok After Paris — Appears at 'K-STAR SPARK'", excerpt: "G-Dragon will appear at the first K-STAR SPARK concert on February 22 at Bangkok's Rajamangala National Stadium (50,000 seats). BIGBANG's recent new song has topped domestic charts for two consecutive months, continuing the group's global influence." },
+        { title: "G-Dragon to Appear at 'K-STAR SPARK in Bangkok 2025' — Explosive Global Influence", excerpt: "The first concert of the K-STAR SPARK series will be held at Bangkok's Rajamangala National Stadium. A new K-POP concert brand launches with G-Dragon as headliner meeting global fans." },
+      ],
+      ja: [
+        { title: 'G-DRAGON、Hwasa、ITZYら「K-SPARK Malaysia 2026」ラインナップ公開', excerpt: 'G-DRAGONを筆頭にHWASA、ITZY、DPR IAN、DOLLA、3Pが、2026年1月31日にクアラルンプールのスタジアム・ムルデカで開催される「K-SPARK Malaysia 2026」への出演を発表した。' },
+        { title: 'ITZY、Hwasa、DPR Ian、DOLLA & 3PがG-DRAGONと共にK-SPARK Malaysia 2026を盛り上げる', excerpt: 'ヘッドライナーのG-DRAGONに、ITZY、HWASA、DPR IAN、そして現地アーティストのDOLLA・3Pが加わり、グローバルK-POPスターとマレーシアのアーティストが同じステージに立つイベントが実現した。' },
+        { title: 'GDベトナム公演でファンが乱入…突発事故に冷静な対応', excerpt: 'K-STAR SPARKベトナム公演中、観客がステージに乱入する予期せぬ事態が発生したが、GDとダンサーたちの冷静な対応で無事に収束した。' },
+        { title: 'G-DRAGON、13年ぶりベトナム公演…「K-STAR SPARK」出演確定', excerpt: 'G-DRAGONが2012年のBIGBANG活動以来、約13年ぶりにベトナムのステージに立つ。6月21日、ハノイのミーディン国立競技場（4万席）で開催されるK-STAR SPARK VIETNAM 2025のヘッドライナーとして出演する。' },
+        { title: 'G-DRAGON、13年ぶりベトナム単独公演開催', excerpt: 'G-DRAGONがK-STAR SPARKを通じて13年ぶりにベトナムのファンと出会う。公演は6月21日、ハノイのミーディン国立競技場で開催される。' },
+        { title: 'GD、13年ぶりベトナム公演…「K-STAR SPARK IN VIETNAM 2025」出演確定', excerpt: 'G-DRAGONがK-STAR SPARK VIETNAM 2025への出演を確定した。6月21日、ハノイのミーディン国立競技場で約4万人の観客と出会う。' },
+        { title: 'G-DRAGON、13年ぶりベトナムファンと再会…「K-STAR SPARK」出演', excerpt: 'G-DRAGONがK-STAR SPARKを通じて6月21日、ベトナム・ハノイで現地ファンと再会する。BIGBANG時代以来、初のベトナム単独ステージとなる。' },
+        { title: 'G-DRAGON、「K-STAR SPARK IN VIETNAM 2025」— 6月21日ハノイ・ミーディン競技場', excerpt: 'G-DRAGONの13年ぶりのベトナム復帰ステージが、4万席規模のハノイ・ミーディン国立競技場で繰り広げられる。' },
+        { title: 'G-DRAGON、パリに続きバンコクを熱くする…「K-STAR SPARK」出演', excerpt: 'G-DRAGONが2月22日、バンコクのラジャマンガラ国立競技場（5万席）で開催されるK-STAR SPARK初公演に出演する。BIGBANGの新曲が2ヶ月連続で国内チャート1位を記録するなど、グローバルな影響力を続けている。' },
+        { title: 'G-DRAGON、「K-STAR SPARK in バンコク 2025」出演…爆発的なグローバル影響力', excerpt: 'K-STAR SPARKシリーズの初公演がバンコクのラジャマンガラ国立競技場で開催される。G-DRAGONをヘッドライナーに迎え、グローバルファンと出会う新形式のK-POP公演ブランドがスタートした。' },
+      ],
+      zh: [
+        { title: 'G-Dragon、华莎、ITZY等确认加盟K-SPARK Malaysia 2026阵容', excerpt: '以G-DRAGON为首，HWASA、ITZY、DPR IAN、DOLLA、3P确认加盟将于2026年1月31日在吉隆坡默迪卡体育场举行的K-SPARK Malaysia 2026。' },
+        { title: 'ITZY、华莎、DPR Ian、DOLLA与3P将与G-DRAGON共同点燃K-SPARK Malaysia 2026', excerpt: '压轴嘉宾G-DRAGON携手ITZY、HWASA、DPR IAN及本地艺人DOLLA、3P同台，实现了全球K-POP巨星与马来西亚艺人同台演出的盛事。' },
+        { title: 'GD越南演出观众冲上舞台……突发状况沉着应对', excerpt: 'K-STAR SPARK越南演出期间发生观众冲上舞台的突发状况，但GD与舞者们沉着应对，演出得以顺利收尾。' },
+        { title: 'G-Dragon时隔13年再登越南舞台……确认出演K-STAR SPARK', excerpt: 'G-Dragon将自2012年BIGBANG活动以来时隔约13年重返越南舞台，将作为压轴嘉宾出演6月21日在河内美廷国家体育场（4万座）举行的K-STAR SPARK VIETNAM 2025。' },
+        { title: 'G-Dragon时隔13年举办越南个人演唱会', excerpt: 'G-Dragon将通过K-STAR SPARK时隔13年与越南粉丝见面。演出将于6月21日在河内美廷国家体育场举行。' },
+        { title: 'GD时隔13年举办越南演出……确认出演"K-STAR SPARK IN VIETNAM 2025"', excerpt: 'G-Dragon确认出演K-STAR SPARK VIETNAM 2025，将于6月21日在河内美廷国家体育场与约4万名观众见面。' },
+        { title: 'G-Dragon时隔13年与越南粉丝重逢……出演K-STAR SPARK', excerpt: 'G-Dragon将于6月21日通过K-STAR SPARK在越南河内与当地粉丝重逢，这是自BIGBANG时期以来首次越南个人舞台。' },
+        { title: 'G-Dragon，"K-STAR SPARK IN VIETNAM 2025"——6月21日河内美廷体育场', excerpt: 'G-Dragon时隔13年重返越南舞台，将在可容纳4万人的河内美廷国家体育场举行。' },
+        { title: 'G-Dragon继巴黎之后再掀曼谷热潮……出演"K-STAR SPARK"', excerpt: 'G-Dragon将出演2月22日在曼谷拉贾曼加拉国家体育场（5万座）举行的K-STAR SPARK首场演出。BIGBANG新歌连续两个月蝉联韩国国内榜单冠军，持续彰显其全球影响力。' },
+        { title: 'G-Dragon出演"K-STAR SPARK in 曼谷 2025"……展现爆炸性全球影响力', excerpt: 'K-STAR SPARK系列首场演出将在曼谷拉贾曼加拉国家体育场举行。以G-Dragon为压轴嘉宾、与全球粉丝见面的全新K-POP演出品牌就此启动。' },
+      ],
+    };
+
+    function articleI18nSuffix() {
+      var lang = document.documentElement.lang || 'ko';
+      if (typeof I18N !== 'undefined' && I18N[lang] && I18N[lang].newsArticlesSuffix !== undefined) return I18N[lang].newsArticlesSuffix;
+      return '건';
+    }
+
+    function refreshArticlesI18n(lang) {
+      const translated = ARTICLE_I18N[lang];
+      document.querySelectorAll('.news-card[data-article-index]').forEach(el => {
+        const i = +el.getAttribute('data-article-index');
+        const t = translated && translated[i];
+        if (t) {
+          el.querySelector('.nc-title').textContent = t.title;
+          el.querySelector('.nc-excerpt').textContent = t.excerpt;
+        } else {
+          el.querySelector('.nc-title').textContent = ARTICLES[i].title;
+          el.querySelector('.nc-excerpt').textContent = ARTICLES[i].excerpt;
+        }
+      });
+      document.getElementById('art-count').textContent = ARTICLES.length + articleI18nSuffix();
+    }
+
+    document.getElementById('art-count').textContent = ARTICLES.length + articleI18nSuffix();
 
     // 캐시된 것과 새로 가져올 것 분리
     const usedImgUrls = new Set();
@@ -559,6 +622,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: '메뉴 열기', newsGridAriaLabel: '뉴스 목록', newsArticlesSuffix: '건',
       newsTitleInitial: 'N', newsTitleRest: 'EWS',
       newsLeftDesc: 'K-SPARK 및 주요 프로젝트에 관한<br>국내외 보도를 모았습니다.',
     },
@@ -566,6 +630,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: 'Open menu', newsGridAriaLabel: 'News list', newsArticlesSuffix: ' articles',
       newsTitleInitial: 'N', newsTitleRest: 'EWS',
       newsLeftDesc: 'A curated collection of domestic and international coverage on K-SPARK and other major projects.',
     },
@@ -573,6 +638,7 @@
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       footerLocation: '韓国・ソウル',
+      navHamburgerAriaLabel: 'メニューを開く', newsGridAriaLabel: 'ニュース一覧', newsArticlesSuffix: '件',
       newsTitleInitial: 'ニ', newsTitleRest: 'ュース',
       newsLeftDesc: 'K-SPARKおよび主要プロジェクトに関する国内外の報道をまとめました。',
     },
@@ -580,6 +646,7 @@
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       footerLocation: '韩国首尔',
+      navHamburgerAriaLabel: '打开菜单', newsGridAriaLabel: '新闻列表', newsArticlesSuffix: '篇',
       newsTitleInitial: '新', newsTitleRest: '闻',
       newsLeftDesc: '汇集了有关 K-SPARK 及主要项目的国内外报道。',
     },
@@ -595,12 +662,25 @@
           el.innerHTML = I18N[lang][key];
         }
       });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('aria-label', I18N[lang][key]);
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('alt', I18N[lang][key]);
+        }
+      });
     }
 
     function setLanguage(lang) {
       if (!LANG_LABELS[lang]) { lang = 'ko'; }
       document.documentElement.lang = lang;
       applyTranslations(lang);
+      if (typeof refreshArticlesI18n === 'function') refreshArticlesI18n(lang);
       document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
         el.textContent = LANG_LABELS[lang];
       });

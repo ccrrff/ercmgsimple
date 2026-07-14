@@ -330,7 +330,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -389,7 +389,7 @@
     </div>
 
     <!-- CONTACT INFO -->
-    <main class="info-panel" aria-label="연락처">
+    <main class="info-panel" aria-label="연락처" data-i18n-aria-label="contactAriaLabel">
       <div class="info-section-label" data-i18n="infoSectionLabel">Contact Information</div>
       <div class="info-list">
         <div class="info-row">
@@ -457,6 +457,7 @@
         navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
         navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
         footerLocation: 'Seoul, Korea',
+        navHamburgerAriaLabel: '메뉴 열기', contactAriaLabel: '연락처',
         pageTitleInitial: 'C', pageTitleRest: 'ONTACT',
         pgDesc: '공연, 매니지먼트, 콘텐츠,<br>브랜드 협업 등 모든 문의를 환영합니다.',
         categoryPerformance: '공연', categoryManagement: '매니지먼트', categoryContent: '콘텐츠', categoryBrand: '브랜드',
@@ -468,6 +469,7 @@
         navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
         navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
         footerLocation: 'Seoul, Korea',
+        navHamburgerAriaLabel: 'Open menu', contactAriaLabel: 'Contact',
         pageTitleInitial: 'C', pageTitleRest: 'ONTACT',
         pgDesc: 'We welcome all inquiries regarding performances, management, content, and brand collaborations.',
         categoryPerformance: 'Performance', categoryManagement: 'Management', categoryContent: 'Content', categoryBrand: 'Brand',
@@ -479,6 +481,7 @@
         navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
         navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
         footerLocation: '韓国・ソウル',
+        navHamburgerAriaLabel: 'メニューを開く', contactAriaLabel: 'お問い合わせ',
         pageTitleInitial: 'コ', pageTitleRest: 'ンタクト',
         pgDesc: '公演、マネジメント、コンテンツ、ブランドコラボレーションなど、あらゆるお問い合わせを歓迎いたします。',
         categoryPerformance: '公演', categoryManagement: 'マネジメント', categoryContent: 'コンテンツ', categoryBrand: 'ブランド',
@@ -490,6 +493,7 @@
         navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
         navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
         footerLocation: '韩国首尔',
+        navHamburgerAriaLabel: '打开菜单', contactAriaLabel: '联系方式',
         pageTitleInitial: '联', pageTitleRest: '系我们',
         pgDesc: '欢迎垂询演出、艺人经纪、内容制作、品牌合作等各类事务。',
         categoryPerformance: '演出', categoryManagement: '艺人经纪', categoryContent: '内容', categoryBrand: '品牌',
@@ -507,6 +511,18 @@
           var key = el.getAttribute('data-i18n');
           if (I18N[lang] && I18N[lang][key] !== undefined) {
             el.innerHTML = I18N[lang][key];
+          }
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-aria-label');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.setAttribute('aria-label', I18N[lang][key]);
+          }
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-alt');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.setAttribute('alt', I18N[lang][key]);
           }
         });
       }

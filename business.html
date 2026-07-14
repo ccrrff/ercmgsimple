@@ -351,7 +351,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -535,6 +535,7 @@
         navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
         navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
         footerLocation: 'Seoul, Korea',
+        navHamburgerAriaLabel: '메뉴 열기',
         bizTitleInitial: 'B', bizTitleRest: 'USINESS',
         bizDesc: '공연, 방송, 브랜드 협업까지—<br>콘텐츠 전 영역에 걸쳐<br>새로운 경험을 기획·제작합니다.',
         bizFieldsLabel: 'Fields',
@@ -556,6 +557,7 @@
         navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
         navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
         footerLocation: 'Seoul, Korea',
+        navHamburgerAriaLabel: 'Open menu',
         bizTitleInitial: 'B', bizTitleRest: 'USINESS',
         bizDesc: 'From concerts and broadcasts to brand collaborations—<br>we plan and produce new experiences<br>across the full spectrum of content.',
         bizFieldsLabel: 'Fields',
@@ -577,6 +579,7 @@
         navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
         navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
         footerLocation: '韓国・ソウル',
+        navHamburgerAriaLabel: 'メニューを開く',
         bizTitleInitial: 'ビ', bizTitleRest: 'ジネス',
         bizDesc: 'コンサート、放送、ブランドコラボレーションまで—<br>コンテンツのあらゆる領域で<br>新しい体験を企画・制作します。',
         bizFieldsLabel: '事業分野',
@@ -598,6 +601,7 @@
         navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
         navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
         footerLocation: '韩国首尔',
+        navHamburgerAriaLabel: '打开菜单',
         bizTitleInitial: '业', bizTitleRest: '务',
         bizDesc: '从演唱会、广播到品牌合作——<br>我们在内容的各个领域<br>策划并制作全新体验。',
         bizFieldsLabel: '业务领域',
@@ -625,6 +629,18 @@
           var key = el.getAttribute('data-i18n');
           if (I18N[lang] && I18N[lang][key] !== undefined) {
             el.innerHTML = I18N[lang][key];
+          }
+        });
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-aria-label');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.setAttribute('aria-label', I18N[lang][key]);
+          }
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-alt');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.setAttribute('alt', I18N[lang][key]);
           }
         });
       }

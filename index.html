@@ -339,7 +339,7 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="nav" aria-label="주 메뉴">
+  <nav class="nav" id="nav" aria-label="주 메뉴" data-i18n-aria-label="navAriaLabel">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
     <div class="nav-right">
       <ul class="nav-links">
@@ -362,7 +362,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -395,7 +395,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero" id="hero" aria-label="히어로">
+  <section class="hero" id="hero" aria-label="히어로" data-i18n-aria-label="heroAriaLabel">
 
     <!-- 1. VIDEO (z-index: 1) -->
     <video class="hero-video" autoplay muted loop playsinline>
@@ -464,24 +464,28 @@
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       heroCornerBr: 'Seoul · Est. 2018',
       footerLocation: 'Seoul, Korea',
+      navAriaLabel: '주 메뉴', navHamburgerAriaLabel: '메뉴 열기', heroAriaLabel: '히어로',
     },
     en: {
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       heroCornerBr: 'Seoul · Est. 2018',
       footerLocation: 'Seoul, Korea',
+      navAriaLabel: 'Main menu', navHamburgerAriaLabel: 'Open menu', heroAriaLabel: 'Hero',
     },
     ja: {
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       heroCornerBr: 'ソウル・2018年創業',
       footerLocation: '韓国・ソウル',
+      navAriaLabel: 'メインメニュー', navHamburgerAriaLabel: 'メニューを開く', heroAriaLabel: 'ヒーロー',
     },
     zh: {
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       heroCornerBr: '首尔·2018年成立',
       footerLocation: '韩国首尔',
+      navAriaLabel: '主菜单', navHamburgerAriaLabel: '打开菜单', heroAriaLabel: '主视觉',
     },
   };
 </script>
@@ -494,6 +498,18 @@
         var key = el.getAttribute('data-i18n');
         if (I18N[lang] && I18N[lang][key] !== undefined) {
           el.innerHTML = I18N[lang][key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('aria-label', I18N[lang][key]);
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('alt', I18N[lang][key]);
         }
       });
     }
