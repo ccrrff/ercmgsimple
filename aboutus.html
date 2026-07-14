@@ -343,7 +343,8 @@
     .lang-dropdown {
       position: absolute;
       top: calc(100% + 14px);
-      right: 0;
+      left: 50%;
+      transform: translateX(-50%);
       min-width: 72px;
       list-style: none;
       margin: 0;
@@ -377,16 +378,23 @@
       position: absolute;
       bottom: 6%;
       left: var(--pad-x);
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
     .mobile-lang-toggle .lang-toggle-btn {
       color: rgba(255,255,255,0.5);
       font-size: clamp(11px, 1.4vw, 13px);
     }
     .mobile-lang-toggle .lang-dropdown {
-      top: auto;
-      bottom: calc(100% + 14px);
-      left: 0;
-      right: auto;
+      position: static;
+      transform: none;
+      flex-direction: row;
+      min-width: 0;
+    }
+    .mobile-lang-toggle .lang-option {
+      width: auto;
+      padding: 6px 10px;
     }
     @media (max-width: 768px) {
       .lang-toggle { display: none; }
