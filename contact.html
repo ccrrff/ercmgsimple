@@ -216,6 +216,83 @@
       .logo-tagline { text-align: left; }
       .info-panel { padding: 28px var(--pad-x) 48px; }
     }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 2.5vw, 32px);
+    }
+    .lang-toggle { position: relative; }
+    .lang-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0;
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.15s;
+    }
+    .lang-toggle-btn:hover { color: #fff; }
+    .nav.solid .lang-toggle-btn { color: rgba(0,0,0,0.45); }
+    .nav.solid .lang-toggle-btn:hover { color: #000; }
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      right: 0;
+      min-width: 72px;
+      list-style: none;
+      margin: 0;
+      background: rgba(4,4,4,0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 25;
+    }
+    .lang-dropdown.open { display: flex; }
+    .nav.solid .lang-dropdown { background: rgba(255,255,255,0.98); border-color: #e3e3e3; }
+    .lang-option {
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+      padding: 6px 14px;
+      font-size: clamp(11px, 1vw, 13px);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+    }
+    .lang-option:hover { color: #fff; background: rgba(255,255,255,0.08); }
+    .nav.solid .lang-option { color: #555; }
+    .nav.solid .lang-option:hover { color: #000; background: rgba(0,0,0,0.05); }
+
+    .mobile-lang-toggle {
+      position: absolute;
+      bottom: 6%;
+      left: var(--pad-x);
+    }
+    .mobile-lang-toggle .lang-toggle-btn {
+      color: rgba(255,255,255,0.5);
+      font-size: clamp(11px, 1.4vw, 13px);
+    }
+    .mobile-lang-toggle .lang-dropdown {
+      top: auto;
+      bottom: calc(100% + 14px);
+      left: 0;
+      right: auto;
+    }
+    @media (max-width: 768px) {
+      .lang-toggle { display: none; }
+    }
   </style>
 <script>if("serviceWorker"in navigator){navigator.serviceWorker.getRegistrations().then(r=>r.forEach(reg=>reg.unregister()));}</script>
 </head>
@@ -224,31 +301,55 @@
   <!-- NAV -->
   <nav class="nav" id="nav">
     <a class="nav-logo" href="index.html"><img src="ERlogo.png?v=2" alt="ER CMG"></a>
-    <ul class="nav-links">
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+        <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+        <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+        <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+        <li><a href="news.html" data-i18n="navNews">News</a></li>
+        <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+        <li><a href="contact.html" class="active" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="lang-toggle">
+        <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+          <span class="lang-toggle-label">KO</span> ▾
+        </button>
+        <ul class="lang-dropdown" role="menu">
+          <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+          <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+        </ul>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="business.html">Business</a></li>
-      <li><a href="ourworks.html">Our Works</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="notice.html">Notice</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="aboutus.html" data-i18n="navAboutUs">About Us</a></li>
+      <li><a href="business.html" data-i18n="navBusiness">Business</a></li>
+      <li><a href="ourworks.html" data-i18n="navOurWorks">Our Works</a></li>
+      <li><a href="projects.html" data-i18n="navProjects">Projects</a></li>
+      <li><a href="news.html" data-i18n="navNews">News</a></li>
+      <li><a href="notice.html" data-i18n="navNotice">Notice</a></li>
+      <li><a href="contact.html" class="active" data-i18n="navContact">Contact</a></li>
     </ul>
+    <div class="mobile-lang-toggle">
+      <button class="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="lang-toggle-label">KO</span> ▾
+      </button>
+      <ul class="lang-dropdown" role="menu">
+        <li role="menuitem" style="display:none"><button class="lang-option" data-lang="ko">KO</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="en">EN</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="ja">JP</button></li>
+        <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
+      </ul>
+    </div>
   </div>
 
   <div class="page-wrap">
@@ -257,15 +358,15 @@
     <aside class="sidebar">
       <div class="pg-eyebrow">ER Contents Media Group</div>
       <h1 class="title-wrap">
-        <span class="title-initial">C</span><span class="title-rest">ONTACT</span>
+        <span class="title-initial" data-i18n="pageTitleInitial">C</span><span class="title-rest" data-i18n="pageTitleRest">ONTACT</span>
       </h1>
       <div class="pg-rule"></div>
-      <p class="pg-desc">공연, 매니지먼트, 콘텐츠,<br>브랜드 협업 등 모든 문의를 환영합니다.</p>
+      <p class="pg-desc" data-i18n="pgDesc">공연, 매니지먼트, 콘텐츠,<br>브랜드 협업 등 모든 문의를 환영합니다.</p>
       <div class="inq-cats">
-        <span class="inq-cat">공연</span>
-        <span class="inq-cat">매니지먼트</span>
-        <span class="inq-cat">콘텐츠</span>
-        <span class="inq-cat">브랜드</span>
+        <span class="inq-cat" data-i18n="categoryPerformance">공연</span>
+        <span class="inq-cat" data-i18n="categoryManagement">매니지먼트</span>
+        <span class="inq-cat" data-i18n="categoryContent">콘텐츠</span>
+        <span class="inq-cat" data-i18n="categoryBrand">브랜드</span>
       </div>
     </aside>
 
@@ -275,16 +376,16 @@
       <div class="logo-divider"></div>
       <div class="logo-tagline">
         <strong>Experience &amp; Resonance</strong>
-        Seoul, Korea
+        <span data-i18n="logoTaglineLocation">Seoul, Korea</span>
       </div>
     </div>
 
     <!-- CONTACT INFO -->
     <main class="info-panel" aria-label="연락처">
-      <div class="info-section-label">Contact Information</div>
+      <div class="info-section-label" data-i18n="infoSectionLabel">Contact Information</div>
       <div class="info-list">
         <div class="info-row">
-          <span class="info-key">Email</span>
+          <span class="info-key" data-i18n="infoLabelEmail">Email</span>
           <div>
             <a class="info-val" href="mailto:ercmg@ercmg.com">ercmg@ercmg.com</a>
           </div>
@@ -296,19 +397,19 @@
           </div>
         </div>
         <div class="info-row">
-          <span class="info-key">Tel</span>
+          <span class="info-key" data-i18n="infoLabelTel">Tel</span>
           <div>
             <a class="info-val" href="tel:0253299205">02-532-9205</a>
           </div>
         </div>
         <div class="info-row">
-          <span class="info-key">Fax</span>
+          <span class="info-key" data-i18n="infoLabelFax">Fax</span>
           <div>
             <span class="info-val">02-532-9206</span>
           </div>
         </div>
         <div class="info-row">
-          <span class="info-key">Address</span>
+          <span class="info-key" data-i18n="infoLabelAddress">Address</span>
           <div>
             <span class="info-val" style="font-size:clamp(13px,1.3vw,16px); line-height:1.6">서울특별시 서초구 사평대로 98, 4층</span>
             <div class="info-sub">ER CONTENTS MEDIA GROUP · 반포동</div>
@@ -322,7 +423,7 @@
   <!-- FOOTER -->
   <footer>
     <span class="ft">© 2026 ER Contents Media Group</span>
-    <span class="ft">Seoul, Korea</span>
+    <span class="ft" data-i18n="footerLocation">Seoul, Korea</span>
   </footer>
 
   <script>
@@ -340,6 +441,110 @@
       mobileMenu.classList.remove('open'); mobileMenu.setAttribute('aria-hidden','true');
       mobileMenu.addEventListener('transitionend',()=>{ mobileMenu.style.display='none'; },{once:true});
     }));
+  </script>
+
+  <script>
+    const I18N = {
+      ko: {
+        navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+        navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+        footerLocation: 'Seoul, Korea',
+        pageTitleInitial: 'C', pageTitleRest: 'ONTACT',
+        pgDesc: '공연, 매니지먼트, 콘텐츠,<br>브랜드 협업 등 모든 문의를 환영합니다.',
+        categoryPerformance: '공연', categoryManagement: '매니지먼트', categoryContent: '콘텐츠', categoryBrand: '브랜드',
+        infoSectionLabel: 'Contact Information',
+        infoLabelEmail: 'Email', infoLabelTel: 'Tel', infoLabelFax: 'Fax', infoLabelAddress: 'Address',
+        logoTaglineLocation: 'Seoul, Korea',
+      },
+      en: {
+        navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
+        navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+        footerLocation: 'Seoul, Korea',
+        pageTitleInitial: 'C', pageTitleRest: 'ONTACT',
+        pgDesc: 'We welcome all inquiries regarding performances, management, content, and brand collaborations.',
+        categoryPerformance: 'Performance', categoryManagement: 'Management', categoryContent: 'Content', categoryBrand: 'Brand',
+        infoSectionLabel: 'Contact Information',
+        infoLabelEmail: 'Email', infoLabelTel: 'Tel', infoLabelFax: 'Fax', infoLabelAddress: 'Address',
+        logoTaglineLocation: 'Seoul, Korea',
+      },
+      ja: {
+        navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
+        navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+        footerLocation: '韓国・ソウル',
+        pageTitleInitial: 'コ', pageTitleRest: 'ンタクト',
+        pgDesc: '公演、マネジメント、コンテンツ、ブランドコラボレーションなど、あらゆるお問い合わせを歓迎いたします。',
+        categoryPerformance: '公演', categoryManagement: 'マネジメント', categoryContent: 'コンテンツ', categoryBrand: 'ブランド',
+        infoSectionLabel: '連絡先情報',
+        infoLabelEmail: 'メール', infoLabelTel: '電話', infoLabelFax: 'FAX', infoLabelAddress: '住所',
+        logoTaglineLocation: 'ソウル、韓国',
+      },
+      zh: {
+        navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
+        navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+        footerLocation: '韩国首尔',
+        pageTitleInitial: '联', pageTitleRest: '系我们',
+        pgDesc: '欢迎垂询演出、艺人经纪、内容制作、品牌合作等各类事务。',
+        categoryPerformance: '演出', categoryManagement: '艺人经纪', categoryContent: '内容', categoryBrand: '品牌',
+        infoSectionLabel: '联系方式',
+        infoLabelEmail: '邮箱', infoLabelTel: '电话', infoLabelFax: '传真', infoLabelAddress: '地址',
+        logoTaglineLocation: '首尔，韩国',
+      },
+    };
+
+    (function () {
+      var LANG_LABELS = { ko: 'KO', en: 'EN', ja: 'JP', zh: 'CN' };
+
+      function applyTranslations(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (I18N[lang] && I18N[lang][key] !== undefined) {
+            el.innerHTML = I18N[lang][key];
+          }
+        });
+      }
+
+      function setLanguage(lang) {
+        if (!LANG_LABELS[lang]) { lang = 'ko'; }
+        document.documentElement.lang = lang;
+        applyTranslations(lang);
+        document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
+          el.textContent = LANG_LABELS[lang];
+        });
+        document.querySelectorAll('.lang-option').forEach(function (btn) {
+          btn.closest('li').style.display = (btn.dataset.lang === lang) ? 'none' : '';
+        });
+        document.querySelectorAll('.lang-dropdown').forEach(function (dd) {
+          dd.classList.remove('open');
+        });
+        document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        });
+        localStorage.setItem('lang', lang);
+      }
+
+      document.querySelectorAll('.lang-toggle-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var dropdown = btn.nextElementSibling;
+          var isOpen = dropdown.classList.toggle('open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      document.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.addEventListener('click', function () { setLanguage(btn.dataset.lang); });
+      });
+
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.lang-dropdown.open').forEach(function (dd) { dd.classList.remove('open'); });
+        document.querySelectorAll('.lang-toggle-btn[aria-expanded="true"]').forEach(function (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      var savedLang = localStorage.getItem('lang');
+      if (savedLang && savedLang !== 'ko') setLanguage(savedLang);
+    }());
   </script>
 </body>
 </html>
