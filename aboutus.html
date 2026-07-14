@@ -428,7 +428,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -503,7 +503,7 @@
           </div>
         </section>
 
-        <aside aria-label="회사 정보">
+        <aside aria-label="회사 정보" data-i18n-aria-label="companyInfoAriaLabel">
           <div class="info-block">
             <div class="info-label">Company</div>
             <p class="info-copy" data-i18n="infoCopyCompany">공연·방송·콘텐츠 제작을 기반으로 다양한 문화 콘텐츠 프로젝트를 기획하고 제작하는 회사입니다.</p>
@@ -606,6 +606,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: '메뉴 열기', companyInfoAriaLabel: '회사 정보',
       aboutTitleInitial: 'A', aboutTitleRest: 'BOUT US',
       ceoParaIntro: 'ER콘텐츠미디어그룹은 공연, 방송, 그리고 다양한 콘텐츠를 통해 새로운 문화 경험을 만들어가는 콘텐츠 기획, 제작사입니다.',
       ceoParaMission: '우리는 단순한 이벤트와 공연을 넘어 아티스트, 브랜드, 그리고 관객을 연결하는 콘텐츠를 기획하고 제작합니다.',
@@ -628,6 +629,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: 'Open menu', companyInfoAriaLabel: 'Company Information',
       aboutTitleInitial: 'A', aboutTitleRest: 'BOUT US',
       ceoParaIntro: 'ER Contents Media Group is a content planning and production company creating new cultural experiences through performances, broadcasting, and a wide range of content.',
       ceoParaMission: 'We plan and produce content that connects artists, brands, and audiences, going beyond simple events and performances.',
@@ -650,6 +652,7 @@
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       footerLocation: '韓国・ソウル',
+      navHamburgerAriaLabel: 'メニューを開く', companyInfoAriaLabel: '会社情報',
       aboutTitleInitial: '会', aboutTitleRest: '社概要',
       ceoParaIntro: 'ERコンテンツメディアグループは、公演、放送、そして多様なコンテンツを通じて新しい文化体験を創り出す、コンテンツ企画・制作会社です。',
       ceoParaMission: '私たちは、単なるイベントや公演を超えて、アーティストとブランド、そして観客をつなぐコンテンツを企画・制作しています。',
@@ -672,6 +675,7 @@
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       footerLocation: '韩国首尔',
+      navHamburgerAriaLabel: '打开菜单', companyInfoAriaLabel: '公司信息',
       aboutTitleInitial: '关', aboutTitleRest: '于我们',
       ceoParaIntro: 'ER内容传媒集团是一家通过演出、广播及各种多样的内容，创造全新文化体验的内容策划与制作公司。',
       ceoParaMission: '我们策划并制作超越单纯活动与演出的内容，连接艺人、品牌与观众。',
@@ -699,6 +703,14 @@
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var key = el.getAttribute('data-i18n');
         if (I18N[lang] && I18N[lang][key] !== undefined) { el.innerHTML = I18N[lang][key]; }
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) { el.setAttribute('aria-label', I18N[lang][key]); }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) { el.setAttribute('alt', I18N[lang][key]); }
       });
     }
     function setLanguage(lang) {

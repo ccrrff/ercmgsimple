@@ -406,7 +406,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -467,7 +467,7 @@
     </aside>
 
     <!-- GALLERY -->
-    <main class="gallery-panel" aria-label="갤러리">
+    <main class="gallery-panel" aria-label="갤러리" data-i18n-aria-label="galleryAriaLabel">
 
       <div class="show-pane on" id="pane-bangkok">
         <div class="gallery-grid" id="grid-bangkok"></div>
@@ -598,6 +598,13 @@
       }
     };
 
+    /* ─── I18N-safe lookup (I18N is declared in a later <script> tag; guard the very first synchronous call) ─── */
+    function i18nText() {
+      var lang = document.documentElement.lang || 'ko';
+      if (typeof I18N !== 'undefined' && I18N[lang]) return I18N[lang];
+      return { highlightVideoSuffix: ' 하이라이트 영상', highlightAltWord: ' highlight', itemsSuffix: '개' };
+    }
+
     /* ─── BUILD GRIDS ─── */
     function buildGrid(showId) {
       const show = SHOWS[showId];
@@ -608,10 +615,11 @@
         const vw = document.createElement('div');
         vw.className = 'g-item video-item';
         vw.setAttribute('role', 'button');
-        vw.setAttribute('aria-label', show.label + ' 하이라이트 영상');
+        vw.setAttribute('data-show-label', show.label);
+        vw.setAttribute('aria-label', show.label + i18nText().highlightVideoSuffix);
         vw.onclick = () => vmOpen(show.youtubeId);
         vw.innerHTML = `
-          <img src="https://img.youtube.com/vi/${show.youtubeId}/maxresdefault.jpg" alt="${show.label} highlight" loading="lazy">
+          <img src="https://img.youtube.com/vi/${show.youtubeId}/maxresdefault.jpg" alt="${show.label}${i18nText().highlightAltWord}" loading="lazy">
           <div class="play-btn"><div class="play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>`;
         grid.appendChild(vw);
       }
@@ -625,6 +633,20 @@
       });
     }
 
+    /* ─── refresh dynamic (JS-rendered) text on language switch ─── */
+    function refreshGalleryI18n() {
+      const t = i18nText();
+      document.querySelectorAll('.video-item[data-show-label]').forEach(el => {
+        const label = el.getAttribute('data-show-label');
+        el.setAttribute('aria-label', label + t.highlightVideoSuffix);
+        const img = el.querySelector('img');
+        if (img) img.alt = label + t.highlightAltWord;
+      });
+      if (window.__currentShowCount !== undefined) {
+        document.getElementById('show-count').textContent = window.__currentShowCount + t.itemsSuffix;
+      }
+    }
+
     /* ─── SHOW SWITCH ─── */
     function switchShow(id, btn) {
       document.querySelectorAll('.show-item').forEach(b => {
@@ -636,7 +658,8 @@
       buildGrid(id);
       const show = SHOWS[id];
       const ct = show.images.length + (show.youtubeId ? 1 : 0);
-      document.getElementById('show-count').textContent = ct + ' items';
+      window.__currentShowCount = ct;
+      document.getElementById('show-count').textContent = ct + i18nText().itemsSuffix;
     }
 
     /* ─── LIGHTBOX ─── */
@@ -683,7 +706,8 @@
 
     /* ─── INIT ─── */
     buildGrid('bangkok');
-    document.getElementById('show-count').textContent = SHOWS.bangkok.images.length + ' items';
+    window.__currentShowCount = SHOWS.bangkok.images.length + (SHOWS.bangkok.youtubeId ? 1 : 0);
+    document.getElementById('show-count').textContent = window.__currentShowCount + i18nText().itemsSuffix;
   </script>
 
 <script>
@@ -692,6 +716,8 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: '메뉴 열기', galleryAriaLabel: '갤러리',
+      highlightVideoSuffix: ' 하이라이트 영상', highlightAltWord: ' highlight', itemsSuffix: '개',
       projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
       projectsDesc: '무대 위에서 포착된<br>결정적인 순간들.',
       placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
@@ -701,6 +727,8 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: 'Open menu', galleryAriaLabel: 'Gallery',
+      highlightVideoSuffix: ' highlight video', highlightAltWord: ' highlight', itemsSuffix: ' items',
       projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
       projectsDesc: 'Decisive moments,<br>captured on stage.',
       placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
@@ -710,6 +738,8 @@
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       footerLocation: '韓国・ソウル',
+      navHamburgerAriaLabel: 'メニューを開く', galleryAriaLabel: 'ギャラリー',
+      highlightVideoSuffix: ' ハイライト映像', highlightAltWord: ' ハイライト', itemsSuffix: '点',
       projectsTitleInitial: 'プ', projectsTitleRest: 'ロジェクト',
       projectsDesc: '舞台の上で捉えた<br>決定的な瞬間。',
       placeBangkok: 'バンコク', placeVietnam: 'ベトナム', placeMalaysia: 'マレーシア',
@@ -719,6 +749,8 @@
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       footerLocation: '韩国首尔',
+      navHamburgerAriaLabel: '打开菜单', galleryAriaLabel: '图库',
+      highlightVideoSuffix: ' 精彩视频', highlightAltWord: ' 精彩片段', itemsSuffix: '张',
       projectsTitleInitial: '项', projectsTitleRest: '目',
       projectsDesc: '舞台之上定格的<br>决定性瞬间。',
       placeBangkok: '曼谷', placeVietnam: '越南', placeMalaysia: '马来西亚',
@@ -737,12 +769,25 @@
           el.innerHTML = I18N[lang][key];
         }
       });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('aria-label', I18N[lang][key]);
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('alt', I18N[lang][key]);
+        }
+      });
     }
 
     function setLanguage(lang) {
       if (!LANG_LABELS[lang]) { lang = 'ko'; }
       document.documentElement.lang = lang;
       applyTranslations(lang);
+      if (typeof refreshGalleryI18n === 'function') refreshGalleryI18n();
       document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
         el.textContent = LANG_LABELS[lang];
       });

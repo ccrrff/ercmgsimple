@@ -343,7 +343,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -387,9 +387,9 @@
     </aside>
 
     <!-- NOTICE LIST -->
-    <main class="notice-panel" aria-label="공지사항 목록">
-      <figure class="notice-visual" aria-label="ER CMG 공연장 현장 이미지">
-        <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_1600,h_520,c_fill,g_auto,q_auto,f_auto/v1778058617/ercmg/gallery/bangkok/daesung/ptz1f0chkee8c2yd7bjt.jpg" alt="대형 공연장의 무대와 관객석을 담은 ER CMG 공연 현장">
+    <main class="notice-panel" aria-label="공지사항 목록" data-i18n-aria-label="noticeListAriaLabel">
+      <figure class="notice-visual" aria-label="ER CMG 공연장 현장 이미지" data-i18n-aria-label="venueFigureAriaLabel">
+        <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_1600,h_520,c_fill,g_auto,q_auto,f_auto/v1778058617/ercmg/gallery/bangkok/daesung/ptz1f0chkee8c2yd7bjt.jpg" alt="대형 공연장의 무대와 관객석을 담은 ER CMG 공연 현장" data-i18n-alt="venueImgAlt">
         <figcaption class="notice-visual-copy">
           <div class="notice-visual-kicker" data-i18n="noticeVisualKicker">Live venue archive</div>
           <div class="notice-visual-title" data-i18n="noticeVisualTitle">Stage, screen and audience</div>
@@ -423,6 +423,7 @@
     sorted.forEach(n => {
       const el = document.createElement('div');
       el.className = 'notice-item';
+      el.setAttribute('data-notice-index', NOTICES.indexOf(n));
       el.innerHTML = `
         <div class="ni-head">
           ${n.pinned ? '<span class="ni-pin">공지</span>' : ''}
@@ -439,7 +440,58 @@
       list.appendChild(el);
     });
 
-    document.getElementById('notice-count').textContent = NOTICES.length + ' notices';
+    /* ─── NOTICES translations (title/content only — date/pinned flag are not text) ─── */
+    const NOTICE_I18N = {
+      en: [
+        { title: 'K-SPARK MACAU 2025 Performance Notice', content: 'This is information regarding the K-SPARK MACAU 2025 performance schedule and tickets. Please check our official channels for further details.' },
+        { title: 'K-SPARK TAIWAN 2026 Performance Schedule Confirmed', content: 'The K-SPARK TAIWAN 2026 performance schedule has been confirmed. Detailed information will be announced through an official notice at a later date.' },
+        { title: 'K-SPARK MALAYSIA 2026 Lineup Announcement', content: 'The official lineup for K-SPARK Malaysia 2026 has been announced. Check the participating artists and performance details.' },
+        { title: 'Website Renewal Notice', content: 'The official website of ER Contents Media Group has been renewed. We will do our best to ensure a smooth user experience.' },
+        { title: '2025 Company Holiday Notice', content: 'Operations will be suspended during the 2025 Lunar New Year holiday period (January 28–30). Inquiries during this period will be handled in order after the holiday.' },
+      ],
+      ja: [
+        { title: 'K-SPARK MACAU 2025 公演のご案内', content: 'K-SPARK MACAU 2025公演の日程およびチケットに関するご案内です。詳細は公式チャンネルをご確認ください。' },
+        { title: 'K-SPARK TAIWAN 2026 公演日程確定のお知らせ', content: 'K-SPARK TAIWAN 2026公演の日程が確定しました。詳細は後日、公式のお知らせにてご案内いたします。' },
+        { title: 'K-SPARK MALAYSIA 2026 ラインアップ発表', content: 'K-SPARK Malaysia 2026のラインアップが正式に発表されました。出演アーティストおよび公演情報をご確認ください。' },
+        { title: 'ホームページリニューアルのお知らせ', content: 'ERコンテンツメディアグループの公式ホームページがリニューアルされました。ご利用にご不便がないよう努めてまいります。' },
+        { title: '2025年 会社休業のお知らせ', content: '2025年旧正月連休期間(1月28日～30日)は業務を休止いたします。当該期間中のお問い合わせは連休明け以降、順次対応いたします。' },
+      ],
+      zh: [
+        { title: 'K-SPARK MACAU 2025 演出公告', content: '这是关于K-SPARK MACAU 2025演出日程及门票的相关通知。详情请通过官方渠道确认。' },
+        { title: 'K-SPARK TAIWAN 2026 演出日程确定公告', content: 'K-SPARK TAIWAN 2026演出日程已确定。详细信息将通过后续官方公告另行通知。' },
+        { title: 'K-SPARK MALAYSIA 2026 阵容公布', content: 'K-SPARK Malaysia 2026阵容已正式公布。请查看参演艺人及演出信息。' },
+        { title: '官网改版公告', content: 'ER内容媒体集团官方网站已完成改版。我们将竭尽全力确保您的使用体验不受影响。' },
+        { title: '2025年公司休假公告', content: '2025年春节假期期间(1月28日至30日)将暂停营业。该期间内的咨询将于假期结束后依序处理。' },
+      ],
+    };
+
+    function noticeI18nText() {
+      var lang = document.documentElement.lang || 'ko';
+      if (typeof I18N !== 'undefined' && I18N[lang]) return I18N[lang];
+      return { noticePinBadge: '공지', noticeCountSuffix: '건' };
+    }
+
+    function refreshNoticesI18n(lang) {
+      const translated = NOTICE_I18N[lang];
+      document.querySelectorAll('.notice-item[data-notice-index]').forEach(el => {
+        const i = +el.getAttribute('data-notice-index');
+        const t = translated && translated[i];
+        const titleEl = el.querySelector('.ni-title');
+        const bodyEl = el.querySelector('.ni-body-inner');
+        if (t) {
+          titleEl.textContent = t.title;
+          bodyEl.textContent = t.content;
+        } else {
+          titleEl.textContent = NOTICES[i].title;
+          bodyEl.textContent = NOTICES[i].content;
+        }
+        const pinEl = el.querySelector('.ni-pin');
+        if (pinEl) pinEl.textContent = noticeI18nText().noticePinBadge;
+      });
+      document.getElementById('notice-count').textContent = NOTICES.length + noticeI18nText().noticeCountSuffix;
+    }
+
+    document.getElementById('notice-count').textContent = NOTICES.length + noticeI18nText().noticeCountSuffix;
 
     /* ─── HAMBURGER ─── */
     const hamburger = document.getElementById('hamburger');
@@ -464,6 +516,9 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: '메뉴 열기', noticeListAriaLabel: '공지사항 목록',
+      venueFigureAriaLabel: 'ER CMG 공연장 현장 이미지', venueImgAlt: '대형 공연장의 무대와 관객석을 담은 ER CMG 공연 현장',
+      noticePinBadge: '공지', noticeCountSuffix: '건',
       pgTitleInitial: 'N', pgTitleRest: 'OTICE',
       pgDesc: '공지사항 및 주요 안내를<br>확인하세요.',
       noticeVisualKicker: 'Live venue archive',
@@ -473,6 +528,9 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: 'Open menu', noticeListAriaLabel: 'Notice list',
+      venueFigureAriaLabel: 'ER CMG concert venue photo', venueImgAlt: 'ER CMG concert venue featuring the stage and audience seating of a large arena',
+      noticePinBadge: 'Pinned', noticeCountSuffix: ' notices',
       pgTitleInitial: 'N', pgTitleRest: 'OTICE',
       pgDesc: 'Check our notices and important announcements.',
       noticeVisualKicker: 'Live venue archive',
@@ -482,6 +540,9 @@
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       footerLocation: '韓国・ソウル',
+      navHamburgerAriaLabel: 'メニューを開く', noticeListAriaLabel: 'お知らせ一覧',
+      venueFigureAriaLabel: 'ER CMGコンサート会場の様子', venueImgAlt: '大型公演会場のステージと客席を収めたER CMGの公演現場',
+      noticePinBadge: '固定', noticeCountSuffix: '件',
       pgTitleInitial: 'お', pgTitleRest: '知らせ',
       pgDesc: 'お知らせや主要な案内をご確認ください。',
       noticeVisualKicker: '会場ライブアーカイブ',
@@ -491,6 +552,9 @@
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       footerLocation: '韩国首尔',
+      navHamburgerAriaLabel: '打开菜单', noticeListAriaLabel: '公告列表',
+      venueFigureAriaLabel: 'ER CMG演出场馆现场图片', venueImgAlt: '展现大型场馆舞台与观众席的ER CMG演出现场',
+      noticePinBadge: '置顶', noticeCountSuffix: '条公告',
       pgTitleInitial: '公', pgTitleRest: '告',
       pgDesc: '请查看公告及重要通知。',
       noticeVisualKicker: '现场场馆影像档案',
@@ -509,12 +573,25 @@
           el.innerHTML = I18N[lang][key];
         }
       });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('aria-label', I18N[lang][key]);
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('alt', I18N[lang][key]);
+        }
+      });
     }
 
     function setLanguage(lang) {
       if (!LANG_LABELS[lang]) { lang = 'ko'; }
       document.documentElement.lang = lang;
       applyTranslations(lang);
+      if (typeof refreshNoticesI18n === 'function') refreshNoticesI18n(lang);
       document.querySelectorAll('.lang-toggle-label').forEach(function (el) {
         el.textContent = LANG_LABELS[lang];
       });

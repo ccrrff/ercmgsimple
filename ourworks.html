@@ -383,7 +383,7 @@
           <li role="menuitem"><button class="lang-option" data-lang="zh">CN</button></li>
         </ul>
       </div>
-      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+      <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기" data-i18n-aria-label="navHamburgerAriaLabel" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -432,7 +432,7 @@
       </section>
 
       <!-- RIGHT -->
-      <div class="right-panel" aria-label="작업 목록">
+      <div class="right-panel" aria-label="작업 목록" data-i18n-aria-label="worksListAriaLabel">
 
         <!-- year tabs -->
         <div class="year-tabs" role="tablist">
@@ -779,6 +779,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: '메뉴 열기', worksListAriaLabel: '작업 목록',
       heroTitleInitial: 'W', heroTitleRest: 'ORKS',
       heroDescLine1: '무대 위, 스크린 안,', heroDescLine2: '브랜드와 아티스트 사이에서', heroDescLine3: '우리가 만들어온 순간들.',
       typeFounding: '창립', typeBroadcast: '방송', typeLive: '라이브', typeYoutube: '유튜브',
@@ -796,6 +797,7 @@
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
       footerLocation: 'Seoul, Korea',
+      navHamburgerAriaLabel: 'Open menu', worksListAriaLabel: 'Works list',
       heroTitleInitial: 'W', heroTitleRest: 'ORKS',
       heroDescLine1: 'On stage, on screen,', heroDescLine2: 'between brands and artists,', heroDescLine3: "the moments we've created.",
       typeFounding: 'Founding', typeBroadcast: 'Broadcast', typeLive: 'Live', typeYoutube: 'YouTube',
@@ -813,6 +815,7 @@
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
       footerLocation: '韓国・ソウル',
+      navHamburgerAriaLabel: 'メニューを開く', worksListAriaLabel: '実績一覧',
       heroTitleInitial: '実', heroTitleRest: '績',
       heroDescLine1: '舞台の上、スクリーンの中、', heroDescLine2: 'ブランドとアーティストの間で', heroDescLine3: '私たちが作り上げてきた瞬間たち。',
       typeFounding: '設立', typeBroadcast: '放送', typeLive: 'ライブ', typeYoutube: 'YouTube',
@@ -830,6 +833,7 @@
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
       footerLocation: '韩国首尔',
+      navHamburgerAriaLabel: '打开菜单', worksListAriaLabel: '作品列表',
       heroTitleInitial: '作', heroTitleRest: '品',
       heroDescLine1: '舞台之上,银幕之中,', heroDescLine2: '在品牌与艺人之间,', heroDescLine3: '我们共同创造的瞬间。',
       typeFounding: '创立', typeBroadcast: '电视节目', typeLive: '现场演出', typeYoutube: 'YouTube',
@@ -854,6 +858,18 @@
         var key = el.getAttribute('data-i18n');
         if (I18N[lang] && I18N[lang][key] !== undefined) {
           el.innerHTML = I18N[lang][key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-aria-label');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('aria-label', I18N[lang][key]);
+        }
+      });
+      document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n-alt');
+        if (I18N[lang] && I18N[lang][key] !== undefined) {
+          el.setAttribute('alt', I18N[lang][key]);
         }
       });
     }
