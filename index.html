@@ -143,6 +143,19 @@
     .nav.solid .nav-links a { color: #555; }
     .nav.solid .nav-links a:hover { color: #000; }
 
+    /* ── CORNER — BOTTOM RIGHT ── */
+    .hero-corner-br {
+      position: absolute;
+      bottom: 6%;
+      right: var(--pad-x);
+      z-index: 15;
+      font-size: clamp(7px, 0.85vw, 10px);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.50);
+      white-space: nowrap;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       :root { --pad-x: 4%; }
@@ -224,6 +237,11 @@
 
       /* 모바일 메뉴 활성화 */
       .mobile-menu { display: flex; }
+    }
+
+    @media (max-width: 480px) {
+      /* 우하단 코너 숨김 — 모바일 최소화 */
+      .hero-corner-br { display: none; }
     }
 
     /* ── FOOTER ── */
@@ -399,6 +417,9 @@
     <!-- 4. VIGNETTE (z-index: 4) -->
     <div class="hero-vignette" aria-hidden="true"></div>
 
+    <!-- 7. CORNER — BOTTOM RIGHT (z-index: 15) -->
+    <div class="hero-corner-br" aria-hidden="true" data-i18n="heroCornerBr">Seoul · Est. 2018</div>
+
   </section>
 
   <footer class="site-footer">
@@ -447,24 +468,28 @@
     ko: {
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      heroCornerBr: 'Seoul · Est. 2018',
       footerLocation: 'Seoul, Korea',
       navAriaLabel: '주 메뉴', navHamburgerAriaLabel: '메뉴 열기', heroAriaLabel: '히어로',
     },
     en: {
       navAboutUs: 'About Us', navBusiness: 'Business', navOurWorks: 'Our Works',
       navProjects: 'Projects', navNews: 'News', navNotice: 'Notice', navContact: 'Contact',
+      heroCornerBr: 'Seoul · Est. 2018',
       footerLocation: 'Seoul, Korea',
       navAriaLabel: 'Main menu', navHamburgerAriaLabel: 'Open menu', heroAriaLabel: 'Hero',
     },
     ja: {
       navAboutUs: '会社概要', navBusiness: '事業', navOurWorks: '制作実績',
       navProjects: 'プロジェクト', navNews: 'ニュース', navNotice: 'お知らせ', navContact: 'お問い合わせ',
+      heroCornerBr: 'ソウル・2018年創業',
       footerLocation: '韓国・ソウル',
       navAriaLabel: 'メインメニュー', navHamburgerAriaLabel: 'メニューを開く', heroAriaLabel: 'ヒーロー',
     },
     zh: {
       navAboutUs: '关于我们', navBusiness: '业务', navOurWorks: '作品',
       navProjects: '项目', navNews: '新闻', navNotice: '公告', navContact: '联系我们',
+      heroCornerBr: '首尔·2018年成立',
       footerLocation: '韩国首尔',
       navAriaLabel: '主菜单', navHamburgerAriaLabel: '打开菜单', heroAriaLabel: '主视觉',
     },
