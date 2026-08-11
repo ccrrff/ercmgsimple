@@ -241,7 +241,7 @@
     }
     .vm.open { display: flex; }
     .vm-inner { position: relative; width: min(860px,90vw); aspect-ratio: 16/9; }
-    .vm iframe { width: 100%; height: 100%; border: none; }
+    .vm iframe, .vm video { width: 100%; height: 100%; border: none; object-fit: contain; }
     .vm-close {
       position: fixed; top: 20px; right: 24px;
       background: none; border: none; color: rgba(255,255,255,0.65);
@@ -462,6 +462,9 @@
         <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('macau',this)">
           <span class="sn" data-i18n="placeMacau">Macau</span><span class="sd">2026.05.02</span>
         </button>
+        <button class="show-item" role="tab" aria-selected="false" onclick="switchShow('kaohsiung',this)">
+          <span class="sn" data-i18n="placeKaohsiung">Kaohsiung</span><span class="sd">2026.05.30</span>
+        </button>
       </div>
       <div class="show-count" id="show-count"></div>
     </aside>
@@ -483,6 +486,9 @@
       </div>
       <div class="show-pane" id="pane-macau">
         <div class="gallery-grid" id="grid-macau"></div>
+      </div>
+      <div class="show-pane" id="pane-kaohsiung">
+        <div class="gallery-grid" id="grid-kaohsiung"></div>
       </div>
 
     </main>
@@ -595,6 +601,318 @@
           'https://res.cloudinary.com/dx629ses8/image/upload/v1781228578/AC_05036_lwwrqi.jpg',
           'https://res.cloudinary.com/dx629ses8/image/upload/v1781228585/AC_06275_etzesl.jpg',
         ]
+      },
+      kaohsiung: {
+        label: 'Kaohsiung', date: '2026.05.30', youtubeId: null,
+        videoUrls: [
+          { url: 'https://res.cloudinary.com/dx629ses8/video/upload/v1786434432/ercmg/gallery/kaohsiung/highlight.mp4', poster: 'https://res.cloudinary.com/dx629ses8/image/upload/v1786435107/ercmg/gallery/kaohsiung/production-photo/hdc06027-74f72dda.jpg' },
+          { url: 'https://res.cloudinary.com/dx629ses8/video/upload/v1786435330/ercmg/gallery/kaohsiung/highlight-ftisland-edit.mp4', poster: 'https://res.cloudinary.com/dx629ses8/image/upload/v1786435173/ercmg/gallery/kaohsiung/ftisland/dsc02108-261aad00.jpg' },
+        ],
+        images: [
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435085/ercmg/gallery/kaohsiung/dpr-ian/dsc00250-d5e5d2f3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435085/ercmg/gallery/kaohsiung/dpr-ian/dsc00264-6731603e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435086/ercmg/gallery/kaohsiung/dpr-ian/dsc00298-e369cda2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435086/ercmg/gallery/kaohsiung/dpr-ian/dsc00314-00e72567.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435087/ercmg/gallery/kaohsiung/dpr-ian/dsc00322-279de2e0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435087/ercmg/gallery/kaohsiung/dpr-ian/dsc00349-2d13e1e9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435087/ercmg/gallery/kaohsiung/dpr-ian/dsc00397-2e582e0f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435087/ercmg/gallery/kaohsiung/dpr-ian/dsc00416-ab30d54d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435089/ercmg/gallery/kaohsiung/dpr-ian/dsc00507-328737b9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435089/ercmg/gallery/kaohsiung/dpr-ian/dsc00513-34a49df1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435089/ercmg/gallery/kaohsiung/dpr-ian/dsc00518-79a8cdff.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435089/ercmg/gallery/kaohsiung/dpr-ian/dsc00640-040ac496.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435091/ercmg/gallery/kaohsiung/dpr-ian/dsc00671-197c2cfb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435091/ercmg/gallery/kaohsiung/dpr-ian/dsc00703-d880d3e7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435091/ercmg/gallery/kaohsiung/dpr-ian/dsc00891-7c54444b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435091/ercmg/gallery/kaohsiung/dpr-ian/dsc00993-0ce14f8e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435092/ercmg/gallery/kaohsiung/dpr-ian/dsc01078-3813af44.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435092/ercmg/gallery/kaohsiung/dpr-ian/dsc01111-f3460ffe.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435092/ercmg/gallery/kaohsiung/dpr-ian/dsc01115-467ab3fd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435092/ercmg/gallery/kaohsiung/dpr-ian/dsc01117-cad0f848.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435093/ercmg/gallery/kaohsiung/dpr-ian/dsc01120-48734ca2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435094/ercmg/gallery/kaohsiung/dpr-ian/dsc01204-75f82a7b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435094/ercmg/gallery/kaohsiung/dpr-ian/hdc05111-04ba23f3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435094/ercmg/gallery/kaohsiung/dpr-ian/hdc05113-d29ffff0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435095/ercmg/gallery/kaohsiung/dpr-ian/hdc05115-03a0b20f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435095/ercmg/gallery/kaohsiung/dpr-ian/hdc05134-17b2048e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435096/ercmg/gallery/kaohsiung/dpr-ian/hdc05143-6fe08b3b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435095/ercmg/gallery/kaohsiung/dpr-ian/hdc09402-1a6f54cf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435097/ercmg/gallery/kaohsiung/dpr-ian/hdc09407-27709f43.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435098/ercmg/gallery/kaohsiung/dpr-ian/hdc09429-2e81849c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435097/ercmg/gallery/kaohsiung/dpr-ian/hdc09438-2466df89.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435097/ercmg/gallery/kaohsiung/dpr-ian/hdc09441-976fe9a4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435099/ercmg/gallery/kaohsiung/dpr-ian/hdc09446-6a9b34b0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435099/ercmg/gallery/kaohsiung/dpr-ian/hdc09576-f24f94c0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435099/ercmg/gallery/kaohsiung/g-dragon/dsc03117-b1590a46.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435099/ercmg/gallery/kaohsiung/g-dragon/dsc03140-dcf395b9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435101/ercmg/gallery/kaohsiung/g-dragon/dsc03330-839359c9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435101/ercmg/gallery/kaohsiung/g-dragon/dsc03532-4cb8e4b1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435101/ercmg/gallery/kaohsiung/g-dragon/dsc03557-6a38f2e6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435101/ercmg/gallery/kaohsiung/g-dragon/dsc03594-d1a812c8.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435103/ercmg/gallery/kaohsiung/g-dragon/dsc03751-15091693.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435103/ercmg/gallery/kaohsiung/g-dragon/dsc03766-40650f91.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435103/ercmg/gallery/kaohsiung/g-dragon/hdc05689-2ce469c3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435103/ercmg/gallery/kaohsiung/g-dragon/hdc05731-24933f5f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435105/ercmg/gallery/kaohsiung/g-dragon/hdc05761-bb835a15.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435105/ercmg/gallery/kaohsiung/g-dragon/hdc05790-8a1f170d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435105/ercmg/gallery/kaohsiung/g-dragon/hdc05849-d2a68121.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435105/ercmg/gallery/kaohsiung/g-dragon/hdc05938-de7d11f4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435107/ercmg/gallery/kaohsiung/g-dragon/hdc05939-34671ede.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435107/ercmg/gallery/kaohsiung/g-dragon/hdc05964-17478db3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435107/ercmg/gallery/kaohsiung/production-photo/hdc06027-74f72dda.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435107/ercmg/gallery/kaohsiung/production-photo/hdc06030-dd97467c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435109/ercmg/gallery/kaohsiung/production-photo/hdc06035-20ca999a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435109/ercmg/gallery/kaohsiung/taeyeon/dsc02759-2dcf12d5.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435109/ercmg/gallery/kaohsiung/taeyeon/dsc02771-5c602ac7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435109/ercmg/gallery/kaohsiung/taeyeon/dsc02800-a9dfe154.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435112/ercmg/gallery/kaohsiung/taeyeon/dsc02803-be927c0a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435112/ercmg/gallery/kaohsiung/taeyeon/dsc02808-c9438a2b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435112/ercmg/gallery/kaohsiung/taeyeon/dsc02814-d9dbabe5.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435112/ercmg/gallery/kaohsiung/taeyeon/dsc02856-e413d65e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435127/ercmg/gallery/kaohsiung/taeyeon/dsc02864-b0212e9e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435127/ercmg/gallery/kaohsiung/taeyeon/dsc02925-29c329b8.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435127/ercmg/gallery/kaohsiung/taeyeon/dsc02927-68213c01.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435128/ercmg/gallery/kaohsiung/taeyeon/dsc02961-2c83357e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435130/ercmg/gallery/kaohsiung/taeyeon/dsc03001-f284e436.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435129/ercmg/gallery/kaohsiung/taeyeon/dsc03018-a4c5506b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435129/ercmg/gallery/kaohsiung/taeyeon/hdc05577-76414e72.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435130/ercmg/gallery/kaohsiung/taeyeon/hdc05595-b23d0f0b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435131/ercmg/gallery/kaohsiung/taeyeon/hdc05628-1ecc631b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435131/ercmg/gallery/kaohsiung/taeyeon/hdc05641-0b7b0bbe.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435131/ercmg/gallery/kaohsiung/taeyeon/hdc05648-a31edbe3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435131/ercmg/gallery/kaohsiung/taeyeon/hdc05655-aab4640c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435132/ercmg/gallery/kaohsiung/taeyeon/hdc05663-d08ad061.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435133/ercmg/gallery/kaohsiung/audience/dsc00023-d7d1ad48.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435133/ercmg/gallery/kaohsiung/audience/dsc00397-23732553.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435133/ercmg/gallery/kaohsiung/audience/dsc02763-255c8c3c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435134/ercmg/gallery/kaohsiung/audience/dsc03053-1349650d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435135/ercmg/gallery/kaohsiung/audience/hdc05038-1beb3f28.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435135/ercmg/gallery/kaohsiung/audience/hdc05049-c46830c9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435135/ercmg/gallery/kaohsiung/audience/hdc05498-7fef712f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435138/ercmg/gallery/kaohsiung/audience/hdc09400-eeb33a14.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435138/ercmg/gallery/kaohsiung/dpr-ian/dsc00201-857930a3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435138/ercmg/gallery/kaohsiung/dpr-ian/dsc00223-cea14348.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435138/ercmg/gallery/kaohsiung/dpr-ian/dsc00225-93c6735a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435139/ercmg/gallery/kaohsiung/dpr-ian/dsc00386-d55918bd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435139/ercmg/gallery/kaohsiung/dpr-ian/dsc00401-e37f9727.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435139/ercmg/gallery/kaohsiung/dpr-ian/dsc00450-5b1022f2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435139/ercmg/gallery/kaohsiung/dpr-ian/dsc00454-72345094.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435141/ercmg/gallery/kaohsiung/dpr-ian/dsc00510-6493d2a6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435141/ercmg/gallery/kaohsiung/dpr-ian/dsc00512-87f92984.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435141/ercmg/gallery/kaohsiung/dpr-ian/dsc00515-648201dc.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435141/ercmg/gallery/kaohsiung/dpr-ian/dsc00516-9f8af7f7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435142/ercmg/gallery/kaohsiung/dpr-ian/dsc00520-07c00067.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435143/ercmg/gallery/kaohsiung/dpr-ian/dsc00575-0763b947.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435143/ercmg/gallery/kaohsiung/dpr-ian/dsc00577-06e10da1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435143/ercmg/gallery/kaohsiung/dpr-ian/dsc00887-ba2a9237.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435144/ercmg/gallery/kaohsiung/dpr-ian/dsc00913-cb269081.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435144/ercmg/gallery/kaohsiung/dpr-ian/dsc00923-b558da0c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435144/ercmg/gallery/kaohsiung/dpr-ian/dsc00926-08c38cdf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435144/ercmg/gallery/kaohsiung/dpr-ian/dsc01062-f9c5cea2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435146/ercmg/gallery/kaohsiung/dpr-ian/dsc01094-ddfba8f1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435146/ercmg/gallery/kaohsiung/dpr-ian/dsc01121-492bb2be.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435146/ercmg/gallery/kaohsiung/dpr-ian/dsc01122-88888546.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435146/ercmg/gallery/kaohsiung/dpr-ian/dsc01194-6a02a990.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435147/ercmg/gallery/kaohsiung/dpr-ian/dsc01212-feb98782.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435147/ercmg/gallery/kaohsiung/dpr-ian/dsc01242-77ea957c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435148/ercmg/gallery/kaohsiung/dpr-ian/hdc05049-d0b198db.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435148/ercmg/gallery/kaohsiung/dpr-ian/hdc05058-d47bfc60.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435149/ercmg/gallery/kaohsiung/dpr-ian/hdc05110-e9336364.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435148/ercmg/gallery/kaohsiung/dpr-ian/hdc05117-f6bb2ede.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435149/ercmg/gallery/kaohsiung/dpr-ian/hdc05160-dd1790f2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435149/ercmg/gallery/kaohsiung/dpr-ian/hdc09435-db0e6728.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435150/ercmg/gallery/kaohsiung/g-dragon/dsc03185-ecbca457.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435150/ercmg/gallery/kaohsiung/g-dragon/dsc03353-97dd0d0f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435150/ercmg/gallery/kaohsiung/g-dragon/dsc03609-6f2e4990.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435150/ercmg/gallery/kaohsiung/g-dragon/dsc03649-7febe616.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435152/ercmg/gallery/kaohsiung/g-dragon/dsc03801-eb095a32.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435152/ercmg/gallery/kaohsiung/g-dragon/hdc05791-f64c9e0e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435152/ercmg/gallery/kaohsiung/g-dragon/hdc05986-15c3e280.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435152/ercmg/gallery/kaohsiung/g-dragon/hdc06015-c7438d3c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435153/ercmg/gallery/kaohsiung/taeyeon/dsc02748-74c3aace.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435153/ercmg/gallery/kaohsiung/taeyeon/dsc02762-4bcc10f9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435153/ercmg/gallery/kaohsiung/taeyeon/dsc02763-0526448d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435153/ercmg/gallery/kaohsiung/taeyeon/dsc02777-97db9545.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435154/ercmg/gallery/kaohsiung/taeyeon/dsc02778-a30988fb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435155/ercmg/gallery/kaohsiung/taeyeon/dsc02779-b5975633.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435155/ercmg/gallery/kaohsiung/taeyeon/dsc02832-f4f69297.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435155/ercmg/gallery/kaohsiung/taeyeon/dsc02862-c6f320dd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435157/ercmg/gallery/kaohsiung/taeyeon/dsc02877-892a7236.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435157/ercmg/gallery/kaohsiung/taeyeon/dsc02923-25b66c32.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435157/ercmg/gallery/kaohsiung/taeyeon/dsc02948-7932a904.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435157/ercmg/gallery/kaohsiung/taeyeon/dsc03004-a3ba8341.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435159/ercmg/gallery/kaohsiung/taeyeon/dsc03026-6531bb49.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435159/ercmg/gallery/kaohsiung/taeyeon/dsc03035-48b54bf2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435159/ercmg/gallery/kaohsiung/taeyeon/dsc03039-69dbc81f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435159/ercmg/gallery/kaohsiung/taeyeon/dsc03048-5cfcc7e6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435160/ercmg/gallery/kaohsiung/taeyeon/dsc03049-be94afc6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435160/ercmg/gallery/kaohsiung/taeyeon/hdc05564-db14421f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435160/ercmg/gallery/kaohsiung/taeyeon/hdc05585-c0d71d7a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435160/ercmg/gallery/kaohsiung/taeyeon/hdc05593-b9c668b1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435161/ercmg/gallery/kaohsiung/taeyeon/hdc05609-60fe4674.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435162/ercmg/gallery/kaohsiung/taeyeon/hdc05616-d80f167b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435162/ercmg/gallery/kaohsiung/taeyeon/hdc05642-d451fe6c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435162/ercmg/gallery/kaohsiung/taeyeon/hdc05645-dd276050.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435163/ercmg/gallery/kaohsiung/taeyeon/hdc05660-05595295.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435164/ercmg/gallery/kaohsiung/taeyeon/hdc05670-93c89191.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435164/ercmg/gallery/kaohsiung/taeyeon/hdc05680-1e18bf1a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435164/ercmg/gallery/kaohsiung/audience/dsc00110-08ca4a6b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435165/ercmg/gallery/kaohsiung/audience/dsc00147-f3515dde.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435166/ercmg/gallery/kaohsiung/audience/dsc00154-e12534e0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435166/ercmg/gallery/kaohsiung/audience/dsc00156-ec65b337.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435165/ercmg/gallery/kaohsiung/audience/dsc00401-7313fd47.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435168/ercmg/gallery/kaohsiung/audience/dsc03566-ead1baa2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435168/ercmg/gallery/kaohsiung/audience/dsc03735-29063686.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435168/ercmg/gallery/kaohsiung/audience/hdc04917-eccc75dd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435168/ercmg/gallery/kaohsiung/audience/hdc04975-0700f8ce.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435170/ercmg/gallery/kaohsiung/audience/hdc05003-dad60ea7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435170/ercmg/gallery/kaohsiung/audience/hdc05014-c258921a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435170/ercmg/gallery/kaohsiung/audience/hdc05028-3c8fc523.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435170/ercmg/gallery/kaohsiung/audience/hdc05417-af7fa778.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435171/ercmg/gallery/kaohsiung/audience/hdc05437-43814bde.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435171/ercmg/gallery/kaohsiung/audience/hdc05857-83bb40c4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435172/ercmg/gallery/kaohsiung/audience/hdc09402-1175fefc.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435171/ercmg/gallery/kaohsiung/dpr-ian/dsc00458-5d7c3671.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435173/ercmg/gallery/kaohsiung/ftisland/dsc02108-261aad00.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435173/ercmg/gallery/kaohsiung/ftisland/dsc02116-98af3a0d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435173/ercmg/gallery/kaohsiung/ftisland/dsc02122-c85d4f05.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435173/ercmg/gallery/kaohsiung/ftisland/dsc02133-2f4131b0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435174/ercmg/gallery/kaohsiung/ftisland/dsc02190-809e3ff6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435175/ercmg/gallery/kaohsiung/ftisland/dsc02195-684fb2c0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435174/ercmg/gallery/kaohsiung/ftisland/dsc02198-8f5cc646.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435174/ercmg/gallery/kaohsiung/ftisland/dsc02201-e14c5499.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435176/ercmg/gallery/kaohsiung/ftisland/dsc02203-bff3aaf4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435177/ercmg/gallery/kaohsiung/ftisland/dsc02238-61081a65.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435177/ercmg/gallery/kaohsiung/ftisland/dsc02242-19d7469a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435177/ercmg/gallery/kaohsiung/ftisland/dsc02243-e8b75932.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435178/ercmg/gallery/kaohsiung/ftisland/dsc02304-a4993944.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435178/ercmg/gallery/kaohsiung/ftisland/dsc02306-7a549b25.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435178/ercmg/gallery/kaohsiung/ftisland/dsc02312-4bdb6684.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435178/ercmg/gallery/kaohsiung/ftisland/dsc02327-03dbed55.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435179/ercmg/gallery/kaohsiung/ftisland/dsc02412-71f2b53c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435180/ercmg/gallery/kaohsiung/ftisland/dsc02413-0822ceb1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435180/ercmg/gallery/kaohsiung/ftisland/dsc02417-36abf60d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435180/ercmg/gallery/kaohsiung/ftisland/dsc02418-06f268ae.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435181/ercmg/gallery/kaohsiung/ftisland/dsc02419-0c2916c4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435181/ercmg/gallery/kaohsiung/ftisland/dsc02453-1c92c2f5.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435181/ercmg/gallery/kaohsiung/ftisland/dsc02463-a24f6951.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435181/ercmg/gallery/kaohsiung/ftisland/dsc02464-7c9a066c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435183/ercmg/gallery/kaohsiung/ftisland/dsc02642-6bdbae8c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435183/ercmg/gallery/kaohsiung/ftisland/dsc02666-23104192.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435183/ercmg/gallery/kaohsiung/ftisland/dsc02672-f735733e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435183/ercmg/gallery/kaohsiung/ftisland/dsc02712-7735e4fe.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435268/ercmg/gallery/kaohsiung/ftisland/dsc02732-9ae8b749.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435268/ercmg/gallery/kaohsiung/ftisland/dsc02734-61e458f0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435268/ercmg/gallery/kaohsiung/ftisland/hdc05385-68ee2b16.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435268/ercmg/gallery/kaohsiung/ftisland/hdc05386-4c4f2fd7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435270/ercmg/gallery/kaohsiung/ftisland/hdc05387-11b3b27f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435270/ercmg/gallery/kaohsiung/ftisland/hdc05388-01996f0e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435270/ercmg/gallery/kaohsiung/ftisland/hdc05389-71e34d28.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435270/ercmg/gallery/kaohsiung/ftisland/hdc05432-b1b6f2b2.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435272/ercmg/gallery/kaohsiung/ftisland/hdc05435-9fd9e400.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435272/ercmg/gallery/kaohsiung/ftisland/hdc05461-e3291b31.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435272/ercmg/gallery/kaohsiung/ftisland/hdc05470-7c5d6e70.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435272/ercmg/gallery/kaohsiung/ftisland/hdc05483-cf365210.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435273/ercmg/gallery/kaohsiung/ftisland/hdc05485-d3a53536.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435273/ercmg/gallery/kaohsiung/ftisland/hdc05491-9c3e6a99.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435273/ercmg/gallery/kaohsiung/ftisland/hdc05503-f0cff45e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435274/ercmg/gallery/kaohsiung/ftisland/hdc05523-e59fa547.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435275/ercmg/gallery/kaohsiung/ftisland/hdc05536-1f56a6da.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435276/ercmg/gallery/kaohsiung/ftisland/hdc05543-6ee74093.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435275/ercmg/gallery/kaohsiung/g-dragon/dsc03071-49139418.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435275/ercmg/gallery/kaohsiung/g-dragon/dsc03075-557f123f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435278/ercmg/gallery/kaohsiung/g-dragon/dsc03102-dbf2f6c1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435278/ercmg/gallery/kaohsiung/g-dragon/dsc03112-a229ccfb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435278/ercmg/gallery/kaohsiung/g-dragon/dsc03115-3e2ed9f7.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435278/ercmg/gallery/kaohsiung/g-dragon/dsc03120-2073b155.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435280/ercmg/gallery/kaohsiung/g-dragon/dsc03151-17427a00.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435280/ercmg/gallery/kaohsiung/g-dragon/dsc03159-397cdbe6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435280/ercmg/gallery/kaohsiung/g-dragon/dsc03177-d5247860.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435280/ercmg/gallery/kaohsiung/g-dragon/dsc03180-5737be50.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435281/ercmg/gallery/kaohsiung/g-dragon/dsc03181-6c5321cb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435281/ercmg/gallery/kaohsiung/g-dragon/dsc03187-0256ffed.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435281/ercmg/gallery/kaohsiung/g-dragon/dsc03223-ccffefcb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435281/ercmg/gallery/kaohsiung/g-dragon/dsc03244-d0206a9c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435283/ercmg/gallery/kaohsiung/g-dragon/dsc03255-23496e3e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435283/ercmg/gallery/kaohsiung/g-dragon/dsc03316-7c4046e9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435283/ercmg/gallery/kaohsiung/g-dragon/dsc03387-4a386d1d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435283/ercmg/gallery/kaohsiung/g-dragon/dsc03406-d46c6a0a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435284/ercmg/gallery/kaohsiung/g-dragon/dsc03424-9a30e577.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435285/ercmg/gallery/kaohsiung/g-dragon/dsc03442-ea093609.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435285/ercmg/gallery/kaohsiung/g-dragon/dsc03443-2cdac983.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435285/ercmg/gallery/kaohsiung/g-dragon/dsc03477-5ee2adec.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435286/ercmg/gallery/kaohsiung/g-dragon/dsc03574-34abc554.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435286/ercmg/gallery/kaohsiung/g-dragon/dsc03585-4f82fd28.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435286/ercmg/gallery/kaohsiung/g-dragon/dsc03595-d8fc914d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435286/ercmg/gallery/kaohsiung/g-dragon/dsc03646-2aaeac93.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435288/ercmg/gallery/kaohsiung/g-dragon/dsc03704-52229dd8.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435288/ercmg/gallery/kaohsiung/g-dragon/dsc03740-5a5dd637.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435288/ercmg/gallery/kaohsiung/g-dragon/dsc03752-1a742b0f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435288/ercmg/gallery/kaohsiung/g-dragon/dsc03776-dce013f4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435289/ercmg/gallery/kaohsiung/g-dragon/dsc03780-602ea3b0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435290/ercmg/gallery/kaohsiung/g-dragon/dsc03782-0040c41f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435290/ercmg/gallery/kaohsiung/g-dragon/hdc05716-c5c0fb5c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435290/ercmg/gallery/kaohsiung/g-dragon/hdc05726-ed73e6d6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435291/ercmg/gallery/kaohsiung/g-dragon/hdc05757-626ee4f0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435292/ercmg/gallery/kaohsiung/g-dragon/hdc05789-f5ceeeda.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435292/ercmg/gallery/kaohsiung/g-dragon/hdc05850-3197e185.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435292/ercmg/gallery/kaohsiung/g-dragon/hdc05856-9a44e883.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435294/ercmg/gallery/kaohsiung/g-dragon/hdc05927-122829dd.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435294/ercmg/gallery/kaohsiung/g-dragon/hdc05934-e4b3dfd4.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435294/ercmg/gallery/kaohsiung/g-dragon/hdc06011-4f255ccf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435294/ercmg/gallery/kaohsiung/g-dragon/hdc06021-b7039350.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435296/ercmg/gallery/kaohsiung/kiiikiii/dsc01290-43f826d9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435296/ercmg/gallery/kaohsiung/kiiikiii/dsc01328-1738130c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435296/ercmg/gallery/kaohsiung/kiiikiii/dsc01429-7be3288b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435296/ercmg/gallery/kaohsiung/kiiikiii/dsc01434-e6dd9a6f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435298/ercmg/gallery/kaohsiung/kiiikiii/dsc01439-4779c846.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435298/ercmg/gallery/kaohsiung/kiiikiii/dsc01444-1fd3666c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435298/ercmg/gallery/kaohsiung/kiiikiii/dsc01471-21183d1a.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435298/ercmg/gallery/kaohsiung/kiiikiii/dsc01479-00528b99.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435300/ercmg/gallery/kaohsiung/kiiikiii/dsc01487-3807872b.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435300/ercmg/gallery/kaohsiung/kiiikiii/dsc01535-f067c5e9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435300/ercmg/gallery/kaohsiung/kiiikiii/dsc01538-8978e38e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435300/ercmg/gallery/kaohsiung/kiiikiii/dsc01552-5aa30d66.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435302/ercmg/gallery/kaohsiung/kiiikiii/dsc01554-95f635a0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435302/ercmg/gallery/kaohsiung/kiiikiii/dsc01595-b9966f59.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435302/ercmg/gallery/kaohsiung/kiiikiii/dsc01633-59876152.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435302/ercmg/gallery/kaohsiung/kiiikiii/dsc01657-dd7425cf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435304/ercmg/gallery/kaohsiung/kiiikiii/dsc01722-b3fd633f.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435304/ercmg/gallery/kaohsiung/kiiikiii/dsc01727-62c1b9bf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435304/ercmg/gallery/kaohsiung/kiiikiii/dsc01762-062a5740.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435305/ercmg/gallery/kaohsiung/kiiikiii/dsc01807-1174179d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435307/ercmg/gallery/kaohsiung/kiiikiii/dsc01815-eb009009.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435307/ercmg/gallery/kaohsiung/kiiikiii/dsc01837-354dae21.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435307/ercmg/gallery/kaohsiung/kiiikiii/dsc01842-f38e8732.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435307/ercmg/gallery/kaohsiung/kiiikiii/dsc01847-2afc8469.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435309/ercmg/gallery/kaohsiung/kiiikiii/dsc01889-68320ea9.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435309/ercmg/gallery/kaohsiung/kiiikiii/dsc01909-3a067ff1.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435309/ercmg/gallery/kaohsiung/kiiikiii/dsc01911-04d1baba.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435309/ercmg/gallery/kaohsiung/kiiikiii/hdc05192-428d6005.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435311/ercmg/gallery/kaohsiung/kiiikiii/hdc05213-03b51c3d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435311/ercmg/gallery/kaohsiung/kiiikiii/hdc05242-fb93fe71.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435311/ercmg/gallery/kaohsiung/kiiikiii/hdc05247-e18255da.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435311/ercmg/gallery/kaohsiung/kiiikiii/hdc05269-17b3f9fb.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435312/ercmg/gallery/kaohsiung/kiiikiii/hdc05273-774175a0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435312/ercmg/gallery/kaohsiung/kiiikiii/hdc05283-41f551db.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435313/ercmg/gallery/kaohsiung/kiiikiii/hdc05319-fd5ccec5.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435313/ercmg/gallery/kaohsiung/kiiikiii/hdc05323-8a5ef3a6.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435316/ercmg/gallery/kaohsiung/kiiikiii/hdc05367-8fc8ae43.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435316/ercmg/gallery/kaohsiung/kiiikiii/hdc05372-f833f910.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435316/ercmg/gallery/kaohsiung/kiiikiii/hdc05374-c980e589.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435316/ercmg/gallery/kaohsiung/kiiikiii/hdc09584-40736faf.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435317/ercmg/gallery/kaohsiung/kiiikiii/hdc09592-79f96678.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435318/ercmg/gallery/kaohsiung/kiiikiii/hdc09596-b4253c19.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435318/ercmg/gallery/kaohsiung/kiiikiii/hdc09597-5e3a91a0.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435318/ercmg/gallery/kaohsiung/kiiikiii/hdc09599-3879f29c.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435319/ercmg/gallery/kaohsiung/kiiikiii/hdc09607-3d202083.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435319/ercmg/gallery/kaohsiung/kiiikiii/hdc09610-339c7c8d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435319/ercmg/gallery/kaohsiung/kiiikiii/hdc09622-8191271e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435319/ercmg/gallery/kaohsiung/kiiikiii/hdc09624-c88c479e.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435321/ercmg/gallery/kaohsiung/kiiikiii/hdc09625-b1ad575d.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435321/ercmg/gallery/kaohsiung/kiiikiii/hdc09637-95a439e3.jpg',
+          'https://res.cloudinary.com/dx629ses8/image/upload/v1786435321/ercmg/gallery/kaohsiung/kiiikiii/hdc09641-0abc2d53.jpg',
+        ]
       }
     };
 
@@ -611,18 +929,22 @@
       const grid = document.getElementById('grid-' + showId);
       if (grid.children.length > 0) return;
       const imgs = [...show.images];
-      if (show.youtubeId) {
+      const videos = show.videoUrls || (show.youtubeId
+        ? [{ youtubeId: show.youtubeId }]
+        : show.videoUrl ? [{ url: show.videoUrl, poster: show.videoPoster }] : []);
+      videos.forEach(video => {
         const vw = document.createElement('div');
         vw.className = 'g-item video-item';
         vw.setAttribute('role', 'button');
         vw.setAttribute('data-show-label', show.label);
         vw.setAttribute('aria-label', show.label + i18nText().highlightVideoSuffix);
-        vw.onclick = () => vmOpen(show.youtubeId);
+        vw.onclick = () => video.url ? vmOpenFile(video.url) : vmOpen(video.youtubeId);
+        const poster = video.poster || `https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`;
         vw.innerHTML = `
-          <img src="https://img.youtube.com/vi/${show.youtubeId}/maxresdefault.jpg" alt="${show.label}${i18nText().highlightAltWord}" loading="lazy">
+          <img src="${poster}" alt="${show.label}${i18nText().highlightAltWord}" loading="lazy">
           <div class="play-btn"><div class="play-icon"><svg viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12"/></svg></div></div>`;
         grid.appendChild(vw);
-      }
+      });
       imgs.forEach((url, i) => {
         const w = document.createElement('div');
         w.className = 'g-item';
@@ -657,7 +979,7 @@
       document.getElementById('pane-' + id).classList.add('on');
       buildGrid(id);
       const show = SHOWS[id];
-      const ct = show.images.length + (show.youtubeId ? 1 : 0);
+      const ct = show.images.length + (show.videoUrls ? show.videoUrls.length : (show.youtubeId || show.videoUrl ? 1 : 0));
       window.__currentShowCount = ct;
       document.getElementById('show-count').textContent = ct + i18nText().itemsSuffix;
     }
@@ -673,6 +995,10 @@
     /* ─── VIDEO MODAL ─── */
     function vmOpen(ytId) {
       document.getElementById('vm-inner').innerHTML = `<iframe src="https://www.youtube.com/embed/${ytId}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+      document.getElementById('vm').classList.add('open'); document.body.style.overflow = 'hidden';
+    }
+    function vmOpenFile(url) {
+      document.getElementById('vm-inner').innerHTML = `<video src="${url}" controls autoplay playsinline></video>`;
       document.getElementById('vm').classList.add('open'); document.body.style.overflow = 'hidden';
     }
     function vmClose() { document.getElementById('vm-inner').innerHTML = ''; document.getElementById('vm').classList.remove('open'); document.body.style.overflow = ''; }
@@ -720,7 +1046,7 @@
       highlightVideoSuffix: ' 하이라이트 영상', highlightAltWord: ' highlight', itemsSuffix: '개',
       projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
       projectsDesc: '무대 위에서 포착된<br>결정적인 순간들.',
-      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
+      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia', placeKaohsiung: 'Kaohsiung',
       gdFanMeetingName: 'GD Fan Meeting', placeMacau: 'Macau',
     },
     en: {
@@ -731,7 +1057,7 @@
       highlightVideoSuffix: ' highlight video', highlightAltWord: ' highlight', itemsSuffix: ' items',
       projectsTitleInitial: 'P', projectsTitleRest: 'ROJECTS',
       projectsDesc: 'Decisive moments,<br>captured on stage.',
-      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia',
+      placeBangkok: 'Bangkok', placeVietnam: 'Vietnam', placeMalaysia: 'Malaysia', placeKaohsiung: 'Kaohsiung',
       gdFanMeetingName: 'GD Fan Meeting', placeMacau: 'Macau',
     },
     ja: {
@@ -742,7 +1068,7 @@
       highlightVideoSuffix: ' ハイライト映像', highlightAltWord: ' ハイライト', itemsSuffix: '点',
       projectsTitleInitial: 'プ', projectsTitleRest: 'ロジェクト',
       projectsDesc: '舞台の上で捉えた<br>決定的な瞬間。',
-      placeBangkok: 'バンコク', placeVietnam: 'ベトナム', placeMalaysia: 'マレーシア',
+      placeBangkok: 'バンコク', placeVietnam: 'ベトナム', placeMalaysia: 'マレーシア', placeKaohsiung: '高雄',
       gdFanMeetingName: 'GDファンミーティング', placeMacau: 'マカオ',
     },
     zh: {
@@ -753,7 +1079,7 @@
       highlightVideoSuffix: ' 精彩视频', highlightAltWord: ' 精彩片段', itemsSuffix: '张',
       projectsTitleInitial: '项', projectsTitleRest: '目',
       projectsDesc: '舞台之上定格的<br>决定性瞬间。',
-      placeBangkok: '曼谷', placeVietnam: '越南', placeMalaysia: '马来西亚',
+      placeBangkok: '曼谷', placeVietnam: '越南', placeMalaysia: '马来西亚', placeKaohsiung: '高雄',
       gdFanMeetingName: 'GD粉丝见面会', placeMacau: '澳门',
     },
   };

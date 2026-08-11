@@ -62,3 +62,5 @@ contact-final.png
 contact-mobile.png
 fix-*.png
 *-check2.png
+.env
+.env.*
