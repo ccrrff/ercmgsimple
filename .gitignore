@@ -53,6 +53,18 @@ serve.py
 # Working dirs (dev tool output & source media, not for git)
 visualcompanion/
 assets/
+!assets/
+assets/*
+!assets/ourworks/
+assets/ourworks/*
+!assets/ourworks/mucon-2025/
+!assets/ourworks/mucon-2025/**
+!assets/ourworks/tv-chosun-university-song-festival/
+!assets/ourworks/tv-chosun-university-song-festival/**
+!assets/ourworks/world-of-street-woman-fighter-season3/
+!assets/ourworks/world-of-street-woman-fighter-season3/**
+!assets/ourworks/k-spark-kaohsiung-2026/
+!assets/ourworks/k-spark-kaohsiung-2026/**
 videos
 videos/
 

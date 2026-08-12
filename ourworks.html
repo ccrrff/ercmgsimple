@@ -229,6 +229,48 @@
       width: 100%; height: 100%; object-fit: cover; object-position: top; display: block;
       opacity: .68; transition: opacity .35s;
     }
+    .world-street-woman-fighter-tour-photos .dp-slice:first-child img {
+      object-position: center 35%;
+    }
+    .world-street-woman-fighter-season3-photos .dp-slice:first-child img {
+      object-position: center 55%;
+    }
+    #pane-2022 .dp-slice:first-child img {
+      height: 200%;
+      transform: translateY(-50%);
+    }
+    .tv-chosun-photos .dp-slice:first-child img {
+      object-position: center 15%;
+    }
+    .gd-fanmeeting-photos .dp-slice:first-child img {
+      object-position: center 40%;
+      height: 167%;
+      transform: translateY(-40%);
+    }
+    .malaysia-photos img {
+      object-position: center 20%;
+      height: 125%;
+      transform: translateY(-20%);
+    }
+    .gd-fanmeeting-photos .dp-slice:nth-child(3) img {
+      object-position: center -20%;
+    }
+    .macau-photos .dp-slice:nth-child(-n+2) img {
+      object-position: center 20%;
+    }
+    .macau-photos .dp-slice:nth-child(2) img {
+      height: 125%;
+      transform: translateY(-20%);
+    }
+    .macau-photos .dp-slice:nth-child(3) img {
+      object-position: center -15%;
+    }
+    .kgma-photos img {
+      object-position: center 30%;
+    }
+    .mucon-photos img {
+      object-position: center 35%;
+    }
     .item.open .dp-slice img { opacity: .82; }
     .dp-label {
       position: absolute; bottom: 0; left: 0; right: 0;
@@ -240,6 +282,83 @@
     @media (max-width: 640px) {
       .drop-photo.open { max-height: 120px; }
       .drop-photos { height: 110px; }
+    }
+
+    .dp-slice {
+      cursor: zoom-in;
+    }
+    .dp-slice:focus-visible {
+      outline: 2px solid rgba(255,255,255,.9);
+      outline-offset: -3px;
+    }
+
+    .image-lightbox {
+      width: fit-content;
+      max-width: 92vw;
+      max-height: 88dvh;
+      margin: auto;
+      padding: 0;
+      border: 0;
+      overflow: visible;
+      color: #fff;
+      background: transparent;
+    }
+    .image-lightbox::backdrop {
+      background: rgba(0,0,0,.84);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .lightbox-figure {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+    }
+    .lightbox-image {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(88vw, 1200px);
+      max-height: 78dvh;
+      object-fit: contain;
+      background: #080808;
+      box-shadow: 0 24px 80px rgba(0,0,0,.55);
+    }
+    .lightbox-caption {
+      width: 100%;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.72);
+      text-align: center;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -42px;
+      right: 0;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(0,0,0,.48);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .lightbox-close:hover,
+    .lightbox-close:focus-visible {
+      background: rgba(255,255,255,.14);
+      outline: none;
+    }
+    @media (max-width: 640px) {
+      .lightbox-image {
+        max-width: 92vw;
+        max-height: 72dvh;
+      }
+      .lightbox-close { top: -40px; }
     }
 
     /* ── FOOTER ── */
@@ -541,13 +660,13 @@
             <div class="drop drop-photo">
               <div class="drop-photos">
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435708/ercmg/ourworks/street-woman-fighter-season2/2-3.jpg" alt="street-woman-fighter-season2 1" loading="lazy">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435710/ercmg/ourworks/street-woman-fighter-season2/2-2.jpg" alt="street-woman-fighter-season2 1" loading="lazy">
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435709/ercmg/ourworks/street-woman-fighter-season2/2.jpg" alt="street-woman-fighter-season2 2" loading="lazy">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435708/ercmg/ourworks/street-woman-fighter-season2/2-3.jpg" alt="street-woman-fighter-season2 2" loading="lazy">
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435710/ercmg/ourworks/street-woman-fighter-season2/2-2.jpg" alt="street-woman-fighter-season2 3" loading="lazy">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435709/ercmg/ourworks/street-woman-fighter-season2/2.jpg" alt="street-woman-fighter-season2 3" loading="lazy">
                 </div>
               </div>
             </div>
@@ -562,7 +681,19 @@
               <span class="row-city" data-i18n="work2024Title">TV조선 대학가요제</span>
               <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner" data-i18n="work2024Desc">TV조선 대학가요제 제작 참여</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos tv-chosun-photos">
+                <div class="dp-slice">
+                  <img src="assets/ourworks/tv-chosun-university-song-festival/1.webp" alt="TV조선 대학가요제 1" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/tv-chosun-university-song-festival/2.jpeg" alt="TV조선 대학가요제 2" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/tv-chosun-university-song-festival/3.jpg" alt="TV조선 대학가요제 3" loading="lazy">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -604,7 +735,7 @@
                   <div class="dp-label">G-Dragon</div>
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778058738/ercmg/gallery/vietnam/cl/kkofqqqzpng97px4xynk.jpg" alt="">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,g_auto:subject,q_auto/v1778058738/ercmg/gallery/vietnam/cl/kkofqqqzpng97px4xynk.jpg" alt="">
                   <div class="dp-label">CL</div>
                 </div>
                 <div class="dp-slice">
@@ -660,7 +791,19 @@
               <span class="row-city" data-i18n="work2025Item5Title">Mnet 월드 오브 스트릿 우먼 파이터 시즌3</span>
               <span class="row-type" data-i18n="typeBroadcast">방송</span>
             </div>
-            <div class="drop"><div class="drop-inner" data-i18n="work2025Item5Desc">Mnet 월드 오브 스트릿 우먼 파이터 시즌3 제작 참여</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos world-street-woman-fighter-season3-photos">
+                <div class="dp-slice">
+                  <img src="assets/ourworks/world-of-street-woman-fighter-season3/1.jpeg" alt="월드 오브 스트릿 우먼 파이터 시즌3 1" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/world-of-street-woman-fighter-season3/2.jpeg" alt="월드 오브 스트릿 우먼 파이터 시즌3 2" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/world-of-street-woman-fighter-season3/3.jpeg" alt="월드 오브 스트릿 우먼 파이터 시즌3 3" loading="lazy">
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -669,7 +812,7 @@
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
-              <div class="drop-photos">
+              <div class="drop-photos world-street-woman-fighter-tour-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435711/ercmg/ourworks/world-street-woman-fighter-tour/1.jpg" alt="world-street-woman-fighter-tour 1" loading="lazy">
                 </div>
@@ -688,7 +831,19 @@
               <span class="row-city" data-i18n="work2025Item7Title">뮤콘 2025(MUCON 2025)</span>
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
-            <div class="drop"><div class="drop-inner" data-i18n="work2025Item7Desc">뮤콘 2025(MUCON 2025) 제작 참여</div></div>
+            <div class="drop drop-photo">
+              <div class="drop-photos mucon-photos">
+                <div class="dp-slice">
+                  <img src="assets/ourworks/mucon-2025/1.jpeg" alt="MUCON 2025 1" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/mucon-2025/2.jpeg" alt="MUCON 2025 2" loading="lazy">
+                </div>
+                <div class="dp-slice">
+                  <img src="assets/ourworks/mucon-2025/3.jpg" alt="MUCON 2025 3" loading="lazy">
+                </div>
+              </div>
+            </div>
           </div>
           <div class="item done" onclick="acc(this)">
             <div class="row">
@@ -697,7 +852,7 @@
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
-              <div class="drop-photos">
+              <div class="drop-photos kgma-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,q_auto,f_auto/v1786435691/ercmg/ourworks/kgma-2025/kgma-1.jpg" alt="kgma-2025 1" loading="lazy">
                 </div>
@@ -741,9 +896,9 @@
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
-              <div class="drop-photos">
+              <div class="drop-photos gd-fanmeeting-photos">
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg" alt="">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,g_face,q_auto/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg" alt="">
                   <div class="dp-label" data-i18n="placeSeoul">Seoul</div>
                 </div>
                 <div class="dp-slice">
@@ -764,7 +919,7 @@
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
-              <div class="drop-photos">
+              <div class="drop-photos malaysia-photos">
                 <div class="dp-slice">
                   <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1778059053/ercmg/gallery/malaysia/hwasa/ycoj8wmec1dg5kshzber.jpg" alt="">
                   <div class="dp-label">Hwasa</div>
@@ -787,13 +942,13 @@
               <span class="row-type" data-i18n="typeLive">라이브</span>
             </div>
             <div class="drop drop-photo">
-              <div class="drop-photos">
+              <div class="drop-photos macau-photos">
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228556/AC_06569_i9yhiz.jpg" alt="">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,g_faces,q_auto/v1781228556/AC_06569_i9yhiz.jpg" alt="">
                   <div class="dp-label" data-i18n="placeMacau">Macau</div>
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1781228559/AC_06240_zoxfgz.jpg" alt="">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,g_face,q_auto/v1781228559/AC_06240_zoxfgz.jpg" alt="">
                   <div class="dp-label" data-i18n="placeMacau">Macau</div>
                 </div>
                 <div class="dp-slice">
@@ -812,15 +967,15 @@
             <div class="drop drop-photo">
               <div class="drop-photos">
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1786434390/ercmg/gallery/kaohsiung/g-dragon-01.jpg" alt="">
+                  <img src="assets/ourworks/k-spark-kaohsiung-2026/1-group.jpg" alt="K-SPARK in Kaohsiung group photo" loading="lazy">
                   <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1786434427/ercmg/gallery/kaohsiung/taeyeon-01.jpg" alt="">
+                  <img src="assets/ourworks/k-spark-kaohsiung-2026/2-taeyeon.jpg" alt="TAEYEON at K-SPARK in Kaohsiung" loading="lazy">
                   <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
                 <div class="dp-slice">
-                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_400,h_300,c_fill,q_auto/v1786434425/ercmg/gallery/kaohsiung/production-01.jpg" alt="">
+                  <img src="assets/ourworks/k-spark-kaohsiung-2026/3-audience.jpg" alt="K-SPARK in Kaohsiung audience" loading="lazy">
                   <div class="dp-label" data-i18n="placeKaohsiung">Kaohsiung</div>
                 </div>
               </div>
@@ -831,6 +986,14 @@
       </div><!-- /right-panel -->
     </div>
   </main>
+
+  <dialog class="image-lightbox" id="imageLightbox" aria-labelledby="lightboxCaption">
+    <figure class="lightbox-figure">
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="큰 이미지 닫기">×</button>
+      <img class="lightbox-image" id="lightboxImage" alt="">
+      <figcaption class="lightbox-caption" id="lightboxCaption"></figcaption>
+    </figure>
+  </dialog>
 
   <!-- FOOTER -->
   <footer>
@@ -911,6 +1074,87 @@
       });
     });
   </script>
+
+<script>
+  (function () {
+    var dialog = document.getElementById('imageLightbox');
+    var dialogImage = document.getElementById('lightboxImage');
+    var dialogCaption = document.getElementById('lightboxCaption');
+    var closeButton = document.getElementById('lightboxClose');
+    var lastTrigger = null;
+
+    function originalImageUrl(src) {
+      try {
+        var url = new URL(src, window.location.href);
+        if (url.hostname === 'res.cloudinary.com') {
+          url.pathname = url.pathname.replace(
+            /\/image\/upload\/[^/]+\/(?=v\d+\/)/,
+            '/image/upload/'
+          );
+        }
+        return url.href;
+      } catch (error) {
+        return src;
+      }
+    }
+
+    function imageLabel(img, index) {
+      var item = img.closest('.item');
+      var project = item && item.querySelector('.row-city');
+      var visibleLabel = img.closest('.dp-slice').querySelector('.dp-label');
+      var detail = img.getAttribute('alt') || (visibleLabel && visibleLabel.textContent.trim());
+      var projectName = project ? project.textContent.trim() : 'OUR WORKS';
+      return detail ? projectName + ' - ' + detail : projectName + ' - Image ' + (index + 1);
+    }
+
+    function openLightbox(trigger, img, index) {
+      var label = imageLabel(img, index);
+      lastTrigger = trigger;
+      dialogImage.src = originalImageUrl(img.currentSrc || img.src);
+      dialogImage.alt = label;
+      dialogCaption.textContent = label;
+      if (!dialog.open) dialog.showModal();
+      closeButton.focus({ preventScroll: true });
+    }
+
+    document.querySelectorAll('.drop-photos img').forEach(function (img, index) {
+      var trigger = img.closest('.dp-slice');
+      var label = imageLabel(img, index);
+      trigger.tabIndex = 0;
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('aria-haspopup', 'dialog');
+      trigger.setAttribute('aria-label', 'Open larger image: ' + label);
+
+      trigger.addEventListener('click', function (event) {
+        event.stopPropagation();
+        openLightbox(trigger, img, index);
+      });
+
+      trigger.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        event.stopPropagation();
+        openLightbox(trigger, img, index);
+      });
+    });
+
+    closeButton.addEventListener('click', function () {
+      dialog.close();
+    });
+
+    dialog.addEventListener('click', function (event) {
+      if (event.target === dialog) dialog.close();
+    });
+
+    dialog.addEventListener('close', function () {
+      dialogImage.removeAttribute('src');
+      dialogImage.alt = '';
+      dialogCaption.textContent = '';
+      if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+      lastTrigger = null;
+    });
+  }());
+</script>
 
 <script>
   const I18N = {
