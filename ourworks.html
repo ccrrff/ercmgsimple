@@ -1029,36 +1029,37 @@
       document.querySelectorAll('.year-pane').forEach(p => p.classList.remove('on'));
       tab.classList.add('on');
       tab.setAttribute('aria-selected', 'true');
-      document.getElementById('pane-' + year).classList.add('on');
+      const pane = document.getElementById('pane-' + year);
+      pane.classList.add('on');
+      openAllItems(pane);
     }
 
-    /* ── ACCORDION ── */
-    function acc(item) {
-      const drop = item.querySelector('.drop');
-      const isOpen = drop.classList.contains('open');
-      item.closest('.year-pane').querySelectorAll('.drop.open').forEach(d => {
-        d.classList.remove('open');
-        d.closest('.item').classList.remove('open');
-      });
-      if (!isOpen) {
+    /* ── WORK DETAILS ── */
+    function openAllItems(scope = document) {
+      scope.querySelectorAll('.item').forEach(item => {
+        const drop = item.querySelector('.drop');
+        if (!drop) return;
         drop.classList.add('open');
         item.classList.add('open');
-      }
+      });
     }
 
-    /* ── DESC ANIMATION + 첫 항목 자동 오픈 ── */
+    function acc(item) {
+      const drop = item.querySelector('.drop');
+      if (!drop) return;
+      const isOpen = drop.classList.toggle('open');
+      item.classList.toggle('open', isOpen);
+    }
+
+    // 스크립트가 실행되는 즉시 모든 작업 상세를 펼친다.
+    openAllItems();
+
+    /* ── DESC ANIMATION + 전체 항목 자동 오픈 ── */
     window.addEventListener('load', () => {
       const lines = document.querySelectorAll('.desc-line');
       lines.forEach((l, i) => {
         setTimeout(() => l.classList.add('in'), i * 130 + 180);
       });
-
-      // 현재 활성 탭의 첫 번째 항목 자동 오픈
-      const activePane = document.querySelector('.year-pane.on');
-      if (activePane) {
-        const firstItem = activePane.querySelector('.item');
-        if (firstItem) setTimeout(() => acc(firstItem), 400);
-      }
     });
 
     /* ── HAMBURGER ── */
