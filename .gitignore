@@ -55,6 +55,8 @@ visualcompanion/
 assets/
 !assets/
 assets/*
+!assets/news/
+!assets/news/**
 !assets/ourworks/
 assets/ourworks/*
 !assets/ourworks/mucon-2025/

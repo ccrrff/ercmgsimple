@@ -395,6 +395,14 @@
 
   <script>
     const ARTICLES = [
+      { title:'KRAZY Taipei, 한국·대만·미국 14팀과 이틀간의 음악 축제 성료', excerpt:'9월 26~27일 타이베이 다자허빈공원에서 열린 KRAZY Music Festival Taipei가 14팀의 무대와 함께 막을 내렸다. 임준걸과 백현의 깜짝 합동 무대가 피날레를 장식했다.', source:'Taiwan News', date:'2026-09-28', city:'TAIPEI', url:'https://www.taiwannews.com.tw/zh/news/6447425', image:'assets/news/taiwannews-krazy-taipei-20260928.jpg' },
+      { title:'임준걸·엑소 백현, KRAZY Taipei서 깜짝 듀엣…신곡 협업 약속', excerpt:'KRAZY Music Festival Taipei의 마지막 무대에 오른 임준걸이 엑소 백현과 ‘교환여생’을 함께 불렀다. 두 사람은 향후 신곡 협업도 약속하며 관객들의 환호를 이끌었다.', source:'TVBS', date:'2026-09-27', city:'TAIPEI', url:'https://news.tvbs.com.tw/entertainment/jk-pop/4028396', image:'assets/news/tvbs-jjlin-baekhyun-krazy-20260927.jpg' },
+      { title:'KRAZY Taipei, 피원하모니·펜타곤·WOODZ 열광의 무대', excerpt:'피원하모니는 물줄기와 함께 에너지 넘치는 무대를, 펜타곤은 중국어 노래와 팬 서비스를 선보였다. WOODZ는 ‘Drowning’의 관객 합창에 감격의 눈물을 보였다.', source:'TVBS', date:'2026-09-26', city:'TAIPEI', url:'https://news.tvbs.com.tw/entertainment/jk-pop/4028000', image:'assets/news/tvbs-p1harmony-krazy-20260926.jpg' },
+      { title:'엑소 백현·보아·ITZY, KRAZY Taipei 2차 라인업 합류', excerpt:'9월 26~27일 타이베이 다자허빈공원에서 열리는 KRAZY Music Festival Taipei가 2차 출연진을 공개했다. 백현·보아·ITZY와 함께 WOODZ, 피원하모니, MAX가 합류한다.', source:'壹蘋新聞網 · Next Apple', date:'2026-08-27', city:'TAIPEI', url:'https://news.nextapple.com/entertainment/20260827/6D443F3EEF5749159B8299A2843BE1C0', image:'assets/news/nextapple-krazy-lineup-20260827.jpg' },
+      { title:'역시 지드래곤, 가오슝 5만 관객 홀린 K팝 제왕', excerpt:'G-DRAGON이 5월 30일 가오슝 내셔널 스타디움에서 열린 K-SPARK in Kaohsiung 2026의 피날레를 장식하며 5만여 관객을 열광시켰다.', source:'뉴스엔', date:'2026-06-01', city:'KAOHSIUNG', url:'https://www.newsen.com/news_view.php?uid=202606011616210410', image:'assets/news/newsen-gdragon-kaohsiung-20260601.jpg', pos:'center 20%' },
+      { title:'태연, 어디서 많이 본 것 같은 미모~ 탱구😍(출국)[뉴스엔TV]', excerpt:'소녀시대 태연이 K-SPARK in Kaohsiung 공연 참석을 위해 5월 30일 인천국제공항을 통해 대만 가오슝으로 출국했다.', source:'뉴스엔', date:'2026-05-30', city:'KAOHSIUNG', url:'https://www.newsen.com/news_view.php?uid=202605301126291310', image:'assets/news/newsen-taeyeon-kaohsiung-20260530.jpg' },
+      { title:'키키(KiiiKiii) ‘대만 가오슝으로 떠나요’[포토엔HD]', excerpt:'키키 멤버 지유, 이솔, 수이, 하음, 키야가 K-SPARK in Kaohsiung 공연 참석을 위해 5월 29일 인천국제공항을 통해 출국했다.', source:'뉴스엔 · 네이트', date:'2026-05-29', city:'KAOHSIUNG', url:'https://news.nate.com/view/20260529n17141', image:'assets/news/nate-kiiikiii-kaohsiung-20260529.jpg' },
+      { title:'지드래곤, 5연속 ‘K-SPARK’ 헤드라이너 출격', excerpt:'지드래곤이 K-SPARK in Kaohsiung 2026의 메인 헤드라이너로 무대에 오른다. 티켓은 오픈 30분 만에 전석 매진되며 현지의 높은 관심을 입증했다.', source:'마리끌레르 코리아', date:'2026-05-26', city:'KAOHSIUNG', url:'https://www.marieclairekorea.com/celebrity/2026/05/g-dragon/', image:'assets/news/marieclaire-gdragon-k-spark-20260526.jpg' },
       { title:'G-Dragon, Hwasa, ITZY 등 K-SPARK Malaysia 2026 라인업 공개', excerpt:'G-DRAGON을 필두로 HWASA, ITZY, DPR IAN, DOLLA, 3P가 2026년 1월 31일 쿠알라룸푸르 Stadium Merdeka에서 펼쳐지는 K-SPARK Malaysia 2026에 합류했다.', source:'allkpop', date:'2026-01-15', city:'MALAYSIA', url:'https://www.allkpop.com/article/2026/01/g-dragon-hwasa-itzy-and-more-joins-lineup-for-k-spark-in-malaysia-2026' },
       { title:'ITZY, Hwasa, DPR Ian, DOLLA & 3P join G-DRAGON to ignite K-SPARK Malaysia 2026', excerpt:'G-DRAGON 헤드라이너에 ITZY, HWASA, DPR IAN과 현지 아티스트 DOLLA·3P가 합류해 글로벌 K-POP 스타와 말레이시아 아티스트가 한 무대에 서는 이벤트가 실현됐다.', source:'Bandwagon Asia', date:'2026-01-13', city:'MALAYSIA', url:'https://www.bandwagon.asia/articles/itzy-hwasa-dpr-ian-dolla-3p-join-g-dragon-to-ignite-k-spark-malaysia-2026' },
       { title:'GD 베트남 공연 관객 난입…돌발사고에 침착한 대응', excerpt:'K-STAR SPARK 베트남 공연 도중 관객이 무대에 난입하는 돌발 상황이 발생했지만, GD와 댄서들의 침착한 대응으로 무사히 마무리됐다.', source:'뉴시스', date:'2025-06-23', city:'VIETNAM', url:'https://www.newsis.com/view/NISX20250623_0003224381', image:'https://res.cloudinary.com/dx629ses8/image/upload/v1778060839/ercmg/gallery/gdfan/seoul/rnzgj6b6zzimuyg5s5s3.jpg', pos:'center 10%' },
@@ -447,6 +455,14 @@
     /* ─── ARTICLES translations (title/excerpt only — source/date/city/url are proper nouns or numeric, left as-is) ─── */
     const ARTICLE_I18N = {
       en: [
+        { title: 'KRAZY Taipei Wraps Up Two Days with 14 Acts from Korea, Taiwan and the US', excerpt: 'KRAZY Music Festival Taipei concluded at Dajia Riverside Park on September 26–27 with performances by 14 acts. A surprise duet by JJ LIN and BAEKHYUN was a highlight of the finale.' },
+        { title: 'JJ LIN and EXO’s BAEKHYUN Surprise KRAZY Taipei with a Duet, Promise a New Collaboration', excerpt: 'Closing KRAZY Music Festival Taipei, JJ LIN invited EXO’s BAEKHYUN to sing “交換餘生” together. The pair also promised to collaborate on a new song, drawing cheers from the crowd.' },
+        { title: 'P1Harmony, PENTAGON and WOODZ Thrill the Crowd at KRAZY Taipei', excerpt: 'P1Harmony delivered an energetic set with water effects, while PENTAGON sang in Chinese and interacted with fans. WOODZ was moved to tears as the audience sang along to “Drowning”.' },
+        { title: 'EXO’s BAEKHYUN, BoA and ITZY Join KRAZY Taipei’s Second Lineup Announcement', excerpt: 'KRAZY Music Festival Taipei announced its second wave of artists for September 26–27 at Dajia Riverside Park. BAEKHYUN, BoA and ITZY join the bill alongside WOODZ, P1Harmony and MAX.' },
+        { title: 'G-DRAGON Captivates 50,000 in Kaohsiung as the King of K-pop', excerpt: 'G-DRAGON closed K-SPARK in Kaohsiung 2026 at Kaohsiung National Stadium on May 30, thrilling an audience of more than 50,000.' },
+        { title: 'TAEYEON Departs for Kaohsiung with Her Striking Beauty [NewsenTV]', excerpt: 'Girls’ Generation member TAEYEON departed from Incheon International Airport on May 30 for Taiwan to attend K-SPARK in Kaohsiung.' },
+        { title: 'KiiiKiii Departs for Kaohsiung, Taiwan [Photo]', excerpt: 'KiiiKiii members Jiyu, Leesol, Sui, Haum, and Kya departed from Incheon International Airport on May 29 to attend K-SPARK in Kaohsiung.' },
+        { title: 'G-Dragon to Headline K-SPARK for the Fifth Consecutive Time', excerpt: 'G-Dragon will take the stage as the main headliner of K-SPARK in Kaohsiung 2026. Tickets sold out within just 30 minutes, demonstrating intense local interest.' },
         { title: 'G-Dragon, Hwasa, ITZY and More Join K-SPARK Malaysia 2026 Lineup', excerpt: 'Led by G-DRAGON, HWASA, ITZY, DPR IAN, DOLLA, and 3P have joined the lineup for K-SPARK Malaysia 2026, taking place on January 31, 2026 at Stadium Merdeka in Kuala Lumpur.' },
         { title: 'ITZY, Hwasa, DPR Ian, DOLLA & 3P join G-DRAGON to ignite K-SPARK Malaysia 2026', excerpt: 'With ITZY, HWASA, and DPR IAN joining headliner G-DRAGON alongside local artists DOLLA and 3P, the event brings together global K-POP stars and Malaysian artists on a single stage.' },
         { title: "Fans Rush the Stage at GD's Vietnam Concert — Calm Response to Sudden Incident", excerpt: 'An unexpected incident occurred when fans rushed the stage during the K-STAR SPARK Vietnam concert, but the situation was resolved safely thanks to the calm response of GD and the dancers.' },
@@ -459,6 +475,14 @@
         { title: "G-Dragon to Appear at 'K-STAR SPARK in Bangkok 2025' — Explosive Global Influence", excerpt: "The first concert of the K-STAR SPARK series will be held at Bangkok's Rajamangala National Stadium. A new K-POP concert brand launches with G-Dragon as headliner meeting global fans." },
       ],
       ja: [
+        { title: 'KRAZY Taipei、韓国・台湾・米国の14組とともに2日間の音楽祭が閉幕', excerpt: '9月26〜27日に台北の大佳河浜公園で開催された「KRAZY Music Festival Taipei」が、14組のステージとともに閉幕した。林俊傑とBAEKHYUNのサプライズ共演がフィナーレを彩った。' },
+        { title: '林俊傑とEXOのBAEKHYUN、KRAZY Taipeiでサプライズデュエット…新曲共作も約束', excerpt: 'KRAZY Music Festival Taipeiの最後のステージで、林俊傑がEXOのBAEKHYUNと「交換餘生」を披露した。2人は今後の新曲コラボも約束し、観客の歓声を誘った。' },
+        { title: 'KRAZY Taipei、P1Harmony・PENTAGON・WOODZが熱狂のステージ', excerpt: 'P1Harmonyは水の演出とともにエネルギッシュなステージを届け、PENTAGONは中国語の歌とファンサービスを披露。WOODZは「Drowning」の大合唱に感動の涙を見せた。' },
+        { title: 'EXOのBAEKHYUN・BoA・ITZY、KRAZY Taipei第2弾ラインナップに登場', excerpt: '9月26〜27日に台北の大佳河浜公園で開催される「KRAZY Music Festival Taipei」が第2弾出演者を発表した。BAEKHYUN・BoA・ITZYに加え、WOODZ、P1Harmony、MAXも出演する。' },
+        { title: 'さすがG-DRAGON、高雄の5万人を魅了したK-POPの帝王', excerpt: 'G-DRAGONが5月30日に高雄ナショナルスタジアムで開催された「K-SPARK in Kaohsiung 2026」のフィナーレを飾り、5万人を超える観客を熱狂させた。' },
+        { title: 'TAEYEON、輝くビジュアルで高雄へ出国［NewsenTV］', excerpt: '少女時代のTAEYEONが「K-SPARK in Kaohsiung」出演のため、5月30日に仁川国際空港から台湾・高雄へ出国した。' },
+        { title: 'KiiiKiii「台湾・高雄へ行ってきます」［フォト］', excerpt: 'KiiiKiiiのジユ、イソル、スイ、ハウム、キヤが「K-SPARK in Kaohsiung」出演のため、5月29日に仁川国際空港から出国した。' },
+        { title: 'G-DRAGON、5公演連続で「K-SPARK」ヘッドライナーに登場', excerpt: 'G-DRAGONが「K-SPARK in Kaohsiung 2026」のメインヘッドライナーとしてステージに立つ。チケットは発売開始からわずか30分で完売し、現地での高い関心を証明した。' },
         { title: 'G-DRAGON、Hwasa、ITZYら「K-SPARK Malaysia 2026」ラインナップ公開', excerpt: 'G-DRAGONを筆頭にHWASA、ITZY、DPR IAN、DOLLA、3Pが、2026年1月31日にクアラルンプールのスタジアム・ムルデカで開催される「K-SPARK Malaysia 2026」への出演を発表した。' },
         { title: 'ITZY、Hwasa、DPR Ian、DOLLA & 3PがG-DRAGONと共にK-SPARK Malaysia 2026を盛り上げる', excerpt: 'ヘッドライナーのG-DRAGONに、ITZY、HWASA、DPR IAN、そして現地アーティストのDOLLA・3Pが加わり、グローバルK-POPスターとマレーシアのアーティストが同じステージに立つイベントが実現した。' },
         { title: 'GDベトナム公演でファンが乱入…突発事故に冷静な対応', excerpt: 'K-STAR SPARKベトナム公演中、観客がステージに乱入する予期せぬ事態が発生したが、GDとダンサーたちの冷静な対応で無事に収束した。' },
@@ -471,6 +495,14 @@
         { title: 'G-DRAGON、「K-STAR SPARK in バンコク 2025」出演…爆発的なグローバル影響力', excerpt: 'K-STAR SPARKシリーズの初公演がバンコクのラジャマンガラ国立競技場で開催される。G-DRAGONをヘッドライナーに迎え、グローバルファンと出会う新形式のK-POP公演ブランドがスタートした。' },
       ],
       zh: [
+        { title: 'KRAZY Taipei汇聚韩、台、美14组艺人，两日音乐盛宴圆满落幕', excerpt: 'KRAZY Music Festival Taipei于9月26日至27日在台北大佳河滨公园举行，集结14组艺人带来精彩演出。林俊杰与伯贤的惊喜合唱成为压轴亮点。' },
+        { title: '林俊杰与EXO伯贤惊喜合唱，约定合作新曲', excerpt: '林俊杰在KRAZY Music Festival Taipei压轴登场，邀请EXO伯贤合唱《交换余生》。两人更约定未来合作推出新歌，引来全场欢呼。' },
+        { title: 'P1Harmony、PENTAGON与WOODZ点燃KRAZY Taipei舞台', excerpt: 'P1Harmony以水柱特效和活力演出带动气氛，PENTAGON献唱中文歌曲并与粉丝互动。WOODZ则在《Drowning》全场大合唱中感动落泪。' },
+        { title: 'EXO伯贤、BoA、ITZY加盟KRAZY Taipei第二波阵容', excerpt: '将于9月26日至27日在台北大佳河滨公园举行的KRAZY Music Festival Taipei公布第二波艺人名单。伯贤、BoA、ITZY与WOODZ、P1Harmony、MAX确认加盟。' },
+        { title: '不愧是G-DRAGON，K-POP王者征服高雄5万名观众', excerpt: 'G-DRAGON于5月30日在高雄国家体育场举行的“K-SPARK in Kaohsiung 2026”中压轴登场，让超过5万名观众为之沸腾。' },
+        { title: 'TAEYEON以亮眼美貌启程前往高雄［NewsenTV］', excerpt: '少女时代成员TAEYEON为参加“K-SPARK in Kaohsiung”，于5月30日从仁川国际机场启程前往台湾高雄。' },
+        { title: 'KiiiKiii“出发前往台湾高雄”［图片］', excerpt: 'KiiiKiii成员Jiyu、Leesol、Sui、Haum和Kya为参加“K-SPARK in Kaohsiung”，于5月29日从仁川国际机场出发。' },
+        { title: 'G-DRAGON连续第五次担任“K-SPARK”压轴嘉宾', excerpt: 'G-DRAGON将作为“K-SPARK in Kaohsiung 2026”的主压轴嘉宾登台。门票开售仅30分钟即告售罄，展现了当地的高度关注。' },
         { title: 'G-Dragon、华莎、ITZY等确认加盟K-SPARK Malaysia 2026阵容', excerpt: '以G-DRAGON为首，HWASA、ITZY、DPR IAN、DOLLA、3P确认加盟将于2026年1月31日在吉隆坡默迪卡体育场举行的K-SPARK Malaysia 2026。' },
         { title: 'ITZY、华莎、DPR Ian、DOLLA与3P将与G-DRAGON共同点燃K-SPARK Malaysia 2026', excerpt: '压轴嘉宾G-DRAGON携手ITZY、HWASA、DPR IAN及本地艺人DOLLA、3P同台，实现了全球K-POP巨星与马来西亚艺人同台演出的盛事。' },
         { title: 'GD越南演出观众冲上舞台……突发状况沉着应对', excerpt: 'K-STAR SPARK越南演出期间发生观众冲上舞台的突发状况，但GD与舞者们沉着应对，演出得以顺利收尾。' },

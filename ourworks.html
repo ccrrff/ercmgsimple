@@ -603,7 +603,7 @@
             2025 <span class="ct">9</span>
           </button>
           <button class="ytab on" role="tab" aria-selected="true" aria-controls="pane-2026" onclick="switchYear('2026',this)">
-            2026 <span class="ct">4</span>
+            2026 <span class="ct">5</span>
           </button>
         </div>
 
@@ -999,6 +999,29 @@
               </div>
             </div>
           </div>
+          <div class="item done" id="work-krazy-taipei" onclick="acc(this)">
+            <div class="row">
+              <span class="row-num">05</span>
+              <span class="row-city">KRAZY Music Festival Taipei</span>
+              <span class="row-type" data-i18n="typeLive">라이브</span>
+            </div>
+            <div class="drop drop-photo">
+              <div class="drop-photos">
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,c_limit,q_auto,f_auto/v1792510178/ercmg/gallery/taipei/baekhyun/che05539-jpg-5cd160a4ee.jpg" alt="BAEKHYUN at KRAZY Music Festival Taipei" loading="lazy">
+                  <div class="dp-label">BAEKHYUN</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,c_limit,q_auto,f_auto/v1792510192/ercmg/gallery/taipei/itzy/shih-1-1-adf5ab97f7.jpg" alt="ITZY at KRAZY Music Festival Taipei" loading="lazy">
+                  <div class="dp-label">ITZY</div>
+                </div>
+                <div class="dp-slice">
+                  <img src="https://res.cloudinary.com/dx629ses8/image/upload/w_800,c_limit,q_auto,f_auto/v1792510202/ercmg/gallery/taipei/pentagon/5a705229-jpg-5132617c52.jpg" alt="PENTAGON at KRAZY Music Festival Taipei" loading="lazy">
+                  <div class="dp-label">PENTAGON</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div><!-- /right-panel -->
@@ -1129,7 +1152,7 @@
     function positionFloatingCard(trigger) {
       if (!trigger || !dialog.open) return;
       var sourceRect = trigger.getBoundingClientRect();
-      var cardRect = dialog.getBoundingClientRect();
+      var cardRect = { width: dialog.offsetWidth, height: dialog.offsetHeight };
       var left = sourceRect.left + (sourceRect.width - cardRect.width) / 2;
       var top = sourceRect.top + (sourceRect.height - cardRect.height) / 2;
       left = Math.max(10, Math.min(left, window.innerWidth - cardRect.width - 10));
